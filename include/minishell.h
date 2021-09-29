@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/09/29 15:17:09 by nammari          ###   ########.fr       */
+/*   Updated: 2021/09/29 21:44:50 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
+# include <sys/wait.h>
+# include <time.h>
 
 enum e_arg_type {
     CMD,
@@ -30,7 +32,7 @@ enum e_arg_type {
 	REDIR_HERE_DOC,
 	REDIR_OUT_TRUNC,
 	REDIR_OUT_APPEND,
-	FILE
+	FILE_NAME
 };
 
 typedef struct s_ast {
