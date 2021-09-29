@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/29 21:33:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/09/30 00:34:23 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 ** by merging git ranches
 */
 
-int main(void)
+int	main(void)
 {
 	printf("Hello World!\n");
-    return (0);
+	return (0);
 }

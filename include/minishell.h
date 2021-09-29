@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/09/29 21:44:50 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/09/30 00:42:56 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include <sys/wait.h>
 # include <time.h>
 
-enum e_arg_type {
-    CMD,
+enum	e_arg_type {
+	CMD,
 	CMD_SUFFIX,
-    AND,
+	AND,
 	OR,
-    PIPE,
+	PIPE,
 	VAR,
 	REDIR_IN,
 	REDIR_HERE_DOC,
@@ -36,16 +36,16 @@ enum e_arg_type {
 };
 
 typedef struct s_ast {
-    char    *value;
-    int    type;
-    struct  s_pepe *left;
-    struct  s_pepe *right;
-}           t_ast;
+	char			value;
+	int				type;
+	struct s_ast	*left;
+	struct s_ast	*right;
+}	t_ast;
 
 typedef struct s_token {
-    char    *value;
-    int    type;
-    struct  s_pepe *next;
-}           t_token;
+	char			*value;
+	int				type;
+	struct s_token	*next;
+}	t_token;
 
 #endif

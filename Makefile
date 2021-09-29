@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/29 21:49:32 by sdummett         ###   ########.fr        #
+#    Updated: 2021/09/30 00:44:46 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
 bonus: $(OBJBONUS)
 	$(CC) $(CFLAGS) $(OBJBONUS) -o $(NAME)
@@ -49,11 +50,13 @@ bonus: $(OBJBONUS)
 	$(CC) $(INC) -c $(CFLAGS) -o $@ $<
 
 clean:
-	rm -f $(OBJ)
-	rm -f $(OBJ_BONUS)
+	$(RM) $(OBJ)
+	$(RM) $(OBJ_BONUS)
+	@printf "$(WHT)[$(YEL)$(NAME) OBJS REMOVED$(WHT)]\n"
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(NAME_BONUS)
+	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
+	@printf "$(WHT)[$(YEL)$(NAME) BINARIES REMOVED$(WHT)]\n"
 
 re: fclean all
