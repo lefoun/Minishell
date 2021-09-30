@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/30 00:44:46 by sdummett         ###   ########.fr        #
+#    Updated: 2021/09/30 21:36:53 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -f
 CC			= clang
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
-SRC			= minishell.c
+SRC			= minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c is_redirection_op.c \
+				is_space.c is_whitespace.c ft_tokenize.c
 OBJ			= $(SRC:.c=.o)
 NAME_BONUS	= minishell_bonus
 SRC_BONUS	= minishell_bonus.c
@@ -40,7 +41,7 @@ includes	= $(wildcard include/*.h)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME)
 	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
 bonus: $(OBJBONUS)

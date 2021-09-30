@@ -6,15 +6,19 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/30 01:17:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:00:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 bool	get_redirection_op(char *str, int index, t_token **head)
 {
 	t_token	*elem;
 	int		i;
 	int		j;
+	(void)head;
+	(void)index;
 
 	if (*str != '>' && *str != '<')
 		return (false);
@@ -34,6 +38,7 @@ bool	get_redirection_op(char *str, int index, t_token **head)
 	elem->value = ft_strdup_index(str + i, j);
 	if (!elem->value)
 		return (false);
-	ft_pushback(head, elem);
+	// Add function
+	//ft_pushback(head, elem);
 	return (true);
 }
