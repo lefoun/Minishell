@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/09/30 21:34:15 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:50:05 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,16 @@ char	*ft_strdup_index(char *str, int index);
 bool	get_redirection_op(char *str, int index, t_token **head);
 int		ft_parser(char *cmd);
 t_token *ft_tokenize(char *cmd);
+void	get_op_elem(void);
+int		get_index_operator(char *arg);
+int		get_next_type_operator(bool (*func_chercher[6])(char *str, int index, t_token **head), \
+				char *arg, int index, t_token **head);
 
 /*
 ** Boolean
 */
 bool	is_space(char c);
 bool	is_whitespace(char c);
-
+bool	is_operator(char c);
 
 #endif

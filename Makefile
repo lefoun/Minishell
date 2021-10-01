@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/30 21:36:53 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/01 11:33:17 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ CC			= clang
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRC			= minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c is_redirection_op.c \
-				is_space.c is_whitespace.c ft_tokenize.c
+				is_space.c is_whitespace.c ft_tokenize.c get_index_operator.c get_op_elem.c \
+				get_next_type_operator.c is_operator.c
 OBJ			= $(SRC:.c=.o)
 NAME_BONUS	= minishell_bonus
 SRC_BONUS	= minishell_bonus.c
