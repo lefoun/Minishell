@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/09/30 21:50:05 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:48:36 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <stdbool.h>
 # include <sys/wait.h>
 # include <time.h>
+# include <fcntl.h>
+
 
 enum	e_arg_type {
 	CMD,
@@ -38,7 +40,8 @@ enum	e_arg_type {
 	REDIR_HERE_DOC,
 	REDIR_OUT_TRUNC,
 	REDIR_OUT_APPEND,
-	FILE_NAME
+	FILE_NAME,
+	WILDCARD
 };
 
 typedef struct s_ast {
@@ -66,6 +69,15 @@ void	get_op_elem(void);
 int		get_index_operator(char *arg);
 int		get_next_type_operator(bool (*func_chercher[6])(char *str, int index, t_token **head), \
 				char *arg, int index, t_token **head);
+
+// Get operator
+bool	get_redir_out_trunc(char *str, int index, t_token **head);
+bool	get_redir_out_append(char *str, int index, t_token **head);
+
+// Linked list utils
+int	ft_elem_pushback(t_token **head, t_token *elem);
+t_token	*ft_create_elem(char *content, int type);
+
 
 /*
 ** Boolean

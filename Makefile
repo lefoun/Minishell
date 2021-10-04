@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/01 16:53:33 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/04 16:06:25 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ CC			= clang
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRCS_DIR	= srcs/
-SRCS_FILES	= minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c is_redirection_op.c \
+SRCS_FILES	= minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c get_redirection_op.c \
 				is_space.c is_whitespace.c ft_tokenize.c get_index_operator.c get_op_elem.c \
-				get_next_type_operator.c is_operator.c
+				get_next_type_operator.c is_operator.c linked_list_utils.c
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
