@@ -1,39 +1,45 @@
 #include "minishell.h"
 
-int	get_cmd_suffix(char *str, t_token **head)
+
+char	*get_cmd_suffix_string(char *str)
 {
+	char	*cmd_suffix;
 	int		i;
 	int		j;
-	char	*cmd_suffix;
-	char	**cmd_suffix_splited;
-	int		ret;
 
 	i = 0;
-	while (str[i] && !is_operator(str[i]))
-		i++;
-	cmd_suffix = malloc((sizeof(*cmd_suffix) * i) + 1);
-	if (!cmd_suffix)
-		return (2);
 	j = 0;
+	while (str[i] && !is_operator(str[i]))
+		++i;
+	cmd_suffix = malloc((i + 1) * sizeof(*cmd_suffix));
+	ft_catch_error(cmd_suffix == NULL, MALLOC_ERROR, cmd_suffix);
 	while (j < i)
 	{
-		cmd_suffix[j] = str[j];
+		cmd_suffix[j] = str[j + i];
 		++j;
 	}
 	cmd_suffix[j] = '\0';
-	cmd_suffix_splited = ft_split(cmd_suffix, ' ');
-	free(cmd_suffix);
-	if (cmd_suffix_splited == NULL)
-		return (2);
+	return (cmd_suffix);
+}
+
+int	get_cmd_suffix(char *str, t_token **head)
+{
+	int		i;
+	char	*cmd_suffix;
+	char	**splited_cmd_suffix;
+	int		ret;
+
 	i = 0;
-	while (cmd_suffix_splited[i])
+	cmd_suffix = get_cmd_suffix_string(str);
+	splited_cmd_suffix = ft_split(cmd_suffix, ' ');
+	ft_catch_error(splited_cmd_suffix == NULL, MALLOC_ERROR, cmd_suffix);
+	i = 0;
+	while (splited_cmd_suffix[i])
 	{
-		ret = ft_elem_pushback(head, ft_create_elem(cmd_suffix_splited[i], CMD_SUFFIX));
+		ret = ft_elem_pushback(head, ft_create_elem(splited_cmd_suffix[i],
+								CMD_SUFFIX));
 		if (ret == 2)
-			{
-				free_tab(cmd_suffix_splited);
-				return (2);
-			}
+				return (ft_free_tab(splited_cmd_suffix, MALLOC_ERROR));
 		++i;
 	}
 	return (0);

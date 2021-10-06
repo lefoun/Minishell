@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/06 14:24:23 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/06 14:56:49 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_BONUS	= minishell_bonus.c
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
+LIBRARY		= ft_printf
 
 
 # ************************************ #
@@ -51,7 +52,9 @@ $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
 
 $(NAME): $(OBJS_DIR) $(OBJ)
-	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME)
+	make bonus -sC $(LIBRARY)
+	@printf "$(WHT)[$(GRN)LIBRARY $(LIBRARY) COMPILED$(WHT)]\n"
+	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
 	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
 bonus: $(OBJBONUS)
@@ -61,11 +64,13 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(include)
 	$(CC) $(INC) -c $(CFLAGS) -o $@ $<
 
 clean:
+	make clean -sC $(LIBRARY)
 	$(RM) $(OBJ)
 	$(RM) $(OBJ_BONUS)
 	@printf "$(WHT)[$(YEL)$(NAME) OBJS REMOVED$(WHT)]\n"
 
 fclean: clean
+	make fclean -sC $(LIBRARY)
 	$(RM) $(NAME)
 	$(RM) $(NAME_BONUS)
 	@printf "$(WHT)[$(YEL)$(NAME) BINARIES REMOVED$(WHT)]\n"

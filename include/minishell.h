@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/06 14:22:28 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/06 14:49:51 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 */
 
 # include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -27,6 +27,7 @@
 # include <sys/wait.h>
 # include <time.h>
 # include <fcntl.h>
+# include "ft_printf.h"
 
 // Error management
 
@@ -95,4 +96,7 @@ bool	is_space(char c);
 bool	is_whitespace(char c);
 bool	is_operator(char c);
 
+// Error functions
+void	ft_catch_error(bool error_check, int error_cause, char *str);
+int	ft_free_tab(char **tab, int error_cause);
 #endif
