@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/06 12:18:54 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/06 14:00:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ int	get_redir_out_trunc(char *str, int index, t_token **head)
 		++j;
 	file_name = ft_strdup_index(str + i, j);
 	ret = ft_elem_pushback(head, ft_create_elem(file_name, REDIR_OUT_TRUNC));
-	if (ret == -1)
+	if (ret == 2)
+	{
+		free(file_name);	
 		return (2);
+	}
 	return (0);
 }
 
@@ -57,8 +60,11 @@ int	get_redir_input_file(char *str, int index, t_token **head)
 		++j;
 	file_name = ft_strdup_index(str + i, j);
 	ret = ft_elem_pushback(head, ft_create_elem(file_name, REDIR_IN));
-	if (ret == -1)
+	if (ret == 2)
+	{
+		free(file_name);	
 		return (2);
+	}
 	return (0);
 }
 
@@ -82,8 +88,11 @@ int	get_redir_out_append(char *str, int index, t_token **head)
 		++j;
 	file_name = ft_strdup_index(str + i, j);
 	ret = ft_elem_pushback(head, ft_create_elem(file_name, REDIR_OUT_APPEND));
-	if (ret == -1)
+	if (ret == 2)
+	{
+		free(file_name);	
 		return (2);
+	}
 	return (0);
 }
 
@@ -107,7 +116,10 @@ int	get_redir_input_here_doc(char *str, int index, t_token **head)
 		++j;
 	file_name = ft_strdup_index(str + i, j);
 	ret = ft_elem_pushback(head, ft_create_elem(file_name, REDIR_HERE_DOC));
-	if (ret == -1)
+	if (ret == 2)
+	{
+		free(file_name);	
 		return (2);
+	}
 	return (0);
 }

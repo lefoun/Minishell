@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/06 11:53:54 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/06 14:22:28 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # include <time.h>
 # include <fcntl.h>
 
+// Error management
+
+# define MALLOC_ERROR 2
+# define CMD_NOT_FOUND 3
+
+//...
 
 enum	e_arg_type {
 	CMD,
