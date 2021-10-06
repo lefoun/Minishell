@@ -6,7 +6,7 @@ int	ft_elem_pushback(t_token **head, t_token *elem)
 
 	if (head == NULL || elem == NULL) 
 		return (-1);
-	if (*head == NULL)
+	else if (*head == NULL)
 		*head = elem;
 	else
 	{
@@ -34,5 +34,6 @@ t_token	*ft_create_elem(char *content, int type)
 	}
 	new->value = content;
 	new->type = type;
+	new->next = NULL;
 	return (new);
 }

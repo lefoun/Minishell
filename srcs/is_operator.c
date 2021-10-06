@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_operator.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:49:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/30 21:51:27 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/06 15:17:52 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_operator(char c)
 {
-	if (c == '<' || c == '>')
+	if (c == '<' || c == '>' || c == '|' || c == '&')
 		return (true);
 	else
 		return (false);

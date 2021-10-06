@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/06 14:49:51 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/06 15:16:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	get_redir_out_trunc(char *str, int index, t_token **head);
 int	get_redir_out_append(char *str, int index, t_token **head);
 int	get_redir_input_here_doc(char *str, int index, t_token **head);
 int	get_redir_input_file(char *str, int index, t_token **head);
+int	get_pipe_cmd_and_suffix(char *str, int index, t_token **head);
 
 
 // Linked list utils

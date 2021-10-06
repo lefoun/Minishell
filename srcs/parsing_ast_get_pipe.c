@@ -9,13 +9,13 @@ char	*get_cmd_suffix_string(char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] && !is_operator(str[i]))
+	while (str[i] != '\0' && !is_operator(str[i]))
 		++i;
-	cmd_suffix = malloc((i + 1) * sizeof(*cmd_suffix));
+	cmd_suffix = malloc((i + 1) * sizeof(char));
 	ft_catch_error(cmd_suffix == NULL, MALLOC_ERROR, cmd_suffix);
 	while (j < i)
 	{
-		cmd_suffix[j] = str[j + i];
+		cmd_suffix[j] = str[j];
 		++j;
 	}
 	cmd_suffix[j] = '\0';
@@ -39,7 +39,7 @@ int	get_cmd_suffix(char *str, t_token **head)
 		ret = ft_elem_pushback(head, ft_create_elem(splited_cmd_suffix[i],
 								CMD_SUFFIX));
 		if (ret == 2)
-				return (ft_free_tab(splited_cmd_suffix, MALLOC_ERROR));
+			return (ft_free_tab(splited_cmd_suffix, MALLOC_ERROR));
 		++i;
 	}
 	return (0);
@@ -68,6 +68,6 @@ int	get_pipe_cmd_and_suffix(char *str, int index, t_token **head)
 		free(cmd);
 		return (2);
 	}
-	ret = get_cmd_suffix(str + j, head);
+	ret = get_cmd_suffix(str +i + j, head);
 	return (ret);
 }
