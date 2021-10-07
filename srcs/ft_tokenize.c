@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/07 11:31:23 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:56:28 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_init_function_pointer(int (*get_operators[])(char *, t_token **))
 	get_operators[2] = get_redir_input_file;
 	get_operators[3] = get_redir_input_here_doc;
 	get_operators[4] = get_pipe_op;
+	get_operators[5] = get_and_op;
+	get_operators[6] = get_or_op;
 }
 
 t_token *ft_tokenize(char *cmd)
@@ -57,10 +59,10 @@ t_token *ft_tokenize(char *cmd)
 		{
 			prefix_op = cmd[i];
 			j = 0;
-			while ((*get_operators[j])(cmd + i , &head) != 0 && j < 5)
+			while ((*get_operators[j])(cmd + i , &head) != 0 && j < 7)
 				++j;
-			// printf("This is the return value %d and Type %d and content %s\n", j, head->type, head->value);
 		}
+		//add a function that checks if we have false operators like >>>
 		while (is_operator(cmd[i]))
 			++i;
 		while (is_whitespace(cmd[i]))
@@ -71,5 +73,5 @@ t_token *ft_tokenize(char *cmd)
 		redirection = false;
 	}
 	print_token(head);
-	return (NULL);
+	return (head);
 }

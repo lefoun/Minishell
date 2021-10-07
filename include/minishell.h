@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/07 11:32:39 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:57:41 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_token {
 }	t_token;
 
 // function pointer
-int	(*get_operators[5])(char *arg, t_token **head);
+int	(*get_operators[7])(char *arg, t_token **head);
 
 /*
 ** Parsing functions
@@ -78,7 +78,7 @@ int		ft_parser(char *cmd);
 t_token *ft_tokenize(char *cmd);
 void	get_op_elem(void);
 int		get_index_operator(char *arg);
-int		get_next_type_operator(int (*get_operators[6])(char *str, t_token **head), \
+int		get_next_type_operator(int (*get_operators[])(char *str, t_token **head), \
 				char *arg, t_token **head);
 
 // Get operator
@@ -88,6 +88,8 @@ int	get_redir_input_here_doc(char *str, t_token **head);
 int	get_redir_input_file(char *str, t_token **head);
 int	get_cmd(char *str, t_token **head);
 int	get_pipe_op(char *str, t_token **head);
+int	get_or_op(char *str, t_token **head);
+int	get_and_op(char *str, t_token **head);
 
 // Linked list utils
 int	ft_elem_pushback(t_token **head, t_token *elem);

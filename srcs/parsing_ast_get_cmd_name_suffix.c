@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:21:05 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/06 18:43:28 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 12:01:43 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	get_cmd_suffix(char *str, t_token **head)
 
 	i = 0;
 	j = 0;
+	while (*str && is_whitespace(str[i]))
+		++str;
 	while (str[i] != '\0' && !is_operator(str[i]))
 		++i;
 	while (j < i)
