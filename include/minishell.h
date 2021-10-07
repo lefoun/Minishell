@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/07 13:21:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/07 14:54:22 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ enum	e_arg_type {
 	REDIR_OUT_TRUNC,
 	REDIR_OUT_APPEND,
 	FILE_NAME,
-	WILDCARD
+	WILDCARD,
+	ASSIGN
 };
 
 typedef struct s_ast {
@@ -90,6 +91,7 @@ int	get_cmd(char *str, t_token **head);
 int	get_pipe_op(char *str, t_token **head);
 int	get_or_op(char *str, t_token **head);
 int	get_and_op(char *str, t_token **head);
+int get_assignment(char *cmd_line, t_token **head);
 
 // Linked list utils
 int	ft_elem_pushback(t_token **head, t_token *elem);
@@ -102,6 +104,7 @@ t_token	*ft_create_elem(char *content, int type);
 bool	is_space(char c);
 bool	is_whitespace(char c);
 bool	is_operator(char c);
+bool	is_next_word_assignment(char *cmd_line);
 
 /*
 ** Utils

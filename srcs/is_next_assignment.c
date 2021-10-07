@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   is_next_assignment.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/07 13:45:24 by nammari          ###   ########.fr       */
+/*   Created: 2021/10/07 14:52:06 by nammari           #+#    #+#             */
+/*   Updated: 2021/10/07 14:54:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_parser(char *cmd)
+bool	is_next_word_assignment(char *cmd_line)
 {
-	t_ast	*root;
-	t_token *head;
+	int	i;
 
-	head = ft_tokenize(cmd, &head);
-	if (!head)
-		return (-1);
-	root = ft_create_ast(cmd);
-	if (!root)
-		return (-1);
-	return (0);
+	i = 0;
+	while (!is_whitespace(cmd_line[i]) && cmd_line[i] != '\0')
+	{
+		if (cmd_line[i] == '=')
+			return (true);
+		i++;
+	}
+	return (false);
+	
 }

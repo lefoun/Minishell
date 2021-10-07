@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:21:05 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/07 12:01:43 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 14:23:22 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	get_cmd_suffix(char *str, t_token **head)
 	ft_catch_error(ret == 2, MALLOC_ERROR, cmd_suffix, head);
 	return (0);
 }
+
+
 
 int get_cmd(char *str, t_token **head)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
+#    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/07 13:20:39 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/07 14:53:42 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS_FILES	= minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c\
 				get_index_operator.c get_op_elem.c get_next_type_operator.c\
 				is_operator.c linked_list_utils.c parsing_ast_get_pipe.c\
 				error_management.c parsing_ast_get_cmd_name_suffix.c skip_whitespace.c\
-				free_token_lst.c parsing_ast_get_AND_OR_op.c
+				free_token_lst.c parsing_ast_get_AND_OR_op.c get_assignment.c\
+				is_next_assignment.c
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
