@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/07 11:56:28 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 13:19:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ void	ft_init_function_pointer(int (*get_operators[])(char *, t_token **))
 	get_operators[6] = get_or_op;
 }
 
-t_token *ft_tokenize(char *cmd)
+t_token *ft_tokenize(char *cmd, t_token **head)
 {
-	t_token	*head;
 	int		i;
 	int		j;
 	bool	redirection;
 	char	prefix_op;
 	
 	i = 0;
-	head = NULL;
+	*head = NULL;
 	redirection = false;
 	prefix_op = '0';
 	ft_init_function_pointer(get_operators);
@@ -49,8 +48,8 @@ t_token *ft_tokenize(char *cmd)
 	{
 		while (is_whitespace(cmd[i]))
 			i++;
-		int ret = get_cmd(cmd + i, &head);
-		ft_catch_error(ret == 2, MALLOC_ERROR, NULL, &head);
+		int ret = get_cmd(cmd + i, head);
+		ft_catch_error(ret == 2, MALLOC_ERROR, NULL, head);
 		while (cmd[i] != '\0' && !is_operator(cmd[i]))
 			i++;
 		if (cmd[i] == '<' || cmd[i] == '>')
@@ -59,7 +58,7 @@ t_token *ft_tokenize(char *cmd)
 		{
 			prefix_op = cmd[i];
 			j = 0;
-			while ((*get_operators[j])(cmd + i , &head) != 0 && j < 7)
+			while ((*get_operators[j])(cmd + i , head) != 0 && j < 7)
 				++j;
 		}
 		//add a function that checks if we have false operators like >>>
@@ -72,6 +71,6 @@ t_token *ft_tokenize(char *cmd)
 				++i;
 		redirection = false;
 	}
-	print_token(head);
-	return (head);
+	print_token(*head);
+	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/07 11:57:41 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 13:21:21 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_ast	*ft_create_ast(char *cmd);
 char	*ft_strdup_index(char *str, int index);
 bool	get_redirection_op(char *str, t_token **head);
 int		ft_parser(char *cmd);
-t_token *ft_tokenize(char *cmd);
+t_token *ft_tokenize(char *cmd, t_token **head);
 void	get_op_elem(void);
 int		get_index_operator(char *arg);
 int		get_next_type_operator(int (*get_operators[])(char *str, t_token **head), \
@@ -102,6 +102,12 @@ t_token	*ft_create_elem(char *content, int type);
 bool	is_space(char c);
 bool	is_whitespace(char c);
 bool	is_operator(char c);
+
+/*
+** Utils
+*/
+void	skip_whitespace(char *str);
+void	free_token_lst(t_token *lst);
 
 // Error functions
 void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head);
