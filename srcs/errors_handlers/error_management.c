@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:38:04 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/06 18:30:13 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 17:12:28 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head)
 {
-	return ;
-	(void)head;
 	if (error_check == false)
 		return ;
 	if (error_cause == MALLOC_ERROR)
@@ -27,7 +25,17 @@ void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head
 		perror("Error ! command doesn't exist");
 	}
 	free(str);
+	(void)head;
 	exit(1);
+}
+
+int	catch_error(char *str, t_token **head)
+{
+	perror("Minishell:");
+	free(str);
+	if (head)
+		free_token_lst(*head);
+	return (errno);
 }
 
 int	ft_free_tab(char **tab, int error_cause)

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/07 15:03:02 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 16:32:30 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	find_type_cmd_name_or_assign(char *str)
 	}
 	return (0);
 }
-
-
 
 t_token *ft_tokenize(char *cmd, t_token **head)
 {

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/07 14:54:22 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 17:12:06 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@
 # include <sys/wait.h>
 # include <time.h>
 # include <fcntl.h>
+# include <errno.h>
 # include "ft_printf.h"
-
 // Error management
 
+# define OP_NOT_FOUND -1
 # define MALLOC_ERROR 2
 # define CMD_NOT_FOUND 3
 
@@ -115,4 +116,5 @@ void	free_token_lst(t_token *lst);
 // Error functions
 void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head);
 int	ft_free_tab(char **tab, int error_cause);
+int	catch_error(char *str, t_token **head);
 #endif

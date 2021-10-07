@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/07 14:53:42 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/07 17:46:55 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CC			= clang
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRCS_DIR	= srcs/
-SRCS_FILES	= minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c\
+SRCS_FILES	=  minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c\
 				get_redirection_op.c is_space.c is_whitespace.c ft_tokenize.c\
 				get_index_operator.c get_op_elem.c get_next_type_operator.c\
 				is_operator.c linked_list_utils.c parsing_ast_get_pipe.c\
