@@ -6,48 +6,70 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/06 16:39:51 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:31:23 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	(*func_chercher[5])(char *arg, int index, t_token **head);
+void	print_token(t_token *head)
+{
+	while (head)
+	{
+		printf("type : %d | value : %s\n", head->type, head->value);
+		head = head->next;
+	}
+}
+
+void	ft_init_function_pointer(int (*get_operators[])(char *, t_token **))
+{
+	get_operators[0] = get_redir_out_append;
+	get_operators[1] = get_redir_out_trunc;
+	get_operators[2] = get_redir_input_file;
+	get_operators[3] = get_redir_input_here_doc;
+	get_operators[4] = get_pipe_op;
+}
 
 t_token *ft_tokenize(char *cmd)
 {
 	t_token	*head;
 	int		i;
 	int		j;
+	bool	redirection;
 	char	prefix_op;
-
-	func_chercher[0] = get_redir_out_append;
-	func_chercher[1] = get_redir_out_trunc;
-	func_chercher[2] = get_redir_input_file;
-	func_chercher[3] = get_redir_input_here_doc;
-	func_chercher[4] = get_pipe_cmd_and_suffix;
-
+	
 	i = 0;
 	head = NULL;
+	redirection = false;
 	prefix_op = '0';
+	ft_init_function_pointer(get_operators);
 	while (cmd[i])
 	{
-	// Add args to get_next_type_operator call
-	// i = get_next_type_operator();
-		// Add function
-		//create_op_element();
-		if (is_operator(cmd[i]) && cmd[i] != prefix_op)
+		while (is_whitespace(cmd[i]))
+			i++;
+		int ret = get_cmd(cmd + i, &head);
+		ft_catch_error(ret == 2, MALLOC_ERROR, NULL, &head);
+		while (cmd[i] != '\0' && !is_operator(cmd[i]))
+			i++;
+		if (cmd[i] == '<' || cmd[i] == '>')
+			redirection = true;
+		if (is_operator(cmd[i]))
 		{
 			prefix_op = cmd[i];
 			j = 0;
-			while ((*func_chercher[j])(cmd + i , i, &head) != 0 && j < 5)
+			while ((*get_operators[j])(cmd + i , &head) != 0 && j < 5)
 				++j;
-			printf("This is the return value %d and Type %d and content %s\n", j, head->type, head->value);
+			// printf("This is the return value %d and Type %d and content %s\n", j, head->type, head->value);
 		}
-		++i;
-		// j = 0;
-		// while (!is_space(*cmd))
-		// 	++j;
+		while (is_operator(cmd[i]))
+			++i;
+		while (is_whitespace(cmd[i]))
+			++i;
+		if (redirection == true)
+			while (cmd[i] != '\0' && !is_operator(cmd[i]) && !is_whitespace(cmd[i]))
+				++i;
+		redirection = false;
 	}
+	print_token(head);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/06 15:16:04 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:32:39 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 //...
 
 enum	e_arg_type {
-	CMD,
+	CMD_NAME,
 	CMD_SUFFIX,
 	AND,
 	OR,
@@ -60,30 +60,34 @@ typedef struct s_ast {
 
 typedef struct s_token {
 	char			*value;
+	char			**args;
 	int				type;
 	struct s_token	*next;
 }	t_token;
+
+// function pointer
+int	(*get_operators[5])(char *arg, t_token **head);
 
 /*
 ** Parsing functions
 */
 t_ast	*ft_create_ast(char *cmd);
 char	*ft_strdup_index(char *str, int index);
-bool	get_redirection_op(char *str, int index, t_token **head);
+bool	get_redirection_op(char *str, t_token **head);
 int		ft_parser(char *cmd);
 t_token *ft_tokenize(char *cmd);
 void	get_op_elem(void);
 int		get_index_operator(char *arg);
-int		get_next_type_operator(int (*func_chercher[6])(char *str, int index, t_token **head), \
-				char *arg, int index, t_token **head);
+int		get_next_type_operator(int (*get_operators[6])(char *str, t_token **head), \
+				char *arg, t_token **head);
 
 // Get operator
-int	get_redir_out_trunc(char *str, int index, t_token **head);
-int	get_redir_out_append(char *str, int index, t_token **head);
-int	get_redir_input_here_doc(char *str, int index, t_token **head);
-int	get_redir_input_file(char *str, int index, t_token **head);
-int	get_pipe_cmd_and_suffix(char *str, int index, t_token **head);
-
+int	get_redir_out_trunc(char *str, t_token **head);
+int	get_redir_out_append(char *str, t_token **head);
+int	get_redir_input_here_doc(char *str, t_token **head);
+int	get_redir_input_file(char *str, t_token **head);
+int	get_cmd(char *str, t_token **head);
+int	get_pipe_op(char *str, t_token **head);
 
 // Linked list utils
 int	ft_elem_pushback(t_token **head, t_token *elem);
@@ -98,6 +102,6 @@ bool	is_whitespace(char c);
 bool	is_operator(char c);
 
 // Error functions
-void	ft_catch_error(bool error_check, int error_cause, char *str);
+void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head);
 int	ft_free_tab(char **tab, int error_cause);
 #endif
