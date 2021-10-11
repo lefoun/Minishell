@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/07 16:32:30 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:25:39 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ t_token *ft_tokenize(char *cmd, t_token **head)
 	int		ret;
 	bool	redirection;
 	char	prefix_op;
-	
+	int	(*get_operators[7])(char *arg, t_token **head);
+
 	i = 0;
 	*head = NULL;
 	redirection = false;
@@ -77,14 +78,15 @@ t_token *ft_tokenize(char *cmd, t_token **head)
 		if (is_next_word_assignment(cmd + i))
 		{
 			ret = get_assignment(cmd + i, head);
-			ft_catch_error(ret == 2, MALLOC_ERROR, NULL, head);
+			ft_catch_error(ret == 2, NULL, head);
 			while (cmd[i] != '\0' && !is_operator(cmd[i]) && !is_whitespace(cmd[i]))
 				i++;
 		}
 		else
 		{
 			ret = get_cmd(cmd + i, head);
-			ft_catch_error(ret == 2, MALLOC_ERROR, NULL, head);
+			if (ft_catch_error(ret == 2, NULL, head) == MALLOC_ERROR)
+				return (NULL);
 			while (cmd[i] != '\0' && !is_operator(cmd[i]))
 				i++;
 		}
@@ -109,5 +111,5 @@ t_token *ft_tokenize(char *cmd, t_token **head)
 		redirection = false;
 	}
 	print_token(*head);
-	return (NULL);
+	return (*head);
 }
