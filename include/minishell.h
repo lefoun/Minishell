@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/11 17:38:47 by nammari          ###   ########.fr       */
+=======
+/*   Updated: 2021/10/11 18:06:15 by sdummett         ###   ########.fr       */
+>>>>>>> d22aa870fbdd40034487984db5b78a7e9156779f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +72,10 @@ typedef struct s_token {
 }	t_token;
 
 // function pointer
+<<<<<<< HEAD
+=======
+typedef int	(*get_operators[7])(char *arg, t_token **head);
+>>>>>>> d22aa870fbdd40034487984db5b78a7e9156779f
 
 /*
 ** Parsing functions
@@ -113,7 +121,6 @@ void	skip_whitespace(char *str);
 void	free_token_lst(t_token *lst);
 
 // Error functions
-void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head);
+int	ft_catch_error(bool error_check, char *str, t_token **head);
 int	ft_free_tab(char **tab, int error_cause);
-int	catch_error(char *str, t_token **head);
 #endif

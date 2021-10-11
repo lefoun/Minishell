@@ -3,40 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:38:04 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/11 14:39:07 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:14:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minishell.h"
 
-void	ft_catch_error(bool error_check, int error_cause, char *str, t_token **head)
+int	ft_catch_error(bool error_check, char *str, t_token **head)
 {
-	if (error_check == false)
-		return ;
-	if (error_cause == MALLOC_ERROR)
+	if (error_check == true)
 	{
-		perror("Error ! Malloc Failed.\n");
+		perror("minishell: Error ! Malloc Failed.\n");
+		free(str);
+		if (head != NULL)
+			free_token_lst(*head);
+		return (MALLOC_ERROR);
 	}
-	else if (error_cause == CMD_NOT_FOUND)
-	{
-		perror("Error ! command doesn't exist");
-	}
-	free(str);
-	(void)head;
-	exit(1);
-}
-
-int	catch_error(char *str, t_token **head)
-{
-	perror("Minishell:");
-	free(str);
-	if (head)
-		free_token_lst(*head);
-	printf("this is Errno %d\n", errno);
-	return (errno);
+	return (0);
 }
 
 int	ft_free_tab(char **tab, int error_cause)

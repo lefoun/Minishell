@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_assignment.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:37:31 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/07 14:55:39 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:06:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int get_assignment(char *cmd_line, t_token **head)
 	while (cmd_line[i] != '\0' && !is_whitespace(cmd_line[i]))
 		i++;
 	assignment = ft_strdup_index(cmd_line, i);
-	ft_catch_error(assignment == NULL, MALLOC_ERROR, NULL, head);
+	ft_catch_error(assignment == NULL, NULL, head);
 	ft_elem_pushback(head, ft_create_elem(assignment, ASSIGN));
 	return (0);
 }
