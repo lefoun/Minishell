@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/07 17:12:06 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 16:45:16 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	(*get_operators[7])(char *arg, t_token **head);
 /*
 ** Parsing functions
 */
-t_ast	*ft_create_ast(char *cmd);
+t_ast	*ft_create_ast(char *cmd_line);
 char	*ft_strdup_index(char *str, int index);
 bool	get_redirection_op(char *str, t_token **head);
 int		ft_parser(char *cmd);

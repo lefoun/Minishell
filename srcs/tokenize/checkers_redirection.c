@@ -11,7 +11,7 @@ bool	is_redirection_input(char *str)
 
 bool	is_redirection_output_trunc(char *str)
 {
-	if (str == NULL || !*str == '\0')
+	if (str == NULL || *str == '\0')
 		return (false);
 	if (*str == '>')
 		return (true);

@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/07 17:46:55 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/11 16:47:06 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,30 @@ BLK			= \033[0;30m
 RED			= \033[0;31m
 YEL			= \033[0;33m
 GRN			= \033[0;32m
-RM			= rm -f
+RM			= rm -rf
 CC			= clang
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRCS_DIR	= srcs/
-SRCS_FILES	=  minishell.c ft_parser.c ft_create_ast.c ft_strdup_index.c\
-				get_redirection_op.c is_space.c is_whitespace.c ft_tokenize.c\
-				get_index_operator.c get_op_elem.c get_next_type_operator.c\
-				is_operator.c linked_list_utils.c parsing_ast_get_pipe.c\
-				error_management.c parsing_ast_get_cmd_name_suffix.c skip_whitespace.c\
-				free_token_lst.c parsing_ast_get_AND_OR_op.c get_assignment.c\
-				is_next_assignment.c
+SRCS_SUB_DIR_BOOLEANS = booelans
+
+BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
+	is_space.c is_whitespace.c)
+ERRORS_FILES = $(addprefix errors/, error_management.c)
+TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c \
+ get_AND_OR_op.c get_cmd_name_suffix.c \
+get_next_type_operator.c get_pipe.c has_parse_errors.c create_and_push_back.c \
+ ft_tokenize.c get_assignment.c get_index_operator.c\
+get_op_elem.c   get_redirection_op.c)
+PARSING_FILES = $(addprefix parsing/, ft_parser.c)
+AST_FILES = $(addprefix ast/, ft_create_ast.c)
+EXECUTION_FILES = 
+BUILTINS_FILES =
+UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
+
+SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
+	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES)
+
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
@@ -42,7 +54,8 @@ OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
-
+OBJS_SUB_DIRECTORIES = $(addprefix objs/, booleans errors tokenize execution \
+			ast builtins parsing utils) 
 
 # ************************************ #
 #                RULES                 #
@@ -52,6 +65,8 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
+	mkdir $(OBJS_SUB_DIRECTORIES)
+
 
 $(NAME): $(OBJS_DIR) $(OBJ)
 	make bonus -sC $(LIBRARY)
@@ -75,6 +90,7 @@ fclean: clean
 	make fclean -sC $(LIBRARY)
 	$(RM) $(NAME)
 	$(RM) $(NAME_BONUS)
+	$(RM) $(OBJS_DIR)
 	@printf "$(WHT)[$(YEL)$(NAME) BINARIES REMOVED$(WHT)]\n"
 
 re: fclean all

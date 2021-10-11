@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:38:04 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/07 17:12:28 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 14:39:07 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	catch_error(char *str, t_token **head)
 	free(str);
 	if (head)
 		free_token_lst(*head);
+	printf("this is Errno %d\n", errno);
 	return (errno);
 }
 

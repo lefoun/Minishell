@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_ast_op_errors.c                            :+:      :+:    :+:   */
+/*   has_parse_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 15:12:54 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/07 16:34:21 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 16:41:07 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ bool	has_parse_errors(char *cmd_line)
 {
 	int		i;
 	char	tab[3];
-
+	(void)tab;
+	
 	i = 0;
 	while (is_whitespace(cmd_line[i]))
 	{

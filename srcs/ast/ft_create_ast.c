@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_ast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:19:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/30 21:06:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:45:11 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 ** ft_create_ast
 */
 
-t_ast	*ft_create_ast(char *arg)
+t_ast	*ft_create_ast(char *cmd_line)
 {
 	int	i;
 
 	i = 0;
-	while (arg[i])
+	while (cmd_line[i])
 	{
-		ft_parser(arg);
+		ft_parser(cmd_line);
 		break ;
 	}
 	// un moyen de savoir où est-ce que le mot 
