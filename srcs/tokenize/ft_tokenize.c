@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/07 16:32:30 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:45:56 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_token *ft_tokenize(char *cmd, t_token **head)
 	*head = NULL;
 	redirection = false;
 	prefix_op = '0';
+	int	(*get_operators[7])(char *arg, t_token **head);
 	ft_init_function_pointer(get_operators);
 	while (cmd[i])
 	{
@@ -108,6 +109,6 @@ t_token *ft_tokenize(char *cmd, t_token **head)
 				++i;
 		redirection = false;
 	}
-	print_token(*head);
+	// print_token(*head);
 	return (NULL);
 }

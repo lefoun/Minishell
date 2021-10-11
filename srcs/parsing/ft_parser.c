@@ -6,11 +6,16 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/11 16:14:58 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 17:56:18 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**get_prosseced_cmd_line(char *cmd)
+{
+	
+}
 
 int	ft_parser(char *cmd)
 {

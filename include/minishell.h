@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/11 16:45:16 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/11 17:38:47 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_token {
 }	t_token;
 
 // function pointer
-int	(*get_operators[7])(char *arg, t_token **head);
 
 /*
 ** Parsing functions
