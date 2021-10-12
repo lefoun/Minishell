@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/11 17:38:47 by nammari          ###   ########.fr       */
-=======
-/*   Updated: 2021/10/11 18:06:15 by sdummett         ###   ########.fr       */
->>>>>>> d22aa870fbdd40034487984db5b78a7e9156779f
+/*   Updated: 2021/10/12 15:36:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +68,7 @@ typedef struct s_token {
 }	t_token;
 
 // function pointer
-<<<<<<< HEAD
-=======
-typedef int	(*get_operators[7])(char *arg, t_token **head);
->>>>>>> d22aa870fbdd40034487984db5b78a7e9156779f
+// typedef int	(*get_operators[7])(char *arg, t_token **head);
 
 /*
 ** Parsing functions
@@ -89,6 +82,9 @@ void	get_op_elem(void);
 int		get_index_operator(char *arg);
 int		get_next_type_operator(int (*get_operators[])(char *str, t_token **head), \
 				char *arg, t_token **head);
+
+// Pre processing
+int	count_word_nb(char *cmd_line);
 
 // Get operator
 int	get_redir_out_trunc(char *str, t_token **head);

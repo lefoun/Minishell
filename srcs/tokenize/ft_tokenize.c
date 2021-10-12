@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/11 18:49:51 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/12 15:38:25 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_token *ft_tokenize(char *cmd, t_token **head)
 	int		ret;
 	bool	redirection;
 	char	prefix_op;
-	int	(*get_operators[7])(char *arg, t_token **head);
 
 	i = 0;
 	*head = NULL;
