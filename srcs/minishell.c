@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/12 15:37:02 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/13 15:07:24 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(void)
 	while (true)
 	{
 		cmd = readline("# pepe_shell $>");
-		printf("Number of words = %d\n", count_word_nb(cmd));
 		//printf("command received: |%s|\n", cmd);
-		//ft_parser(cmd);
+		// ft_parser(cmd);
+		get_prosseced_cmd_line(cmd);
 		// return_value = get_redir_out_trunc(cmd, 0, &head);
 		// ft_tokenize(cmd, &head);
 		// free_token_lst(head);

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/12 15:36:04 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/13 15:07:43 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		get_next_type_operator(int (*get_operators[])(char *str, t_token **head), \
 
 // Pre processing
 int	count_word_nb(char *cmd_line);
-
+char	**get_prosseced_cmd_line(char *cmd_line);
 // Get operator
 int	get_redir_out_trunc(char *str, t_token **head);
 int	get_redir_out_append(char *str, t_token **head);
