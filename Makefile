@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/11 17:39:38 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/13 16:44:30 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS_DIR	= srcs/
 SRCS_SUB_DIR_BOOLEANS = booelans
 
 BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
-	is_space.c is_whitespace.c)
+	is_space.c is_whitespace.c is_quote.c is_alpha_num.c)
 ERRORS_FILES = $(addprefix errors/, error_management.c)
 TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c \
  get_AND_OR_op.c get_cmd_name_suffix.c \

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/13 15:07:43 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/13 16:44:14 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ bool	is_space(char c);
 bool	is_whitespace(char c);
 bool	is_operator(char c);
 bool	is_next_word_assignment(char *cmd_line);
-
+bool	is_quote(char c);
+bool	is_alpha_num(char c);
 /*
 ** Utils
 */
