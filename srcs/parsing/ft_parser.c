@@ -6,43 +6,11 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/13 16:47:57 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/14 16:13:11 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	skip_double_quotes(char *cmd_line, int *index)
-{
-	if (cmd_line[*index] != '"')
-		return (1);
-	while (cmd_line[*index] != '\0')
-	{
-		++(*index);
-		if (cmd_line[*index] == '"')
-		{
-			++(*index);
-			return (0);
-		}
-	}
-	return (ERROR);
-}
-
-int	skip_single_quotes(char *cmd_line, int *index)
-{
-	if (cmd_line[*index] != '\'')
-		return (1);
-	while (cmd_line[*index] != '\0')
-	{
-		++(*index);
-		if (cmd_line[*index] == '\'')
-		{
-			++(*index);
-			return (0);
-		}
-	}
-	return (ERROR);
-}
 
 int	skip_quotes(char *cmd_line, int *index)
 {
@@ -74,13 +42,24 @@ int	count_words_nb(char *cmd_line)
 	{
 		while (is_whitespace(cmd_line[i]))
 			++i;
-		while (is_alpha_num(cmd_line[i]) && !is_operator(cmd_line[i]))
-			++i;
-		if (skip_quotes(cmd_line, &i) == ERROR)
+		if (is_alpha_num(cmd_line[i]) && !is_operator(cmd_line[i]))
+		{
+			while (is_alpha_num(cmd_line[i]) && !is_operator(cmd_line[i]))
+				++i;
+			++wrd_count;
+		}
+		if (is_quote(cmd_line[i]))
+		{
+			if (skip_quotes(cmd_line, &i) == ERROR)
 				return (ERROR);
-		++wrd_count;
-		while (is_operator(cmd_line[i]))
-			++i;
+			++wrd_count;
+		}
+		if (is_operator(cmd_line[i]))
+		{
+			while (is_operator(cmd_line[i]))
+				++i;
+			++wrd_count;
+		}
 	}
 	return (wrd_count);
 }
@@ -94,13 +73,12 @@ char	*get_word(char *cmd_line, int word_length)
 	word = malloc(sizeof(*word) * (word_length + 1));
 	if (word == NULL)
 		return (NULL);
-		word[word_length] = '\0';
-	--cmd_line;
-	while (word_length)
+	word[word_length] = '\0';
+	printf("here and word length %d %c\n", word_length, *cmd_line);
+	while (word_length--)
 	{
 		--cmd_line;
-		word[word_length - 1] = *cmd_line;
-		--word_length;
+		word[word_length] = *cmd_line;
 	}
 	return (word);
 }
@@ -112,12 +90,10 @@ char	*get_between_quotes_word(char *cmd_line, int *new_index)
 	char	quote_type;
 	char	*word;
 
+	printf("Enter get_between_quotes_word function\n");
 	i = 0;
 	j = 0;
-	if (is_quote(cmd_line[i]))
-		quote_type = cmd_line[i];
-	else
-		return (NULL);
+	quote_type = cmd_line[i];
 	cmd_line++;
 	while(cmd_line[i] && cmd_line[i] != quote_type)
 		++i;
@@ -130,7 +106,7 @@ char	*get_between_quotes_word(char *cmd_line, int *new_index)
 		++j;
 	}
 	word[i] = '\0';
-	*new_index = *new_index + j;
+	*new_index = *new_index + j + 2;
 	return (word);
 }
 
@@ -142,7 +118,6 @@ void	copy_words_from_cmd_line(char *cmd_line, char **args, int words_nb)
 
 	i = 0;
 	k = 0;
-	args[words_nb] = NULL;
 	while (cmd_line[i])
 	{
 		j = 0;
@@ -153,13 +128,23 @@ void	copy_words_from_cmd_line(char *cmd_line, char **args, int words_nb)
 			++i;
 			++j;
 		}
-		while (is_operator(cmd_line[i++]))
-			++j;
+		printf("This is the phrase |%s|\n", cmd_line + i);
 		if (j > 0)
 			args[k++] = get_word(cmd_line + i, j);
-		if (is_quote(cmd_line[i]))
+		else if (is_quote(cmd_line[i]))
 			args[k++] = get_between_quotes_word(cmd_line + i, &i);
+		else
+		{
+			while (is_operator(cmd_line[i]))
+			{
+				++j;
+				++i;
+			}
+			if (j > 0)
+				args[k++] = get_word(cmd_line + i, j);
+		}
 	}
+	args[words_nb] = NULL;
 }
 
 char	**get_prosseced_cmd_line(char *cmd_line)
@@ -178,7 +163,7 @@ char	**get_prosseced_cmd_line(char *cmd_line)
 	copy_words_from_cmd_line(cmd_line, splited_args, words_nb);
 	while (i < words_nb)
 	{
-		printf("This is word n#_%0d: |%s|\n", i, splited_args[i]);
+		printf("This is word n#_%0d/%0d: |%s|\n", i, words_nb, splited_args[i]);
 		++i;
 	}
 	return (splited_args);

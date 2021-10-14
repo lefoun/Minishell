@@ -1,0 +1,12 @@
+Makefile
+README.md
+bidule
+echo
+file
+ft_printf
+include
+minishell
+objs
+srcs
+test
+testing_execve.c
