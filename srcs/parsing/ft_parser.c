@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/14 16:13:11 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/14 16:36:32 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ int	skip_quotes(char *cmd_line, int *index)
 		}
 	}
 	return (ERROR);
+}
+
+void	count_and_skip_operator(char *cmd_line, int *index, int *word_count)
+{
+	if (is_operator(cmd_line[*index]))
+		++*word_count;
+	while (is_operator(cmd_line[*index]))
+	{
+		++*index;
+	}
 }
 
 int	count_words_nb(char *cmd_line)
@@ -54,12 +64,7 @@ int	count_words_nb(char *cmd_line)
 				return (ERROR);
 			++wrd_count;
 		}
-		if (is_operator(cmd_line[i]))
-		{
-			while (is_operator(cmd_line[i]))
-				++i;
-			++wrd_count;
-		}
+		count_and_skip_operator(cmd_line, &i, &wrd_count);
 	}
 	return (wrd_count);
 }
@@ -74,7 +79,6 @@ char	*get_word(char *cmd_line, int word_length)
 	if (word == NULL)
 		return (NULL);
 	word[word_length] = '\0';
-	printf("here and word length %d %c\n", word_length, *cmd_line);
 	while (word_length--)
 	{
 		--cmd_line;
@@ -90,7 +94,6 @@ char	*get_between_quotes_word(char *cmd_line, int *new_index)
 	char	quote_type;
 	char	*word;
 
-	printf("Enter get_between_quotes_word function\n");
 	i = 0;
 	j = 0;
 	quote_type = cmd_line[i];
@@ -110,6 +113,21 @@ char	*get_between_quotes_word(char *cmd_line, int *new_index)
 	return (word);
 }
 
+void	skip_operator_and_increment(char *cmd_line, int *i, int *j)
+{
+	while (is_operator(cmd_line[*i]))
+	{
+		++*i;
+		++*j;
+	}
+}
+
+void	increment_i_and_j(int *i, int *j)
+{
+	++*i;
+	++*j;
+}
+
 void	copy_words_from_cmd_line(char *cmd_line, char **args, int words_nb)
 {
 	int		i;
@@ -124,22 +142,14 @@ void	copy_words_from_cmd_line(char *cmd_line, char **args, int words_nb)
 		while (is_whitespace(cmd_line[i]))
 			++i;
 		while (is_alpha_num(cmd_line[i]) && !is_operator(cmd_line[i]))
-		{
-			++i;
-			++j;
-		}
-		printf("This is the phrase |%s|\n", cmd_line + i);
+			increment_i_and_j(&i, &j);
 		if (j > 0)
 			args[k++] = get_word(cmd_line + i, j);
 		else if (is_quote(cmd_line[i]))
 			args[k++] = get_between_quotes_word(cmd_line + i, &i);
 		else
 		{
-			while (is_operator(cmd_line[i]))
-			{
-				++j;
-				++i;
-			}
+			skip_operator_and_increment(cmd_line, &i, &j);
 			if (j > 0)
 				args[k++] = get_word(cmd_line + i, j);
 		}
