@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/15 14:02:07 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/15 16:49:34 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ int		get_index_operator(char *arg);
 int		get_next_type_operator(int (*get_operators[])(char *str, t_token **head), \
 				char *arg, t_token **head);
 
+// Tokenizer
+void	ft_new_tokenize(char **args, t_token **head);
+
 // Pre processing
 int		count_words_nb(char *cmd_line);
 char	**get_prosseced_cmd_line(char *cmd_line);
@@ -95,6 +98,7 @@ int	get_redir_out_append(char *str, t_token **head);
 int	get_redir_input_here_doc(char *str, t_token **head);
 int	get_redir_input_file(char *str, t_token **head);
 int	get_cmd(char *str, t_token **head);
+int	get_cmd_suffix(char *str, t_token **head);
 int	get_pipe_op(char *str, t_token **head);
 int	get_or_op(char *str, t_token **head);
 int	get_and_op(char *str, t_token **head);

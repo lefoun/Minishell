@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/12 15:38:25 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/15 16:51:49 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,36 @@ int	find_type_cmd_name_or_assign(char *str)
 	}
 	return (0);
 }
+
+void	ft_new_tokenize(char **args, t_token **head)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	*head = NULL;
+	int	(*get_operators[7])(char *arg, t_token **head);
+	ft_init_function_pointer(get_operators);
+	while (args && args[i])
+	{
+		j = 0;
+		if (is_operator(args[i][0]))
+			while (j < 7 && (*get_operators[j])(args[i], head) != 0)
+				++j;
+		else if (is_next_word_assignment(args[i]))
+			get_assignment(args[i], head);
+		else
+		{
+			get_cmd(args[i], head);
+			while (args[++i] && !is_operator(args[i][0]))
+				get_cmd_suffix(args[i], head);
+		}
+		if (args[i])
+			++i;
+	}
+	print_token(*head);
+}
+
 
 t_token *ft_tokenize(char *cmd, t_token **head)
 {

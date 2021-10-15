@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pipe.c                                         :+:      :+:    :+:   */
+/*   get_cmd_suffix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/06 17:37:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/15 16:28:20 by nammari          ###   ########.fr       */
+/*   Created: 2021/10/15 16:53:14 by nammari           #+#    #+#             */
+/*   Updated: 2021/10/15 16:53:23 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_pipe_op(char *str, t_token **head)
+int	get_cmd_suffix(char *str, t_token **head)
 {
-	char	*content;
+	char	*cmd_suffix;
+	int		i;
 	int		ret;
 
-	if (*str != '|' || (*str == '|' && str[1] == '|'))
+	i = 0;
+	while (*str && is_whitespace(str[i]))
+		++str;
+	while (str[i] && !is_whitespace(str[i]))
+		++i;
+	cmd_suffix = malloc((i + 1) * sizeof(char));
+	if (cmd_suffix == NULL)
+		return (errno);
+	cmd_suffix[i] = '\0';
+	while (i--)
+		cmd_suffix[i] = str[i];
+	ret = ft_elem_pushback(head, ft_create_elem(cmd_suffix, CMD_SUFFIX));
+	if (ft_catch_error(ret == 2, cmd_suffix, head) == MALLOC_ERROR)
 		return (1);
-	content = ft_strdup("|");
-	ret = ft_elem_pushback(head, ft_create_elem(content, PIPE));
-	ft_catch_error(ret == 2, content, head);
 	return (0);
 }
