@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   get_word.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/15 14:00:08 by nammari          ###   ########.fr       */
+/*   Created: 2021/10/15 13:58:22 by nammari           #+#    #+#             */
+/*   Updated: 2021/10/15 13:58:25 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_parser(char *cmd)
+char	*get_word(char *cmd_line, int word_length)
 {
-	t_ast	*root;
-	t_token *head;
+	int		i;
+	char	*word;
 
-	head = ft_tokenize(cmd, &head);
-	if (!head)
-		return (-1);
-	root = ft_create_ast(cmd);
-	if (!root)
-		return (-1);
-	return (0);
+	i = 0;
+	word = malloc(sizeof(*word) * (word_length + 1));
+	if (word == NULL)
+		return (NULL);
+	word[word_length] = '\0';
+	while (word_length--)
+	{
+		--cmd_line;
+		word[word_length] = *cmd_line;
+	}
+	return (word);
 }

@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/13 16:44:30 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/15 14:01:21 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c 
 get_next_type_operator.c get_pipe.c has_parse_errors.c create_and_push_back.c \
  ft_tokenize.c get_assignment.c get_index_operator.c\
 get_op_elem.c   get_redirection_op.c)
-PARSING_FILES = $(addprefix parsing/, ft_parser.c)
+PARSING_FILES = $(addprefix parsing/, ft_parser.c count_words_nb.c \
+get_processed_cmd_line.c get_word.c split_cmd_line.c)
 AST_FILES = $(addprefix ast/, ft_create_ast.c)
 EXECUTION_FILES = 
 BUILTINS_FILES =
