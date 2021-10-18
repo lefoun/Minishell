@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/15 16:49:34 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/18 11:08:43 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,17 @@ typedef struct s_token {
 }	t_token;
 
 // function pointer
-// typedef int	(*get_operators[7])(char *arg, t_token **head);
+// typedef int	(*get_redirection[7])(char *arg, t_token **head);
 
 /*
 ** Parsing functions
 */
 t_ast	*ft_create_ast(char *cmd_line);
 char	*ft_strdup_index(char *str, int index);
-bool	get_redirection_op(char *str, t_token **head);
 int		ft_parser(char *cmd);
 t_token *ft_tokenize(char *cmd, t_token **head);
 void	get_op_elem(void);
 int		get_index_operator(char *arg);
-int		get_next_type_operator(int (*get_operators[])(char *str, t_token **head), \
-				char *arg, t_token **head);
 
 // Tokenizer
 void	ft_new_tokenize(char **args, t_token **head);
@@ -93,15 +90,13 @@ void	split_cmd_line(char *cmd_line, char **args, int words_nb);
 char	*get_word(char *cmd_line, int word_length);
 
 // Get operator
-int	get_redir_out_trunc(char *str, t_token **head);
-int	get_redir_out_append(char *str, t_token **head);
-int	get_redir_input_here_doc(char *str, t_token **head);
-int	get_redir_input_file(char *str, t_token **head);
-int	get_cmd(char *str, t_token **head);
+int	get_redir_out_trunc(char **args, int *index, t_token **head);
+int	get_redir_out_append(char **args, int *index, t_token **head);
+int	get_redir_input_here_doc(char **args, int *index, t_token **head);
+int	get_redir_input_file(char **args, int *index, t_token **head);
+int	get_cmd(char **args, int *index, t_token **head);
 int	get_cmd_suffix(char *str, t_token **head);
 int	get_pipe_op(char *str, t_token **head);
-int	get_or_op(char *str, t_token **head);
-int	get_and_op(char *str, t_token **head);
 int get_assignment(char *cmd_line, t_token **head);
 
 // Linked list utils
@@ -118,6 +113,7 @@ bool	is_operator(char c);
 bool	is_next_word_assignment(char *cmd_line);
 bool	is_quote(char c);
 bool	is_alpha_num(char c);
+bool	is_redirection(char c);
 /*
 ** Utils
 */

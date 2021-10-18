@@ -1,0 +1,11 @@
+total 168
+-rw-r--r--   1 nammari  2021_paris   3484 18 oct 10:43 Makefile
+-rw-r--r--   1 nammari  2021_paris    294  7 oct 16:53 README.md
+-rwxr-xr-x   1 nammari  2021_paris   8432 15 oct 15:28 a.out
+-rw-r--r--   1 nammari  2021_paris      0 18 oct 11:21 file
+drwxr-xr-x  20 nammari  2021_paris    680 18 oct 11:21 ft_printf
+drwxr-xr-x   5 nammari  2021_paris    170 11 oct 18:47 include
+-rwxr-xr-x   1 nammari  2021_paris  60944 18 oct 11:21 minishell
+drwxr-xr-x  11 nammari  2021_paris    374 18 oct 10:32 objs
+drwxr-xr-x  11 nammari  2021_paris    374 11 oct 16:23 srcs
+-rw-r--r--   1 nammari  2021_paris    166 15 oct 15:28 testing_execve.c
