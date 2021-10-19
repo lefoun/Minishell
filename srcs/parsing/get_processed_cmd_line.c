@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/15 13:54:48 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 14:36:32 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ char	**get_prosseced_cmd_line(char *cmd_line)
 	if (splited_args == NULL)
 		return (NULL);
 	split_cmd_line(cmd_line, splited_args, words_nb);
-	while (i < words_nb)
-	{
-		printf("This is word n#_%0d/%0d: |%s|\n", i, words_nb, splited_args[i]);
-		++i;
-	}
+	// while (i < words_nb)
+	// {
+	// 	printf("This is word n#_%0d/%0d: |%s|\n", i, words_nb, splited_args[i]);
+	// 	++i;
+	// }
 	return (splited_args);
 }

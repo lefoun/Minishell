@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/19 13:55:48 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 14:36:28 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
 	int	ret;
 
 	j = 0;
-	if (check_if_multi_operator(args) == ERROR)
+	if (args[*index + 1] && is_operator(args[*index + 1][0]))
 	{
-		printf("pepe_shel:Parsing error near unexpected redirection token\n");
+		printf("pepe_shell: syntax error near unexpected token `%s\'\n", args[*index + 1]);
+		return (3);
+	}
+	else if (args[*index + 1] == NULL)
+	{
+		printf("pepe_shell: syntax error near unexpected token `newline'\n");
 		return (3);
 	}
 	while (j < 4)
@@ -39,11 +44,6 @@ int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
 		ret = (*get_redirection[j])(args, index, head);
 		if (ret == 0)
 			return (0);
-		else if (ret == ERROR)
-		{
-			printf("pepe_shell: syntax error near unexpected token `newline'\n");
-			return (3);	
-		}
 		++j;
 	}
 	return (1);

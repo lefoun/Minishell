@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/19 12:12:59 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 14:32:49 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	ft_parser(char *cmd)
 	ft_new_tokenize(args, &head);
 	if (!head)
 		return (-1);
-	print_token(head);
+	// print_token(head);
 	// root = ft_create_ast(cmd);
 	// if (!root)
 	// 	return (-1);

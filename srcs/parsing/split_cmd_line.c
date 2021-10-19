@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:55:21 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/15 13:59:07 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 14:25:42 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	increment_i_and_j(int *i, int *j)
 
 void	skip_operator_and_increment(char *cmd_line, int *i, int *j)
 {
-	while (is_operator(cmd_line[*i]))
+	char	operator;
+	
+	operator = cmd_line[*i];
+	++*i;
+	++*j;
+	if (cmd_line[*i] == operator)
 	{
 		++*i;
 		++*j;
