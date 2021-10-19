@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/19 14:36:18 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 15:09:08 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,33 @@ int	get_redir_input_here_doc(char **args, int *index, t_token **head)
 	if (ft_catch_error(ret == 2, filename, head) == MALLOC_ERROR)
 		return (1);
 	return (0);
+}
+
+int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
+							char **args, int *index, t_token **head)
+{
+	int	j;
+	int	ret;
+
+	j = -1;
+	if (args[*index + 1] && is_operator(args[*index + 1][0]))
+	{
+		ft_putstr_fd("pepe_shell: syntax error near unexpected token `", 2);
+		ft_putstr_fd(args[*index + 1], 2);
+		ft_putstr_fd("\'\n", 2);
+		return (3);
+	}
+	else if (args[*index + 1] == NULL)
+	{
+		ft_putstr_fd("pepe_shell: syntax error near unexpected"
+			" token `newline'\n", 2);
+		return (3);
+	}
+	while (++j < 4)
+	{
+		ret = (*get_redirection[j])(args, index, head);
+		if (ret == 0)
+			return (0);
+	}
+	return (1);
 }

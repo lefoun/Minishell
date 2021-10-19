@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/19 12:13:55 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 15:10:01 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ int		get_index_operator(char *arg);
 
 // Tokenizer
 void	ft_new_tokenize(char **args, t_token **head);
-int	check_operator_errors(char **args);
-int	check_if_multi_operator(char **args);
+int		check_operator_errors(char **args);
+int		check_if_multi_operator(char **args);
+void	init_function_pointer(int (*get_redirection[])
+					(char **, int *, t_token **));
 // Pre processing
 int		count_words_nb(char *cmd_line);
 char	**get_prosseced_cmd_line(char *cmd_line);
@@ -93,8 +95,10 @@ int	get_redir_input_here_doc(char **args, int *index, t_token **head);
 int	get_redir_input_file(char **args, int *index, t_token **head);
 int	get_cmd(char **args, int *index, t_token **head);
 int	get_cmd_suffix(char *str, t_token **head);
-int	get_pipe_op(char *str, t_token **head);
+int	get_pipe_op(char **args, int index, t_token **head);
 int get_assignment(char *cmd_line, t_token **head);
+int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
+							char **args, int *index, t_token **head);
 
 // Linked list utils
 int	ft_elem_pushback(t_token **head, t_token *elem);
