@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/18 11:08:43 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 12:13:55 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,12 @@
 enum	e_arg_type {
 	CMD_NAME,
 	CMD_SUFFIX,
-	AND,
-	OR,
 	PIPE,
 	VAR,
 	REDIR_IN,
 	REDIR_HERE_DOC,
 	REDIR_OUT_TRUNC,
 	REDIR_OUT_APPEND,
-	FILE_NAME,
-	WILDCARD,
 	ASSIGN
 };
 
@@ -82,7 +78,8 @@ int		get_index_operator(char *arg);
 
 // Tokenizer
 void	ft_new_tokenize(char **args, t_token **head);
-
+int	check_operator_errors(char **args);
+int	check_if_multi_operator(char **args);
 // Pre processing
 int		count_words_nb(char *cmd_line);
 char	**get_prosseced_cmd_line(char *cmd_line);

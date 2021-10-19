@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/18 11:31:30 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/19 13:55:48 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,52 @@
 
 void	init_function_pointer(int (*get_redirection[])(char **, int *, t_token **))
 {
-	get_redirection[0] = get_redir_out_trunc;
-	get_redirection[1] = get_redir_out_append;
-	get_redirection[2] = get_redir_input_file;
-	get_redirection[3] = get_redir_input_here_doc;
+	get_redirection[0] = get_redir_out_append;
+	get_redirection[1] = get_redir_out_trunc;
+	get_redirection[2] = get_redir_input_here_doc;
+	get_redirection[3] = get_redir_input_file;
+}
+
+int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
+							char **args, int *index, t_token **head)
+{
+	int	j;
+	int	ret;
+
+	j = 0;
+	if (check_if_multi_operator(args) == ERROR)
+	{
+		printf("pepe_shel:Parsing error near unexpected redirection token\n");
+		return (3);
+	}
+	while (j < 4)
+	{
+		ret = (*get_redirection[j])(args, index, head);
+		if (ret == 0)
+			return (0);
+		else if (ret == ERROR)
+		{
+			printf("pepe_shell: syntax error near unexpected token `newline'\n");
+			return (3);	
+		}
+		++j;
+	}
+	return (1);
 }
 
 void	ft_new_tokenize(char **args, t_token **head)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	int	(*get_redirection[4])(char **arg, int *index, t_token **head);
 	init_function_pointer(get_redirection);
 	while (args && args[i])
 	{
-		j = 0;
 		if (is_redirection(args[i][0]))
 		{
-			while (j < 4 && (*get_redirection[j])(args, &i, head) != 0)
-				++j;
+			if (get_redirection_op(get_redirection, args, &i, head) > 0)
+				return ;
 		}
 		else if (args[i][0] == '|')
 			get_pipe_op(args[i], head);
