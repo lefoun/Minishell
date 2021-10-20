@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/20 18:55:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:00:56 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_environ
 int			cd(char *path);
 int			echo(char *text, bool has_newline);
 int			pwd(void);
-int			export_(char *name, char *value);
+int			export_(t_environ **t_environ,char *name, char *value);
 int			unset(char *varname);
 int			env(t_environ *env_vars);
 int			exit_(void);
