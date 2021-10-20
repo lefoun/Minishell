@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/20 17:22:51 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:53:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <time.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <limits.h>
 // # include "ft_printf.h" <- Add the library
 
 /*
