@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/20 17:17:04 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/21 00:16:33 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,11 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -f
 CC			= clang
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRC			= minishell.c builtins/cd.c builtins/echo.c builtins/env.c builtins/exit.c \
-				builtins/export.c builtins/pwd.c builtins/unset.c ft_putstr.c ft_strlen.c
+				builtins/export.c builtins/pwd.c builtins/unset.c ft_putstr.c ft_strlen.c\
+				ft_strdup.c
 OBJ			= $(SRC:.c=.o)
 NAME_BONUS	= minishell_bonus
 SRC_BONUS	= minishell_bonus.c
