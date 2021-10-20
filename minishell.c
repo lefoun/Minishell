@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 16:48:41 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:22:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 int	main(void)
 {
 	printf("pepesh €\n");
+	echo("hello world!", true);
 	return (0);
 }

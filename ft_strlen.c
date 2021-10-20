@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 17:06:42 by sdummett         ###   ########.fr       */
+/*   Created: 2021/10/20 17:15:17 by sdummett          #+#    #+#             */
+/*   Updated: 2021/10/20 17:19:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int cd(char *path)
+int	ft_strlen(char *str)
 {
-    (void)path;
+	int	len;
 
-    return (0);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

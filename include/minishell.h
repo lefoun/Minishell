@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/20 16:50:13 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:22:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,17 @@
 ** Builtins
 */
 int	cd(char *path);
-int	echo(char *text);
+int	echo(char *text, bool has_newline);
 int	pwd(void);
 int export_(char *varname, char *value);
 int	unset(char *varname);
 int	env(void);
 int	exit_(void);
+
+/*
+** Temporary
+*/
+int	ft_strlen(char *str); //<- delete ft_strlen.c
+void	ft_putstr(char *str); //<-delete ft_putstr.c
 
 #endif
