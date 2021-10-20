@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 17:48:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 18:08:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(void)
 	// wd = malloc(26);
 	// getcwd(wd, 26);
 	// printf("cwd : |%s|\n", wd);
+	pwd();
+	cd("/Users/sdummett/minishell/builtins");
 	pwd();
 	printf("pepesh €\n");
 	echo("hello world!", true);

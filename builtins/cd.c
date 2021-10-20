@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 17:06:42 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 18:06:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int cd(char *path)
 {
-    (void)path;
-
+    if (chdir(path) < 0)
+        return (errno);
     return (0);
 }
