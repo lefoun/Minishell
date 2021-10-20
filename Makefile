@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/30 00:44:46 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/20 17:00:18 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ RM			= rm -f
 CC			= clang
 CFLAGS		= -Wall -Werror -Wextra
 NAME		= minishell
-SRC			= minishell.c
+SRC			= minishell.c builtins/cd.c builtins/echo.c builtins/env.c builtins/exit.c \
+				builtins/export.c builtins/pwd.c builtins/unset.c
 OBJ			= $(SRC:.c=.o)
 NAME_BONUS	= minishell_bonus
 SRC_BONUS	= minishell_bonus.c

@@ -6,46 +6,35 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/09/30 00:42:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:50:13 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <unistd.h>
 # include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
 # include <sys/wait.h>
 # include <time.h>
+# include <fcntl.h>
+# include <errno.h>
+// # include "ft_printf.h" <- Add the library
 
-enum	e_arg_type {
-	CMD,
-	CMD_SUFFIX,
-	AND,
-	OR,
-	PIPE,
-	VAR,
-	REDIR_IN,
-	REDIR_HERE_DOC,
-	REDIR_OUT_TRUNC,
-	REDIR_OUT_APPEND,
-	FILE_NAME
-};
-
-typedef struct s_ast {
-	char			value;
-	int				type;
-	struct s_ast	*left;
-	struct s_ast	*right;
-}	t_ast;
-
-typedef struct s_token {
-	char			*value;
-	int				type;
-	struct s_token	*next;
-}	t_token;
+/*
+** Builtins
+*/
+int	cd(char *path);
+int	echo(char *text);
+int	pwd(void);
+int export_(char *varname, char *value);
+int	unset(char *varname);
+int	env(void);
+int	exit_(void);
 
 #endif

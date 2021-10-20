@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 16:48:41 by sdummett         ###   ########.fr       */
+/*   Created: 2021/10/20 16:41:40 by sdummett          #+#    #+#             */
+/*   Updated: 2021/10/20 17:02:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Add shell features into main function
-** by merging git ranches
-*/
-
-int	main(void)
+int echo(char *text)
 {
-	printf("pepesh €\n");
-	return (0);
+    (void)text;
+
+    return (0);
 }
