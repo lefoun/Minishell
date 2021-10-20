@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/20 17:53:45 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 18:55:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,36 @@
 // # include "ft_printf.h" <- Add the library
 
 /*
+** Environment structure
+*/
+typedef struct s_environ
+{
+	char				*name;
+	char				*value;
+	struct s_environ	*next;
+}	t_environ;
+
+/*
 ** Builtins
 */
-int	cd(char *path);
-int	echo(char *text, bool has_newline);
-int	pwd(void);
-int export_(char *varname, char *value);
-int	unset(char *varname);
-int	env(void);
-int	exit_(void);
+int			cd(char *path);
+int			echo(char *text, bool has_newline);
+int			pwd(void);
+int			export_(char *name, char *value);
+int			unset(char *varname);
+int			env(t_environ *env_vars);
+int			exit_(void);
+
+/*
+** Environment functions
+*/
+t_environ	*create_env_var(char *name, char *value);
+void		add_env_var_back(t_environ **head, t_environ *new);
 
 /*
 ** Temporary
 */
-int	ft_strlen(char *str); //<- delete ft_strlen.c
-void	ft_putstr(char *str); //<-delete ft_putstr.c
+int			ft_strlen(char *str); //<- delete ft_strlen.c
+void		ft_putstr(char *str); //<-delete ft_putstr.c
 
 #endif
