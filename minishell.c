@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 19:05:30 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:14:23 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	main(void)
 	// cd("/Users/sdummett/minishell/builtins");
 	// pwd();
 	// echo("hello world!", true);
-
-	return (0);
+	exit_(0);
 }

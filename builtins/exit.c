@@ -6,14 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 17:13:27 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:11:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int exit_(void)
+void exit_(int exit_status)
 {
-    exit(0);
-    return (0);
+    exit(exit_status);
 }
