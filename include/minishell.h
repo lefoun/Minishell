@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/21 00:19:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:47:42 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <limits.h>
+# include "colorcodes.h" 
 // # include "ft_printf.h" <- Add the library
 
 /*
@@ -43,9 +44,9 @@ typedef struct s_environ
 int			cd(char *path);
 int			echo(char *text, bool has_newline);
 int			pwd(void);
-int			export_(t_environ **t_environ,char *name, char *value);
+int			export_(t_environ **env,char *name, char *value);
 int			unset(t_environ **head, char *varname);
-int			env(t_environ *env_vars);
+int			env(t_environ *env);
 void		exit_(int exit_status);
 
 /*
@@ -60,5 +61,6 @@ void		add_env_var_back(t_environ **head, t_environ *new);
 int			ft_strlen(const char *str); //<- delete ft_strlen.c
 void		ft_putstr(char *str); //<-delete ft_putstr.c
 char		*ft_strdup(const char *str); //<-delete ft_strdup.c
+void		printenv(t_environ *env); //<-delete printenv.c
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 19:01:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:59:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_environ	*create_env_var(char *name, char *value)
+t_environ	*create_variable(char *name, char *value)
 {
 	t_environ	*new;
 
@@ -20,12 +20,26 @@ t_environ	*create_env_var(char *name, char *value)
 	if (new == NULL)
 		return (NULL);
 	new->name = name;
-	new->value = value;
+	if (value == NULL)
+		new->value = NULL;
+	else
+		new->value = value;
 	new->next = NULL;
 	return (new);
 }
 
-void	add_env_var_back(t_environ **head, t_environ *new)
+void	change_variable(t_environ *env, t_environ *new)
+{
+	printf("Entered change_variable\n");
+	if (env->value != NULL)
+		free(env->value);
+	env->value = new->value;
+	free(new->name);
+	free(new);
+
+}
+
+void	add_variable(t_environ **head, t_environ *new)
 {
 	t_environ	*env;
 
@@ -34,14 +48,34 @@ void	add_env_var_back(t_environ **head, t_environ *new)
 	else
 	{
 		env = *head;
-		while (env->next != NULL)
+		while (env != NULL)
+		{
+			printf("env->name: %s | new->name: %s\n", env->name, new->name);
+			if (strcmp(env->name, new->name) == 0)
+			{
+				change_variable(env, new);
+				break ;
+			}
+			if (env->next == NULL)
+			{
+				env->next = new;
+				break ;
+			}
 			env = env->next;
-		env->next = new;
+		}
 	}
 }
 
-int export_(t_environ **env_vars,char *name, char *value)
+int export_(t_environ **env, char *name, char *value)
 {
-    add_env_var_back(env_vars, create_env_var(name, value));
+	t_environ	*new;
+
+	new = create_variable(name, value);
+	if (new == NULL)
+	{
+		perror("");
+		return (errno);
+	}
+	add_variable(env, new);
     return (0);
 }

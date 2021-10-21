@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/21 00:17:32 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:37:48 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 // IMPORTANT: Change strcmp to ft_strcmp
 //
 
-void    clear_variable(t_environ *var)
+void    delete_variable(t_environ *var)
 {
     free(var->name);
-    free(var->value);
+    if (var->value != NULL)
+        free(var->value);
     free(var);
 }
 
@@ -29,7 +30,6 @@ int unset(t_environ **head, char *varname)
     t_environ   *env;
     t_environ   *prev;
 
-    
     if (head == NULL)
         return (0);
     prev = NULL;
@@ -41,14 +41,14 @@ int unset(t_environ **head, char *varname)
             if (prev == NULL)
             {
                 *head = env->next;
-                clear_variable(env);
+                delete_variable(env);
             }
             else
             {
                 prev->next = env->next;
-                clear_variable(env);
+                delete_variable(env);
             }
-            return (0);
+            break ;
         }
         prev = env;
         env = env->next;

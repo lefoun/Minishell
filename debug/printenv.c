@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   printenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 16:41:43 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/21 13:08:49 by sdummett         ###   ########.fr       */
+/*   Created: 2021/10/21 13:43:14 by sdummett          #+#    #+#             */
+/*   Updated: 2021/10/21 13:50:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int env(t_environ *env)
+void	printenv(t_environ *environ)
 {
-    while (env != NULL)
-    {
-        if (env->value == NULL)
-            printf("%s=\n", env->name);
-        else
-            printf("%s=%s\n", env->name, env->value);
-        env = env->next;
-    }
-    return (0);
+	printf( BMAG "==> ENVIRONMENT <==\n" RESET);
+	printf( GRN "");
+	env(environ);
+	printf( RESET "");
 }
