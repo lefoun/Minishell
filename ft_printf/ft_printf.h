@@ -6,17 +6,16 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 14:36:58 by nammari           #+#    #+#             */
-/*   Updated: 2021/07/10 14:44:05 by nammari          ###   ########.fr       */
+/*   Updated: 2021/08/30 12:21:42 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
 # include "libft/libft.h"
+# include <stdarg.h>
 # include <stdbool.h>
+# include <limits.h>
 
 # define ERROR -1
 
@@ -112,6 +111,10 @@ int					get_biggest(int a, int b);
 //Print_string
 int					print_string(char *string, t_flag_values *flag);
 int					treat_string(va_list *varlist, const char*str);
+int					count_printed_chars_string(int precision,
+						int width, int len);
+int					disp_null(int precision);
+int					count_null_width(t_flag_values *flag);
 int					put_string(char *str, int len);
 int					print_space(int *width);
 

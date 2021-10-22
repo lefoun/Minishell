@@ -16,9 +16,6 @@
 
 bool	is_width_flag(const char *str, int *index)
 {
-	int	i;
-
-	i = 0;
 	if (str[*index] == '*' && ft_isdigit(str[*index + 1]))
 		return (false);
 	if (ft_isdigit(str[*index]) && str[*index + 1] == '*')

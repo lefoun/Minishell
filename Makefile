@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/22 16:58:55 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/22 17:03:41 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ $(OBJS_DIR):
 
 
 $(NAME): $(OBJS_DIR) $(OBJ)
-	make bonus -C $(LIBRARY)
+	make -C $(LIBRARY)
 	@printf "$(WHT)[$(GRN)LIBRARY $(LIBRARY) COMPILED$(WHT)]\n"
 	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
 	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"

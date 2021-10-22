@@ -14,12 +14,10 @@
 
 int	print_char(char mychar, t_flag_values	*flag)
 {
-	int				i;
 	int				width;
 	int				printed;
 	char			pad;
 
-	i = 0;
 	pad = ' ';
 	if (flag->pad_zero)
 		pad = '0';

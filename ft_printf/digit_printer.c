@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:01:06 by nammari           #+#    #+#             */
-/*   Updated: 2021/07/10 15:04:55 by nammari          ###   ########.fr       */
+/*   Updated: 2021/07/07 23:59:42 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,37 +40,10 @@ int	treat_digit(va_list	*varlist, const char	*str)
 	return (printed);
 }
 
-int	print_digit(const char *str, t_type_holder *my_type, t_flag_values *flag)
-{
-	char	*string;
-	char	*base;
-	int		len;
-	int		printed;
-
-	base = base_creator(*str);
-	len = ft_count_len(base);
-	if (*str == 'd' || *str == 'i')
-		string = ft_itoa_base(my_type->digit, base, len);
-	else
-		string = ft_u_itoa_base(my_type->ul_digit, base, len);
-	if (!string || !base)
-		return (error_malloc());
-	get_flags(str, string, flag);
-	len = ft_count_len(string) - 1;
-	get_sign(string, *str, flag);
-	printed = print_number(string, flag, *str);
-	free(base);
-	free(string);
-	return (printed);
-}
-
-
 int	get_flags(const char *str, char *string, t_flag_values *flag)
 {
-	int		i;
 	char	format;
 
-	i = 0;
 	(void)string;
 	format = *str;
 	while (*str && *str != '%')
@@ -137,3 +110,26 @@ int	print_number(char *string, t_flag_values *flag, int format)
 	return (printed + flag->prefix_char_count + (ft_count_len(string + 1)));
 }
 
+int	print_digit(const char *str, t_type_holder *my_type, t_flag_values *flag)
+{
+	char	*string;
+	char	*base;
+	int		len;
+	int		printed;
+
+	base = base_creator(*str);
+	len = ft_count_len(base);
+	if (*str == 'd' || *str == 'i')
+		string = ft_itoa_base(my_type->digit, base, len);
+	else
+		string = ft_u_itoa_base(my_type->ul_digit, base, len);
+	if (!string || !base)
+		return (error_malloc());
+	get_flags(str, string, flag);
+	len = ft_count_len(string) - 1;
+	get_sign(string, *str, flag);
+	printed = print_number(string, flag, *str);
+	free(base);
+	free(string);
+	return (printed);
+}
