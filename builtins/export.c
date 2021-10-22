@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/21 13:59:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:44:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_environ	*create_variable(char *name, char *value)
 	return (new);
 }
 
-void	change_variable(t_environ *env, t_environ *new)
+void	change_variable_value(t_environ *env, t_environ *new)
 {
 	printf("Entered change_variable\n");
 	if (env->value != NULL)
@@ -36,7 +36,6 @@ void	change_variable(t_environ *env, t_environ *new)
 	env->value = new->value;
 	free(new->name);
 	free(new);
-
 }
 
 void	add_variable(t_environ **head, t_environ *new)
@@ -53,7 +52,7 @@ void	add_variable(t_environ **head, t_environ *new)
 			printf("env->name: %s | new->name: %s\n", env->name, new->name);
 			if (strcmp(env->name, new->name) == 0)
 			{
-				change_variable(env, new);
+				change_variable_value(env, new);
 				break ;
 			}
 			if (env->next == NULL)
