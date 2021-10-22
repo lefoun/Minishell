@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 16:51:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 17:32:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    print_error()
     printf("pwd: %s\n", str);
 }
 
-int pwd(void)
+int ft_pwd(void)
 {
     unsigned int        i;
     unsigned int        len;

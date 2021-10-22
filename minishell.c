@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 16:37:10 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 17:34:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 int	main(void)
 {
-	t_environ *env = NULL;
+	t_variable *env = NULL;
 
 	printf("pepesh €\n");
 	printenv(env);
 
-	export_(&env, ft_strdup("NEW_NAME"), ft_strdup("NEW_VALUE"));
-	export_(&env, ft_strdup("name"), ft_strdup("value"));
+	ft_export(&env, ft_strdup("NEW_NAME"), ft_strdup("NEW_VALUE"));
+	ft_export(&env, ft_strdup("name"), ft_strdup("value"));
 	printenv(env);
 
-	export_(&env, ft_strdup("name3"), NULL);
+	ft_export(&env, ft_strdup("name3"), NULL);
 	printenv(env);
 
-	export_(&env, ft_strdup("name3"), ft_strdup("wtf"));
+	ft_export(&env, ft_strdup("name3"), ft_strdup("wtf"));
 	printenv(env);
 
-	export_(&env, ft_strdup("name3"), NULL);
+	ft_export(&env, ft_strdup("name3"), NULL);
 	printenv(env);
 
-	export_(&env, ft_strdup("name3"), ft_strdup("helloworld"));
-	export_(&env, ft_strdup("stone"), ft_strdup("stony"));
+	ft_export(&env, ft_strdup("name3"), ft_strdup("helloworld"));
+	ft_export(&env, ft_strdup("stone"), ft_strdup("stony"));
 	printenv(env);
-	pwd();
-	cd("/home/stone/42/minishell/builtins");
-	pwd();
+	ft_pwd();
+	ft_cd("/home/stone/42/minishell/builtins");
+	ft_pwd();
 	//perror("wtf");
 	// pwd();
 	// cd("/home/stone/42/minishell/builtins");
 	// pwd();
 	// echo("hello world!", true);
-	exit_(0);
+	ft_exit(0);
 }
