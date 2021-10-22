@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/22 15:40:38 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 16:32:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include "colorcodes.h" 
 // # include "ft_printf.h" <- Add the library
 
+# define MAX_FILE_NAME_LEN 255
+# define MAX_PATH_LEN 4096
 /*
 ** Environment structure
 */

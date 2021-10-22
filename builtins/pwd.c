@@ -6,11 +6,19 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/20 17:58:33 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 16:51:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void    print_error()
+{
+    char    *str;
+
+    str = strerror(errno);
+    printf("pwd: %s\n", str);
+}
 
 int pwd(void)
 {
@@ -32,8 +40,9 @@ int pwd(void)
         }
         free(working_dir);
         i++;
-        if ((unsigned long long)len > ULLONG_MAX)
+        if (len > MAX_PATH_LEN)
             break ;
     }
+    print_error();
     return (1);
 }

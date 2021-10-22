@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 15:44:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 16:28:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int export_(t_environ **env, char *name, char *value)
 	new = create_variable(name, value);
 	if (new == NULL)
 	{
-		perror("");
+		perror("export");
 		return (errno);
 	}
 	add_variable(env, new);
