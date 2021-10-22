@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/19 15:10:54 by nammari          ###   ########.fr        #
+#    Updated: 2021/10/22 16:58:55 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
 ERRORS_FILES = $(addprefix errors/, error_management.c)
 TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c \
 get_cmd_suffix.c get_cmd.c init_function_pointer.c\
-get_next_type_operator.c get_pipe.c has_parse_errors.c create_and_push_back.c \
+get_pipe.c has_parse_errors.c create_and_push_back.c \
  ft_tokenize.c get_assignment.c get_index_operator.c\
 get_op_elem.c get_redirection_op.c)
 PARSING_FILES = $(addprefix parsing/, ft_parser.c count_words_nb.c \
