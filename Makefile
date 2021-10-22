@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/22 17:36:25 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/22 18:21:48 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRC			= minishell.c builtins/cd.c builtins/echo.c builtins/env.c builtins/exit.c \
 				builtins/export.c builtins/pwd.c builtins/unset.c ft_putstr.c ft_strlen.c \
-				ft_strdup.c debug/printenv.c variable_handler.c 
+				ft_strdup.c debug/printenv.c variable_handler.c get_variables_assignations.c \
+				debug/create_args.c
 OBJ			= $(SRC:.c=.o)
 NAME_BONUS	= minishell_bonus
 SRC_BONUS	= minishell_bonus.c

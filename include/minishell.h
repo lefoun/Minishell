@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/22 17:31:27 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/22 18:23:33 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "colorcodes.h" 
 // # include "ft_printf.h" <- Add the library
 
-# define MAX_FILE_NAME_LEN 255
+# define MAX_FILENAME_LEN 255
 # define MAX_PATH_LEN 4096
 /*
 ** Environment structure
@@ -55,7 +55,7 @@ t_variable	*create_variable(char *name, char *value);
 /*
 ** Builtins utils
 */
-char	**get_variables_assignations(char **args);
+t_variable	*get_variables_assignations(char **args);
 
 /*
 ** Builtins
@@ -63,7 +63,7 @@ char	**get_variables_assignations(char **args);
 int			ft_cd(char *path);
 int			ft_echo(char *text, bool has_newline);
 int			ft_pwd(void);
-int			ft_export(t_variable **env,char *name, char *value);
+int			ft_export(t_variable **env, char **args);
 int			ft_unset(t_variable **head, char *varname);
 int			ft_env(t_variable *env);
 void		ft_exit(int exit_status);
@@ -81,5 +81,6 @@ int			ft_strlen(const char *str); //<- delete ft_strlen.c
 void		ft_putstr(char *str); //<-delete ft_putstr.c
 char		*ft_strdup(const char *str); //<-delete ft_strdup.c
 void		printenv(t_variable *env); //<-delete printenv.c
+char		**create_args(void); //<-delete create_args.c
 
 #endif
