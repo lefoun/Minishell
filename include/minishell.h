@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/19 15:10:01 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/25 14:41:01 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,29 @@ enum	e_arg_type {
 	ASSIGN
 };
 
+typedef struct s_variable
+{
+	char				*name;
+	char				*value;
+	struct s_variable	*next;
+}	t_variable;
+
+/*
+** Variables
+*/
+typedef struct s_vars
+{
+	t_variable	*env;
+	t_variable	*global;
+	int			last_exit_status;
+}	t_vars;
+
+/*
+** Builtins utils
+*/
+
 typedef struct s_ast {
-	char			value;
+	char			*value;
 	int				type;
 	struct s_ast	*left;
 	struct s_ast	*right;
@@ -60,6 +81,7 @@ typedef struct s_token {
 	char			*value;
 	char			**args;
 	int				type;
+	bool			single_quote;
 	struct s_token	*next;
 }	t_token;
 
@@ -85,7 +107,7 @@ void	init_function_pointer(int (*get_redirection[])
 // Pre processing
 int		count_words_nb(char *cmd_line);
 char	**get_prosseced_cmd_line(char *cmd_line);
-void	split_cmd_line(char *cmd_line, char **args, int words_nb);
+void	split_cmd_line(char *cmd_line, char **args, int words_nb, t_vars *vars);
 char	*get_word(char *cmd_line, int word_length);
 
 // Get operator
