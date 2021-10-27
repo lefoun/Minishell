@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/27 21:47:11 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/27 21:49:30 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
-OBJS_SUB_DIRECTORIES = $(addprefix objs/, builtins utils debug) 
+OBJS_SUB_DIRS = $(addprefix objs/, builtins utils debug)
 
 # ************************************ #
 #                RULES                 #
@@ -53,7 +53,7 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
-	mkdir $(OBJS_SUB_DIRECTORIES)
+	mkdir $(OBJS_SUB_DIRS)
 
 
 $(NAME): $(OBJS_DIR) $(OBJ)
