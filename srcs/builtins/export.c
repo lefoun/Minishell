@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/28 22:31:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 22:34:50 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ int ft_export(char **args)
 {
 	t_variable	*new;
 
-	new = get_variables_assignations(args);
-	if (new == NULL)
+	if (args == NULL)
+		ft_env(variables->env);
+	else
 	{
-		perror("export");
-		return (errno);
+		new = get_variables_assignations(args);
+		if (new == NULL)
+		{
+			perror("export");
+			return (errno);
+		}
+		add_variable(&variables->env, new);
 	}
-	add_variable(&variables->env, new);
-    return (0);
+	return (0);
 }

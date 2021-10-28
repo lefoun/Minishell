@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/28 22:18:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 22:35:05 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(void)
 	args2[3] = NULL;
 	ft_export(args2);
 	printenv(variables->env);
+	ft_export(NULL);
 
 	/*
 	** cd builtin TEST.
