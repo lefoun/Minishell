@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 00:16:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/21 00:16:20 by sdummett         ###   ########.fr       */
+/*   Created: 2021/10/28 16:10:51 by sdummett          #+#    #+#             */
+/*   Updated: 2021/10/28 17:07:32 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strdup(const char *str)
+t_variable *get_variable(t_variable *vars, char *varname)
 {
-	int		i;
-	char	*ptr;
+	int			varname_len;
 
-	ptr = malloc(sizeof(char) * ft_strlen(str) + 1);
-	if (!ptr)
-		return (0);
-	i = 0;
-	while (*(str + i))
+	varname_len = ft_strlen(varname);
+	while (vars != NULL)
 	{
-		*(ptr + i) = *(str + i);
-		i++;
+		if (ft_strncmp(vars->name, varname, varname_len) == 0)
+			return (vars);
+		vars = vars->next;
 	}
-	*(ptr + i) = 0;
-	return (ptr);
+	return (NULL);
 }

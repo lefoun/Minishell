@@ -6,13 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 17:32:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:04:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    print_error()
+static void    print_error()
 {
     char    *str;
 
@@ -22,27 +22,16 @@ void    print_error()
 
 int ft_pwd(void)
 {
-    unsigned int        i;
-    unsigned int        len;
-    char                *working_dir;
+    char                *working_directory;
 
-    i = 1;
-    working_dir = NULL;
-    while (true)
+    working_directory = call_getcwd();
+    if (working_directory != NULL)
     {
-        len = 42 * i;
-        working_dir = malloc(len);
-        if (getcwd(working_dir, len) != NULL)
-        {
-            printf("%s\n", working_dir);
-            free(working_dir);
-            return (0);
-        }
-        free(working_dir);
-        i++;
-        if (len > MAX_PATH_LEN)
-            break ;
+        printf("%s\n", working_directory);
+        free(working_directory);
+        return (0);
     }
-    print_error();
+    else
+        print_error();
     return (1);
 }

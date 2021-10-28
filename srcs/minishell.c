@@ -6,23 +6,31 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 18:26:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:30:15 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+
+
+/*
+** Faut il que le shell herite des variable d 'env d un precedent shell ?
+** Comment set les variables d'env ?
+*/
+
+
 int	main(void)
 {
-	t_variable *env = NULL;
 	char	**args;
 
+	variables = init_env();
 	args = create_args();
 	return (0);
 	printf("pepesh €\n");
-	printenv(env);
+	printenv(variables->env);
 
-	ft_export(&env, args);
+	ft_export(&variables->env, args);
 
 	// ft_export(&env, ft_strdup("name"), ft_strdup("value"));
 	// printenv(env);
