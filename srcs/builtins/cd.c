@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/28 17:30:46 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 20:34:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,8 @@ int ft_cd(char **args)
     oldpwd = call_getcwd();
     if (args == NULL)
     {
-        //exec cd without args and use 
-        //If no directory operand is given and 
-        //the HOME environment variable is empty or undefined, 
-        //the default behavior is 
-        //implementation-defined and no further steps shall be taken.
-        exec_cd_with_home_var();
+        if (exec_cd_with_home_var() == 1)
+            return (1);
         edit_env(oldpwd);
     }
     else
@@ -71,8 +67,9 @@ int ft_cd(char **args)
         {
             str = strerror(errno);
             printf("cd: %s: %s\n", str, args[0]);
-            return (errno);
+            return (1);
         }
+        edit_env(oldpwd);
     }
     return (0);
 }

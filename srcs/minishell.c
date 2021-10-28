@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/28 17:30:15 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 20:32:52 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,26 @@
 
 int	main(void)
 {
-	char	**args;
+	 char	**args;
 
 	variables = init_env();
 	args = create_args();
-	return (0);
 	printf("pepesh €\n");
+	
+	//ft_export(&variables->env, args);
+	ft_pwd();
+	char **args2 = malloc(sizeof(char *) * (1 + 1));
+	(void)args2;
+	args2[0] = ft_strdup("/");
+	args2[1] = NULL;
+	ft_export(&variables->env, ft_strdup("HOME"), ft_strdup(""));
+	ft_export(&variables->env, ft_strdup("PWD"), ft_strdup(""));
+	ft_export(&variables->env, ft_strdup("OLDPWD"), ft_strdup(""));
 	printenv(variables->env);
-
-	ft_export(&variables->env, args);
+	ft_cd(NULL);
+	ft_pwd();
+	printenv(variables->env);
+	
 
 	// ft_export(&env, ft_strdup("name"), ft_strdup("value"));
 	// printenv(env);

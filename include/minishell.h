@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/28 17:30:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 20:19:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_vars
 /* 
 ** Environment variables is a global linked list
 */
-t_vars	*variables = NULL;
+t_vars	*variables;
 
 
 void		add_variable(t_variable **head, t_variable *new);
@@ -72,7 +72,8 @@ t_vars		*init_env(void);
 // int			ft_cd(char *path);
 int			ft_echo(char *text, bool has_newline);
 int			ft_pwd(void);
-int			ft_export(t_variable **env, char **args);
+// int			ft_export(t_variable **env, char **args);
+int 		ft_export(t_variable **env, char *name, char *value);
 int			ft_unset(t_variable **head, char *varname);
 int			ft_env(t_variable *env);
 void		ft_exit(int exit_status);
