@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:37:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/19 15:01:02 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/28 14:51:08 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ int	get_pipe_op(char **args, int index, t_token **head)
 	char	*content;
 	int		ret;
 
-	if (args[index + 1] && is_operator(args[index + 1][0]))
+	if (index == 0 || (args[index + 1] && is_operator(args[index + 1][0])))
 	{
-		if (args[index + 1][0] == '|')
+		if (args[index + 1] != NULL && args[index + 1][0] == '|')
+			ft_putstr_fd("pepe_shell: "
+					"syntax error near unexpected token `||\'\n", 2);
+		else if (index == 0)
 			ft_putstr_fd("pepe_shell: "
 					"syntax error near unexpected token `|\'\n", 2);
 		else

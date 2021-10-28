@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_op_elem.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 21:45:01 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/30 21:45:28 by sdummett         ###   ########.fr       */
+/*   Created: 2021/07/31 16:00:47 by sdummett          #+#    #+#             */
+/*   Updated: 2021/08/10 03:20:18 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "pipex_bonus.h"
 
-void	get_op_elem(void)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	printf("I'm get_op_elem\n");
+	void	*ptr;
+
+	ptr = malloc(size * nmemb);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }

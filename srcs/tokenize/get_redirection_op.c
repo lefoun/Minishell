@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/25 13:27:17 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/28 15:35:23 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	get_redir_out_trunc(char **args, int *index, t_token **head)
 {
 	char	*filename;
 	int		ret;
+	int		i;
 
 	if (!(args[*index][0] == '>' && args[*index][1] == '\0'))
 		return (OP_NOT_FOUND);
@@ -28,8 +29,11 @@ int	get_redir_out_trunc(char **args, int *index, t_token **head)
 	ret = ft_elem_pushback(head, ft_create_elem(filename, REDIR_OUT_TRUNC));
 	if (ft_catch_error(ret == 2, filename, head) == MALLOC_ERROR)
 		return (2);
-	while (args[++*index])
-		get_cmd_suffix(args[*index], head);
+	i = *index;
+	while (args[++i] && !is_operator(args[i][0]))
+	{
+		get_cmd_suffix(args[++*index], head);
+	}
 	return (0);
 }
 
@@ -37,7 +41,8 @@ int	get_redir_input_file(char **args, int *index, t_token **head)
 {
 	char	*filename;
 	int		ret;
-
+	int		i;
+	
 	if (!(args[*index][0] == '<' && args[*index][1] == '\0'))
 		return (OP_NOT_FOUND);
 	++*index;
@@ -49,6 +54,11 @@ int	get_redir_input_file(char **args, int *index, t_token **head)
 	ret = ft_elem_pushback(head, ft_create_elem(filename, REDIR_IN));
 	if (ft_catch_error(ret == 2, filename, head) == MALLOC_ERROR)
 		return (1);
+	i = *index;
+	while (args[++i] && !is_operator(args[i][0]))
+	{
+		get_cmd_suffix(args[++*index], head);
+	}
 	return (0);
 }
 
@@ -56,7 +66,8 @@ int	get_redir_out_append(char **args, int *index, t_token **head)
 {
 	char	*filename;
 	int		ret;
-
+	int		i;
+	
 	if (!(args[*index][0] == '>' && args[*index][1] == '>'))
 		return (OP_NOT_FOUND);
 	++*index;
@@ -68,6 +79,11 @@ int	get_redir_out_append(char **args, int *index, t_token **head)
 	ret = ft_elem_pushback(head, ft_create_elem(filename, REDIR_OUT_APPEND));
 	if (ft_catch_error(ret == 2, filename, head) == MALLOC_ERROR)
 		return (1);
+	i = *index;
+	while (args[++i] && !is_operator(args[i][0]))
+	{
+		get_cmd_suffix(args[++*index], head);
+	}
 	return (0);
 }
 
@@ -75,6 +91,7 @@ int	get_redir_input_here_doc(char **args, int *index, t_token **head)
 {
 	char	*filename;
 	int		ret;
+	int		i;
 
 	if (!(args[*index][0] == '<' && args[*index][1] == '<'))
 		return (OP_NOT_FOUND);
@@ -87,6 +104,11 @@ int	get_redir_input_here_doc(char **args, int *index, t_token **head)
 	ret = ft_elem_pushback(head, ft_create_elem(filename, REDIR_HERE_DOC));
 	if (ft_catch_error(ret == 2, filename, head) == MALLOC_ERROR)
 		return (1);
+	i = *index;
+	while (args[++i] && !is_operator(args[i][0]))
+	{
+		get_cmd_suffix(args[++*index], head);
+	}
 	return (0);
 }
 
@@ -95,7 +117,7 @@ int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
 {
 	int	j;
 	int	ret;
-
+	
 	j = -1;
 	if (args[*index + 1] && is_operator(args[*index + 1][0]))
 	{

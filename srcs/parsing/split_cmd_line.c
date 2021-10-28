@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:55:21 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:27:14 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/28 14:47:18 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	skip_operator_and_increment(char *cmd_line, int *i, int *j)
 	{
 		operator = cmd_line[*i];
 		increment_i_and_j(i, j);
-		if (cmd_line[*i] == operator)
+		if (cmd_line[*i] == operator && operator != '|')
 			increment_i_and_j(i, j);
 		return (true);	
 	}
