@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 18:15:31 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 18:21:30 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 21:15:12 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ char **create_args(void)
 	args[1] = ft_strdup("name1=value1");
 	args[2] = ft_strdup("name3=");
 	args[3] = ft_strdup("name4=value4");
-	args[args_nb] = NULL;
+	args[args_nb - 1] = NULL;
 	return (args);
 }

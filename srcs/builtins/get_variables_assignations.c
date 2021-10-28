@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:05:20 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/22 18:10:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/28 22:26:54 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static char	*get_variable_name(char *str)
 		len++;
 	name = malloc(sizeof(char) * len + 1);
 	if (name == NULL)
-	{
-		perror("");
 		return (NULL);
-	}
 	len = 0;
 	while (str[len] != '=' && str[len] != '\0')
 	{
@@ -45,23 +42,22 @@ static char	*get_variable_value(char *str)
 		str++;
 	if (*str == '=')
 		str++;
-	len = 0;
-	while (str[len] != '\0')
-		len++;
+	len = ft_strlen(str);
 	value = malloc(sizeof(char) * len + 1);
-	if (value == NULL || len == 0)
-	{
-		perror("");
-		free(value);
+	if (value == NULL)
 		return (NULL);
-	}
-	len = 0;
-	while (str[len] != '\0')
+	if (len == 0)
+		value[0] = '\0';
+	else
 	{
-		value[len] = str[len];
-		len++;
+		len = 0;
+		while (str[len] != '\0')
+		{
+			value[len] = str[len];
+			len++;
+		}
+		value[len] = '\0';
 	}
-	value[len] = '\0';
 	return (value);
 }
 
@@ -77,13 +73,13 @@ t_variable	*get_variables_assignations(char **args)
 	while (args[i] != NULL)
 	{
 		name = get_variable_name(args[i]);
-		if (name == NULL)
+		value = get_variable_value(args[i]);
+		if (name == NULL || value == NULL)
 		{
-			perror("");
-			//free(parsed_variables);
+			free(name);
+			free(value);
 			return (NULL);
 		}
-		value = get_variable_value(args[i]);
 		add_variable(&parsed_variables, create_variable(name, value));
 		i++;
 	}
