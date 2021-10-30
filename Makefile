@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/10/28 19:47:11 by sdummett         ###   ########.fr        #
+#    Updated: 2021/10/30 21:46:05 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
 CC			= clang
-CFLAGS		= -Wall -Werror -Wextra #-v#-g3 -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -fsanitize=address #-v
 NAME		= minishell
 SRCS_DIR	= srcs/
 SRCS_SUB_DIR_BOOLEANS = booleans
