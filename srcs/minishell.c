@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/30 19:06:03 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/30 19:33:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	main(void)
 	variables = init_env();
 	printf("pepesh €\n");
 	
+	ft_pwd(NULL);
 	args = create_args();
+	ft_pwd(args);
 	ft_echo(args);
 	
 	/*
