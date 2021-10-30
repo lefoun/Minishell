@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/28 20:47:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/10/30 18:36:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_vars		*init_env(void);
 ** Builtins
 */
 // int			ft_cd(char *path);
-int			ft_echo(char *text, bool has_newline);
+//int			ft_echo(char *text, bool has_newline);
 int			ft_pwd(void);
 // int			ft_export(t_variable **env, char **args);
 //int 		ft_export(t_variable **env, char *name, char *value);
@@ -78,10 +78,10 @@ int			ft_unset(t_variable **head, char *varname);
 int			ft_env(t_variable *env);
 void		ft_exit(int exit_status);
 /*
-** Builtins NEW
+** Builtins Uniformized (new versions)
 */
 int			ft_cd(char **args);
-// int			ft_echo(char **args);
+int			ft_echo(char **args);
 // int			ft_pwd(char **args);
 int			ft_export(char **args);
 // int			ft_unset(char **args);
