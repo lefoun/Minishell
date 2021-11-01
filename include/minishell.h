@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/30 21:53:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/01 23:42:24 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_variable *get_variable(t_variable *vars, char *varname);
 /*
 ** Temporary
 */
-void		printenv(t_variable *env); //<-delete printenv.c
+void		printenv(void); //<-delete printenv.c
 char		**create_args(void); //<-delete create_args.c
 
 #endif

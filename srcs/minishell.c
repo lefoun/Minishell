@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/30 21:48:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/01 23:41:49 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	main(void)
 	ft_export(NULL);
 
 	args = create_args();
-	ft_env(variables->env);
+	ft_env(NULL);
 	printf("ENSUITE\n");
 	int ret = ft_unset(args);
 	printf("ret = %d\n", ret);
-	ft_env(variables->env);
+	ft_env(NULL);
 	ft_unset(args);
 	ft_unset(args);
 
