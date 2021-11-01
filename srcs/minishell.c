@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/01 23:41:49 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 00:54:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 ** Comment set les variables d'env ?
 */
 
+t_vars	*variables = NULL;
 
 int	main(void)
 {

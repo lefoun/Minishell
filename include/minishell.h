@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/01 23:42:24 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 00:54:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_vars
 /* 
 ** Environment variables is a global linked list
 */
-t_vars	*variables;
+extern t_vars	*variables;
 
 
 void		add_variable(t_variable **head, t_variable *new);
