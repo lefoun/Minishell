@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 01:06:00 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:35:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	main(void)
 	args2[0] = ft_strdup("PWD=");
 	args2[1] = ft_strdup("OLDPWD=/Users");
 	args2[2] = NULL;
-	ft_exit(args2);	
+	ft_exit(NULL);
+	//ft_exit(args2);	
 
 	/* unset TESTS
 	**

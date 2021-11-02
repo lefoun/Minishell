@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/02 01:03:54 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 01:11:41 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ extern t_vars	*variables;
 
 void		add_variable(t_variable **head, t_variable *new);
 t_variable	*create_variable(char *name, char *value);
+
 /*
 ** Builtins utils
 */
@@ -66,19 +67,9 @@ t_variable	*get_variables_assignations(char **args);
 char		*call_getcwd();
 t_vars		*init_env(void);
 
+
 /*
 ** Builtins
-*/
-// int			ft_cd(char *path);
-//int			ft_echo(char *text, bool has_newline);
-//int			ft_pwd(void);
-// int			ft_export(t_variable **env, char **args);
-//int 		ft_export(t_variable **env, char *name, char *value);
-//int			ft_unset(t_variable **head, char *varname);
-//int			ft_env(t_variable *env);
-//void		ft_exit(int exit_status);
-/*
-** Builtins Uniformized (new versions)
 */
 int			ft_cd(char **args);
 int			ft_echo(char **args);
