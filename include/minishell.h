@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/10/26 10:34:43 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/02 17:48:24 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ typedef struct s_ast {
 
 typedef struct s_token {
 	char			*value;
-	char			**args;
+	char			**cmd;
 	int				type;
-	bool			single_quote;
 	struct s_token	*next;
 }	t_token;
 
@@ -94,16 +93,17 @@ typedef struct s_token {
 t_ast	*ft_create_ast(char *cmd_line);
 char	*ft_strdup_index(char *str, int index);
 int		ft_parser(char *cmd);
-t_token *ft_tokenize(char *cmd, t_token **head);
 void	get_op_elem(void);
 int		get_index_operator(char *arg);
 
 // Tokenizer
-void	ft_new_tokenize(char **args, t_token **head);
+void	ft_tokenize(char **args, t_token **head);
 int		check_operator_errors(char **args);
 int		check_if_multi_operator(char **args);
 void	init_function_pointer(int (*get_redirection[])
 					(char **, int *, t_token **));
+t_token	*group_cmd_and_args(t_token **head);
+t_token	*map_lst_till_pipe_or_eol(t_token **head);
 // Pre processing
 int		count_words_nb(char *cmd_line);
 char	**get_prosseced_cmd_line(char *cmd_line);
@@ -148,4 +148,7 @@ void	free_token_lst(t_token *lst);
 // Error functions
 int	ft_catch_error(bool error_check, char *str, t_token **head);
 int	ft_free_tab(char **tab, int error_cause);
+
+// Test functions
+void	print_token(t_token *head);
 #endif

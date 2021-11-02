@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/28 15:41:18 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/28 15:45:19 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ char	**get_prosseced_cmd_line(char *cmd_line)
 	int		words_nb;
 	char	**splited_args;
 	t_vars	*variable;
-
 
 	variable = malloc(sizeof(*variable));
 	variable->env = create_variable("hello", "var_value");

@@ -6,13 +6,13 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:33:37 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/19 15:10:33 by nammari          ###   ########.fr       */
+/*   Updated: 2021/10/28 15:50:48 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_new_tokenize(char **args, t_token **head)
+void	ft_tokenize(char **args, t_token **head)
 {
 	int	i;
 	int	ret;
