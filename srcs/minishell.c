@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 00:54:59 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 01:06:00 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ int	main(void)
 	variables = init_env();
 	printf("pepesh €\n");
 
+	(void)args;
+	char **args2 = malloc(sizeof(char *) * 3);
+	args2[0] = ft_strdup("PWD=");
+	args2[1] = ft_strdup("OLDPWD=/Users");
+	args2[2] = NULL;
+	ft_exit(args2);	
+
+	/* unset TESTS
+	**
+
 	char **args2 = malloc(sizeof(char *) * 3);
 	args2[0] = ft_strdup("PWD=");
 	args2[1] = ft_strdup("OLDPWD=/Users");
@@ -43,6 +53,9 @@ int	main(void)
 	ft_env(NULL);
 	ft_unset(args);
 	ft_unset(args);
+
+	**
+	*/
 
 	/*
 	** pwd and echo TESTS
@@ -112,5 +125,4 @@ int	main(void)
 	// ft_cd("/home/stone/42/minishell/builtins");
 	// ft_pwd();
 	// ft_echo("hello world!", true);
-	ft_exit(0);
 }

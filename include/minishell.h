@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/02 00:54:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 01:03:54 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_vars		*init_env(void);
 //int 		ft_export(t_variable **env, char *name, char *value);
 //int			ft_unset(t_variable **head, char *varname);
 //int			ft_env(t_variable *env);
-void		ft_exit(int exit_status);
+//void		ft_exit(int exit_status);
 /*
 ** Builtins Uniformized (new versions)
 */
@@ -86,7 +86,7 @@ int			ft_pwd(char **args);
 int			ft_export(char **args);
 int			ft_unset(char **args);
 int			ft_env(char **args);
-// void		ft_exit(char **args);
+int			ft_exit(char **args);
 
 /*
 ** Environment functions
