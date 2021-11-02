@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/30 19:33:49 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:34:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,34 @@ static void    print_error()
     printf("pwd: %s\n", str);
 }
 
+static bool	has_invalid_option(char *str)
+{
+	bool	has_hyphen;
+
+	has_hyphen = false;
+	if (str == NULL)
+		return (false);
+	while (*str == '-')
+	{
+		has_hyphen = true;
+		str++;
+	}
+	if (*str != '\0' && has_hyphen == true)
+		return (true);
+	return (false);
+}
+
 int ft_pwd(char **args)
 {
     char                *working_directory;
 
-    (void)args;
+	if (has_invalid_option(args[0]) == true)
+	{
+		write(2, "minishell: pwd: ", 16);
+		write(2, args[0], ft_strlen(args[0]));
+		write(2, ": invalid option\npwd: usage: pwd\n", 34);
+		return (2);
+	}
     working_directory = call_getcwd();
     if (working_directory == NULL)
     {

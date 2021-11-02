@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 15:13:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:34:36 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,33 @@ t_vars	*variables = NULL;
 
 int	main(void)
 {
-	 char	**args;
+	char	**args;
 
 	variables = init_env();
 	printf("pepesh €\n");
 
+	
 	(void)args;
 	char **args2 = malloc(sizeof(char *) * 3);
-	args2[0] = ft_strdup("9223372036854775808");
-	//args2[1] = NULL;
-	args2[1] = ft_strdup("test");
+	args2[0] = ft_strdup("--a");
+	args2[1] = NULL;
+	//args2[1] = ft_strdup("test");
 	args2[2] = NULL;
+	ft_pwd(args2);
+
+	/* exit TESTS
+	**
+
+	char **args2 = malloc(sizeof(char *) * 3);
+	args2[0] = ft_strdup("242");
+	args2[1] = NULL;
+	//args2[1] = ft_strdup("test");
+	args2[2] = NULL;
+	ft_pwd(args2);
 	ft_exit(args2);
 	//ft_exit(args2);	
+	**
+	*/
 
 	/* unset TESTS
 	**
