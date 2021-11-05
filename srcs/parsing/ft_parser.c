@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 18:11:25 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/05 16:00:09 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,27 +87,21 @@ t_token	*map_lst_till_pipe_or_eol(t_token **head)
 {
 	t_token	*new_head;
 	t_token	*new_head_ptr;
-	t_token	*previous;
 
 	if (*head == NULL)
 		return (NULL);
-	previous = NULL;
 	new_head = dup_elem(*head);
-	new_head_ptr = new_head->next;
-	// new_head = new_head->next;
-	previous = new_head;
+	new_head_ptr = new_head;
 	(*head) = (*head)->next;
 	while (*head && (*head)->type != PIPE)
 	{
-		if (previous == NULL)
-			(new_head->next) = dup_elem(*head);
-		else
-			previous->next = dup_elem(*head);
-		previous = new_head_ptr;
-		new_head_ptr = new_head_ptr->next;
+		new_head->next = dup_elem(*head);
+		new_head = new_head->next;
 		(*head) = (*head)->next;
 	}
-	return (new_head);
+	if (*head && (*head)->type == PIPE)
+		*head = (*head)->next;
+	return (new_head_ptr);
 }
 
 int	ft_parser(char *cmd)
@@ -125,4 +119,3 @@ int	ft_parser(char *cmd)
 	print_token(tmp);
 	return (0);
 }
-//ls -l -h | echo "bidule" 'lala'
