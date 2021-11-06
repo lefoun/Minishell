@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/06 18:55:26 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/06 20:24:13 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 
 # define MAX_FILENAME_LEN 255
 # define MAX_PATH_LEN 4096
+# define EXPORT 1
+# define UNSET 2
+
 /*
 ** Environment structure
 */
@@ -55,10 +58,7 @@ typedef struct s_vars
 ** Environment variables is a global linked list
 */
 extern t_vars	*variables;
-
-
 void		add_variable(t_variable **head, t_variable *new);
-t_variable	*create_variable(char *name, char *value);
 
 /*
 ** Builtins utils
@@ -66,7 +66,6 @@ t_variable	*create_variable(char *name, char *value);
 t_variable	*get_variables_assignations(char **args);
 char		*call_getcwd();
 t_vars		*init_env(void);
-
 
 /*
 ** Builtins
@@ -82,10 +81,9 @@ int			ft_exit(char **args);
 /*
 ** Environment functions
 */
-t_variable		*create_env_var(char *name, char *value);
-void			add_env_var_back(t_variable **head, t_variable *new);
 t_variable		*get_variable(t_variable *vars, char *varname);
 unsigned int	get_greatest_len(char *str1, char *str2);
+bool    		is_valid_identifier(char *str, int builtin);
 
 /*
 ** Temporary

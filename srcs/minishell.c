@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/06 18:58:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/06 20:19:55 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,28 @@ int	main(void)
 	
 	(void)args;
 	args = malloc(sizeof(char *) * 3);
-	args[0] = ft_strdup("namee=value");
+	args[0] = ft_strdup("2namee=value");
 	args[1] = ft_strdup("name2=value2");
 	args[2] = NULL;
 	ft_export(args);
 	ft_env(NULL);
+	args[0] = ft_strdup("nameee");
+	args[1] = NULL;
+			
+	ft_unset(args);
+	printf("AFTER UNSET\n");
+	ft_env(NULL);
 
-	char *varname = ft_strdup("namee");
+	char *varname = ft_strdup("name");
 	t_variable *tmp = get_variable(variables->env, varname);
 	if (tmp != NULL)
 	{
 		printf("tmp->name  : %s\n", tmp->name);
 		printf("tmp->value : %s\n", tmp->value);
 	}
+
+
+
 	/* exit TESTS
 	**
 
