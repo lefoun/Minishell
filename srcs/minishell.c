@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 16:34:36 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/06 18:58:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,20 @@ int	main(void)
 
 	
 	(void)args;
-	char **args2 = malloc(sizeof(char *) * 3);
-	args2[0] = ft_strdup("--a");
-	args2[1] = NULL;
-	//args2[1] = ft_strdup("test");
-	args2[2] = NULL;
-	ft_pwd(args2);
+	args = malloc(sizeof(char *) * 3);
+	args[0] = ft_strdup("namee=value");
+	args[1] = ft_strdup("name2=value2");
+	args[2] = NULL;
+	ft_export(args);
+	ft_env(NULL);
 
+	char *varname = ft_strdup("namee");
+	t_variable *tmp = get_variable(variables->env, varname);
+	if (tmp != NULL)
+	{
+		printf("tmp->name  : %s\n", tmp->name);
+		printf("tmp->value : %s\n", tmp->value);
+	}
 	/* exit TESTS
 	**
 

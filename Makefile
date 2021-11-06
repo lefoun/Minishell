@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/11/01 19:44:35 by sdummett         ###   ########.fr        #
+#    Updated: 2021/11/06 18:56:31 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS_SUB_DIR_BOOLEANS = booleans
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c variable_handler.c \
 			get_variables_assignations.c get_variable.c call_getcwd.c \
-			init_env.c)
+			init_env.c get_greatest_len.c)
 DEBUG_FILES = $(addprefix debug/, printenv.c create_args.c)
 SRCS_FILES	=  minishell.c $(BUILTINS_FILES) $(DEBUG_FILES)
 

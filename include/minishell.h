@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/02 01:11:41 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/06 18:55:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ int			ft_exit(char **args);
 /*
 ** Environment functions
 */
-t_variable	*create_env_var(char *name, char *value);
-void		add_env_var_back(t_variable **head, t_variable *new);
-t_variable *get_variable(t_variable *vars, char *varname);
+t_variable		*create_env_var(char *name, char *value);
+void			add_env_var_back(t_variable **head, t_variable *new);
+t_variable		*get_variable(t_variable *vars, char *varname);
+unsigned int	get_greatest_len(char *str1, char *str2);
 
 /*
 ** Temporary

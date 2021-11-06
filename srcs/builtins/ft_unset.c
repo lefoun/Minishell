@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/30 21:52:15 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/06 18:56:01 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,6 @@ static bool    is_valid_identifier(char *str)
         }
     }
     return (true);
-}
-
-static unsigned int get_greatest_len(char *str1, char *str2)
-{
-    unsigned int    len_str1;
-    unsigned int    len_str2;
-
-    len_str1 = ft_strlen(str1);
-    len_str2 = ft_strlen(str2);
-    if (len_str1 > len_str2)
-        return (len_str1);
-    return (len_str2);
 }
 
 static void    delete_variable(t_variable **head, char *varname_to_del)
