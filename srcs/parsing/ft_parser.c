@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 18:11:25 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/16 16:41:00 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,26 @@ t_token	*map_lst_till_pipe_or_eol(t_token **head)
 {
 	t_token	*new_head;
 	t_token	*new_head_ptr;
-	t_token	*previous;
+	// t_token	*previous;
 
 	if (*head == NULL)
 		return (NULL);
-	previous = NULL;
+	// previous = NULL;
 	new_head = dup_elem(*head);
-	new_head_ptr = new_head->next;
-	// new_head = new_head->next;
-	previous = new_head;
+	if (new_head == NULL)
+		return (NULL);
+	new_head_ptr = new_head;
 	(*head) = (*head)->next;
-	while (*head && (*head)->type != PIPE)
+	while (*head != NULL && (*head)->type != PIPE)
 	{
-		if (previous == NULL)
-			(new_head->next) = dup_elem(*head);
-		else
-			previous->next = dup_elem(*head);
-		previous = new_head_ptr;
+		// if (previous == NULL)
+			// (new_head_ptr) = dup_elem(*head);
+		// else
+			// previous->next = dup_elem(*head);
+		// previous = new_head_ptr;
+		// printf("This is new_hhead_ptr->value |%s|\n", new_head_ptr->value);
+		// printf("This is head->value |%s|\n", (*head)->value);
+		new_head_ptr->next = dup_elem(*head);
 		new_head_ptr = new_head_ptr->next;
 		(*head) = (*head)->next;
 	}
@@ -122,7 +125,16 @@ int	ft_parser(char *cmd)
 	if (!head)
 		return (-1);
 	tmp = map_lst_till_pipe_or_eol(&head);
+	int i = 1;
+	printf("Printing this part of the chain %d\n", i);
 	print_token(tmp);
+	while (tmp)
+	{
+		++i;
+		printf("Printing this part of the chain %d\n", i);
+		tmp = map_lst_till_pipe_or_eol(&head);
+		print_token(tmp);
+	}
 	return (0);
 }
 //ls -l -h | echo "bidule" 'lala'
