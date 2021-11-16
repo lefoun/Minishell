@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/16 16:41:00 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/16 17:44:26 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ t_token	*map_lst_till_pipe_or_eol(t_token **head)
 		new_head_ptr = new_head_ptr->next;
 		(*head) = (*head)->next;
 	}
-	return (new_head);
+	if (*head && (*head)->type == PIPE)
+		*head = (*head)->next;
+	return (new_head_ptr);
 }
 
 int	ft_parser(char *cmd)
@@ -137,4 +139,3 @@ int	ft_parser(char *cmd)
 	}
 	return (0);
 }
-//ls -l -h | echo "bidule" 'lala'
