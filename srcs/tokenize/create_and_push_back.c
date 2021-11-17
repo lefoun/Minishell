@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:26:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/15 15:53:41 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/17 10:45:21 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_token	*ft_create_elem(char *content, int type)
 		return (NULL);
 	}
 	new->value = content;
+	new->cmd = NULL;
 	new->type = type;
 	new->next = NULL;
 	return (new);
