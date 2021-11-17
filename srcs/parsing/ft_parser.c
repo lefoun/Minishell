@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/17 10:43:13 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/17 15:57:33 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ int	ft_parser(char *cmd)
 {
 	char	**args;
 	t_token *head;
-	t_token	*tmp;
+	//t_token	*tmp;
+	extern char	**environ;
 
 	head = NULL;
 	args = get_prosseced_cmd_line(cmd);
@@ -138,12 +139,13 @@ int	ft_parser(char *cmd)
 	//print_token_2(head);
 	if (!head)
 		return (-1);
-	tmp = map_lst_till_pipe_or_eol(&head);
-	while (tmp)
-	{
-		print_token_2(tmp);
-		free(tmp);
-		tmp = map_lst_till_pipe_or_eol(&head);
-	}
+	//tmp = map_lst_till_pipe_or_eol(&head);
+	// while (tmp)
+	// {
+	// 	print_token_2(tmp);
+	// 	free(tmp);
+	// 	tmp = map_lst_till_pipe_or_eol(&head);
+	// }
+	pipex_exec_test(3, &head, environ);
 	return (0);
 }

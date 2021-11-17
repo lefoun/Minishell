@@ -1,0 +1,7 @@
+-rwxr-xr-x   1 nammari  2021_paris   114K Nov 17 16:09 minishell
+
+drwxr-xr-x  28 nammari  2021_paris   952B Nov 17 11:25 el_pipex
+drwxr-xr-x   6 nammari  2021_paris   204B Nov 17 11:07 include
+-rwxr-xr-x   1 nammari  2021_paris   114K Nov 17 16:09 minishell
+drwxr-xr-x  16 nammari  2021_paris   544B Nov 17 09:58 pipex
+-rw-r--r--   1 nammari  2021_paris   166B Nov 17 09:58 testing_execve.c

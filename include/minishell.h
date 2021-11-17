@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/02 17:48:24 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/17 11:33:24 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "ft_printf.h"
+# include "pipex_bonus.h"
 // Error management
 
 # define OP_NOT_FOUND -1
@@ -111,6 +112,9 @@ void	split_cmd_line(char *cmd_line, char **args, int words_nb, t_vars *vars);
 char	*get_word(char *cmd_line, int word_length, t_vars *vars);
 char	*search_dollar_word(char *word);
 char	*replace_dollar_word(char *word, char *dollar_word, t_vars *vars);
+
+// Execution functions
+int	pipex_exec_test(int nb_args, t_token **head, char **environ);
 
 // Get operator
 int	get_redir_out_trunc(char **args, int *index, t_token **head);
