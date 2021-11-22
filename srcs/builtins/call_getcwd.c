@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   call_getcwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:36:13 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/28 16:57:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:25:48 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*call_getcwd()
+char	*call_getcwd(void)
 {
 	unsigned int	i;
 	unsigned int	len;

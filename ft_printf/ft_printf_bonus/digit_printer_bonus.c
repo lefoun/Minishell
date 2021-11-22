@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   digit_printer_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:01:06 by nammari           #+#    #+#             */
-/*   Updated: 2021/07/08 00:38:43 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/22 18:47:20 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	get_sign(char *string, char format, t_flag_values *flag)
 	if (flag->width_nb < 0)
 		flag->width_nb = 0;
 	if ((flag->left_justify && flag->width_nb != 0)
-		 || (flag->pad_zero && flag->width_nb != 0
-			 && flag->precision_nb <= -1))
+		|| (flag->pad_zero && flag->width_nb != 0
+			&& flag->precision_nb <= -1))
 	{
 		disp_sign(format, flag, string);
 		flag->sign_printed = true;

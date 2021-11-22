@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 14:36:58 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/28 17:00:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:02:26 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool				is_valid_argument(const char	*str);
 
 //Disp_sign_and_hex_prefix
 void				disp_sign(char format,
-						 t_flag_values *flag, char	*string);
+						t_flag_values *flag, char	*string);
 
 //Chained_lists
 int					list_add_front(t_var_func	**list, t_var_func	*ls_new);
@@ -75,9 +75,9 @@ void				free_list(t_var_func *ptr);
 
 //Digit_utils
 char				*ft_itoa_base(long num, char *to_base,
-						 int base_len);
+						int base_len);
 char				*ft_u_itoa_base(unsigned long num, char *to_base,
-						 int base_len);
+						int base_len);
 int					count_unum_len(unsigned long long num, int base_len);
 int					count_num_len(long long num, int base_len);
 char				*base_creator(char format);
@@ -85,24 +85,24 @@ char				*base_creator(char format);
 //flag_values_fill
 t_flag_values		*init_to_zero(void);
 void				get_flag_data(const char	*str,
-						 char format, t_flag_values *flag);
+						char format, t_flag_values *flag);
 void				get_width(const char	*str, char format,
-						 t_flag_values *flag);
+						t_flag_values *flag);
 void				get_precision(const char	*str,
-						 char format, t_flag_values *flag);
+						char format, t_flag_values *flag);
 
 //Digit_print
 int					print_digit(const char *str, t_type_holder *my_type,
 						t_flag_values *flag);
 int					get_flags(const char *str,
-						 char *string, t_flag_values *flag);
+						char *string, t_flag_values *flag);
 int					get_sign(char *string, char format,
 						t_flag_values *flag);
 int					print_number(char *string, t_flag_values *flag,
-						 int format);
+						int format);
 //digit_lead_chars
 int					count_digit_prefix(t_flag_values *flag,
-						 char format, char *string);
+						char format, char *string);
 //utils
 int					ft_count_len(char *string);
 void				ft_putstr(char *str);
@@ -135,7 +135,7 @@ int					treat_digit(va_list	*varlist, const char	*str);
 int					error_malloc(void);
 //printf 
 int					format_parser(va_list *ap,
-						 const char *str, t_var_func *ptr);
+						const char *str, t_var_func *ptr);
 int					ft_printf(const char	*str, ...)
 					__attribute__((format (printf, 1, 2)));
 #endif

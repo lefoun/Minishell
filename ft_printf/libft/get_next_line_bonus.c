@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:03:26 by nammari           #+#    #+#             */
-/*   Updated: 2021/08/31 14:36:08 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/22 18:41:34 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	lst_free(t_struct **struct_pointer, int fd)
 	}
 }
 
-int	check_eol(char *buffer, int	reason)
+int	check_eol(char *buffer, int reason)
 {
 	int	i;
 

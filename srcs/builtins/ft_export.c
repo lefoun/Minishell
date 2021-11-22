@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/06 20:24:43 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:35:31 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,14 @@ static t_variable	*create_variable(char *str)
 
 	new = malloc(sizeof(t_variable));
 	if (new == NULL)
-	{
-
 		return (NULL);
-	}
 	new->name = get_variable_name(str);
 	new->value = get_variable_value(str);
 	new->next = NULL;
 	return (new);
 }
 
-int ft_export(char **args)
+int	ft_export(char **args)
 {
 	t_variable		*new;
 	bool			all_set;
@@ -88,7 +85,6 @@ int ft_export(char **args)
 	while (args[i] != NULL)
 	{
 		new = create_variable(args[i]);
-		
 		if (is_valid_identifier(new->name, EXPORT))
 			add_variable(&variables->env, new);
 		else

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 16:34:51 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:10:51 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void    print_error()
+static void	print_error(void)
 {
-    char    *str;
+	char	*str;
 
-    str = strerror(errno);
-    printf("pwd: %s\n", str);
+	str = strerror(errno);
+	printf("pwd: %s\n", str);
 }
 
 static bool	has_invalid_option(char *str)
@@ -37,9 +37,9 @@ static bool	has_invalid_option(char *str)
 	return (false);
 }
 
-int ft_pwd(char **args)
+int	ft_pwd(char **args)
 {
-    char                *working_directory;
+	char	*working_directory;
 
 	if (has_invalid_option(args[0]) == true)
 	{
@@ -48,13 +48,13 @@ int ft_pwd(char **args)
 		write(2, ": invalid option\npwd: usage: pwd\n", 34);
 		return (2);
 	}
-    working_directory = call_getcwd();
-    if (working_directory == NULL)
-    {
-        print_error();  
-        return (1);
-    }
-    printf("%s\n", working_directory);
-    free(working_directory);
-    return (0);
+	working_directory = call_getcwd();
+	if (working_directory == NULL)
+	{
+		print_error();
+		return (1);
+	}
+	printf("%s\n", working_directory);
+	free(working_directory);
+	return (0);
 }

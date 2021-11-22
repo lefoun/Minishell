@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/06 20:24:13 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:01:02 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,32 @@ typedef struct s_vars
 ** Environment variables is a global linked list
 */
 extern t_vars	*variables;
-void		add_variable(t_variable **head, t_variable *new);
+
+/*
+** Builtins functions
+*/
+int				ft_cd(char **args);
+int				ft_echo(char **args);
+int				ft_pwd(char **args);
+int				ft_export(char **args);
+int				ft_unset(char **args);
+int				ft_env(char **args);
+int				ft_exit(char **args);
 
 /*
 ** Builtins utils
 */
-t_variable	*get_variables_assignations(char **args);
-char		*call_getcwd();
-t_vars		*init_env(void);
-
-/*
-** Builtins
-*/
-int			ft_cd(char **args);
-int			ft_echo(char **args);
-int			ft_pwd(char **args);
-int			ft_export(char **args);
-int			ft_unset(char **args);
-int			ft_env(char **args);
-int			ft_exit(char **args);
-
-/*
-** Environment functions
-*/
+void			add_variable(t_variable **head, t_variable *new);
+char			*call_getcwd(void);
+t_vars			*init_env(void);
 t_variable		*get_variable(t_variable *vars, char *varname);
 unsigned int	get_greatest_len(char *str1, char *str2);
-bool    		is_valid_identifier(char *str, int builtin);
+bool			is_valid_identifier(char *str, int builtin);
 
 /*
 ** Temporary
 */
-void		printenv(void); //<-delete printenv.c
-char		**create_args(void); //<-delete create_args.c
+void			printenv(void); //<-delete printenv.c
+char			**create_args(void); //<-delete create_args.c
 
 #endif
