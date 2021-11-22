@@ -3,49 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/09/30 00:42:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:01:02 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <unistd.h>
 # include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
 # include <sys/wait.h>
 # include <time.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <limits.h>
+# include "colorcodes.h" 
+# include "ft_printf.h"
+// # include "ft_printf.h" <- Add the library
 
-enum	e_arg_type {
-	CMD,
-	CMD_SUFFIX,
-	AND,
-	OR,
-	PIPE,
-	VAR,
-	REDIR_IN,
-	REDIR_HERE_DOC,
-	REDIR_OUT_TRUNC,
-	REDIR_OUT_APPEND,
-	FILE_NAME
-};
+# define MAX_FILENAME_LEN 255
+# define MAX_PATH_LEN 4096
+# define EXPORT 1
+# define UNSET 2
 
-typedef struct s_ast {
-	char			value;
-	int				type;
-	struct s_ast	*left;
-	struct s_ast	*right;
-}	t_ast;
+/*
+** Environment structure
+*/
+typedef struct s_variable
+{
+	char				*name;
+	char				*value;
+	struct s_variable	*next;
+}	t_variable;
 
-typedef struct s_token {
-	char			*value;
-	int				type;
-	struct s_token	*next;
-}	t_token;
+/*
+** Variables
+*/
+typedef struct s_vars
+{
+	t_variable	*env;
+	t_variable	*global;
+	int			last_exit_status;
+}	t_vars;
+
+/* 
+** Environment variables is a global linked list
+*/
+extern t_vars	*variables;
+
+/*
+** Builtins functions
+*/
+int				ft_cd(char **args);
+int				ft_echo(char **args);
+int				ft_pwd(char **args);
+int				ft_export(char **args);
+int				ft_unset(char **args);
+int				ft_env(char **args);
+int				ft_exit(char **args);
+
+/*
+** Builtins utils
+*/
+void			add_variable(t_variable **head, t_variable *new);
+char			*call_getcwd(void);
+t_vars			*init_env(void);
+t_variable		*get_variable(t_variable *vars, char *varname);
+unsigned int	get_greatest_len(char *str1, char *str2);
+bool			is_valid_identifier(char *str, int builtin);
+
+/*
+** Temporary
+*/
+void			printenv(void); //<-delete printenv.c
+char			**create_args(void); //<-delete create_args.c
 
 #endif

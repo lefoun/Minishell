@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/30 00:34:23 by sdummett         ###   ########.fr       */
+/*   Created: 2021/10/20 16:41:43 by sdummett          #+#    #+#             */
+/*   Updated: 2021/11/22 18:26:49 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Add shell features into main function
-** by merging git ranches
-*/
-
-int	main(void)
+int	ft_env(char **args)
 {
-	printf("Hello World!\n");
+	t_variable	*env;
+
+	(void)args;
+	env = variables->env;
+	while (env != NULL)
+	{
+		printf("%s=%s\n", env->name, env->value);
+		env = env->next;
+	}
 	return (0);
 }
