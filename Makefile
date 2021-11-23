@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/11/17 11:36:42 by nammari          ###   ########.fr        #
+#    Updated: 2021/11/23 16:10:35 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ get_pipe.c has_parse_errors.c create_and_push_back.c \
 PARSING_FILES = $(addprefix parsing/, ft_parser.c count_words_nb.c \
 get_processed_cmd_line.c get_word.c split_cmd_line.c replace_dollar_word.c \
 search_dollar_word.c)
-EXECUTION_FILES = $(addprefix el_execution/, pipex_execution.c)
+EXECUTION_FILES = $(addprefix el_execution/, pipex_execution.c close_pipes.c \
+error_management.c free_memory.c get_paths.c init_fd.c init_here_doc.c \
+wait_children.c fd_chained_list.c)
 BUILTINS_FILES =
 UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
 

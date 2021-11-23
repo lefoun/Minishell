@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/17 11:33:24 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/23 17:30:21 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,32 @@ enum	e_arg_type {
 	ASSIGN
 };
 
+
 typedef struct s_variable
 {
 	char				*name;
 	char				*value;
 	struct s_variable	*next;
 }	t_variable;
+
+typedef struct s_fd_chain {
+	int					fd;
+	char				*file_name;
+	struct	s_fd_chain	*next;
+}	t_fd_chain;
+
+typedef struct s_command {
+	t_fd_chain	*in_head;
+	t_fd_chain	*out_head;
+	char		**name;
+	char		**paths;
+	char		**env;
+	int			nb;
+	int			input_fd;
+	int			output_fd;
+	bool		here_doc;
+	bool		is_first_command;
+}				t_command_vars;
 
 /*
 ** Variables
@@ -85,19 +105,36 @@ typedef struct s_token {
 	struct s_token	*next;
 }	t_token;
 
+
 // function pointer
 // typedef int	(*get_redirection[7])(char *arg, t_token **head);
 
-/*
-** Parsing functions
-*/
+
+// ------------ El Execution -------------
+
+t_fd_chain	*create_elem(int fd, char *file_name);
+int		pipex_exec_test(int nb_args, t_token **head, char **environ);
+int		elem_pushback(t_fd_chain **head, t_fd_chain *elem);
+int		_error_(char source);
+void	put_error(char *command);
+int		mem_free(char **tab, int index, t_command_vars *commands);
+void	double_free(char *tab, char *tab2);
+char	**get_paths(char *env[]);
+int		init_here_doc(char *limiter);
+void	close_unused_pipes(int pipe_fds[2], int *prev_output, int i);
+int		close_pipes(int fd_1, int fd_2);
+void	wait_for_children(int nb_children);
+int		init_fd_to_commands(t_token *head, t_command_vars *commands);
+int 	write_in_fds(t_fd_chain *head);
+// ------------- Parsing -----------------
+
 t_ast	*ft_create_ast(char *cmd_line);
 char	*ft_strdup_index(char *str, int index);
 int		ft_parser(char *cmd);
 void	get_op_elem(void);
 int		get_index_operator(char *arg);
 
-// Tokenizer
+// ------------- Tokenizer --------------------
 void	ft_tokenize(char **args, t_token **head);
 int		check_operator_errors(char **args);
 int		check_if_multi_operator(char **args);
@@ -105,16 +142,14 @@ void	init_function_pointer(int (*get_redirection[])
 					(char **, int *, t_token **));
 t_token	*group_cmd_and_args(t_token **head);
 t_token	*map_lst_till_pipe_or_eol(t_token **head);
-// Pre processing
+
+// ------------- Pre processing-------------------
 int		count_words_nb(char *cmd_line);
 char	**get_prosseced_cmd_line(char *cmd_line);
 void	split_cmd_line(char *cmd_line, char **args, int words_nb, t_vars *vars);
 char	*get_word(char *cmd_line, int word_length, t_vars *vars);
 char	*search_dollar_word(char *word);
 char	*replace_dollar_word(char *word, char *dollar_word, t_vars *vars);
-
-// Execution functions
-int	pipex_exec_test(int nb_args, t_token **head, char **environ);
 
 // Get operator
 int	get_redir_out_trunc(char **args, int *index, t_token **head);
@@ -132,10 +167,7 @@ int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
 int	ft_elem_pushback(t_token **head, t_token *elem);
 t_token	*ft_create_elem(char *content, int type);
 
-
-/*
-** Boolean
-*/
+// -------------------- Boolean -------------
 bool	is_space(char c);
 bool	is_whitespace(char c);
 bool	is_operator(char c);
@@ -143,13 +175,12 @@ bool	is_next_word_assignment(char *cmd_line);
 bool	is_quote(char c);
 bool	is_alpha_num(char c);
 bool	is_redirection(char c);
-/*
-** Utils
-*/
+
+// --------------------------- Utils --------------
 void	skip_whitespace(char *str);
 void	free_token_lst(t_token *lst);
 
-// Error functions
+// ------------------ Error functions ------------
 int	ft_catch_error(bool error_check, char *str, t_token **head);
 int	ft_free_tab(char **tab, int error_cause);
 

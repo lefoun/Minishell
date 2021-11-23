@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/17 15:57:33 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/23 14:12:05 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,20 @@ t_token	*map_lst_till_pipe_or_eol(t_token **head)
 	return (new_head);
 }
 
+int	count_nb_cmds(t_token *head)
+{
+	int	nb_cmd;
+
+	nb_cmd = 0;
+	while (head)
+	{
+		if (head->type == CMD_NAME)
+			nb_cmd++;
+		head = head->next;
+	}
+	return (nb_cmd);
+}
+
 int	ft_parser(char *cmd)
 {
 	char	**args;
@@ -146,6 +160,6 @@ int	ft_parser(char *cmd)
 	// 	free(tmp);
 	// 	tmp = map_lst_till_pipe_or_eol(&head);
 	// }
-	pipex_exec_test(3, &head, environ);
+	pipex_exec_test(count_nb_cmds(head), &head, environ);
 	return (0);
 }

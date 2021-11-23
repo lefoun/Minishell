@@ -6,205 +6,11 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/17 16:09:02 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:02:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// ----- Pipex utils -----------
-
-int	mem_free(char **tab, int index, t_command_vars *commands)
-{
-	while (tab && tab[index])
-	{
-		free(tab[index]);
-		++index;
-	}
-	if (tab)
-		free(tab);
-	tab = NULL;
-	if (commands->input_fd != -1)
-	{
-		close(commands->input_fd);
-		commands->input_fd = -1;
-	}
-	if (commands->output_fd != -1)
-	{
-		close(commands->output_fd);
-		commands->output_fd = -1;
-	}
-	return (-1);
-}
-
-void	double_free(char *tab, char *tab2)
-{
-	free(tab);
-	free(tab2);
-}
-
-
-int	_error_(char source)
-{
-	if (source == 'o')
-		perror("Error! Failed to open file");
-	else if (source == 'p')
-		perror("Error! Failed to open pipe");
-	else if (source == 'k')
-		perror("Error! Failed to fork");
-	else if (source == 'd')
-		perror("Error! Your dup2 failed");
-	else if (source == 'c')
-		perror("Error! Your Close failed");
-	else if (source == 'a')
-		ft_putstr_fd("Error ! Please enter command in this format: "
-			"./pipex infile cmd1 cmd2 outfile\n", 2);
-	else if (source == 'w')
-		perror("Error! Your write failed");
-	else
-		ft_putstr_fd("Error!\n", 2);
-	return (-1);
-}
-
-void	put_error(char *command)
-{
-	ft_putstr_fd(command, 2);
-	ft_putstr_fd(" :command not found\n", 2);
-}
-
-int	close_pipes(int fd_1, int fd_2)
-{
-	close(fd_1);
-	close(fd_2);
-	return (0);
-}
-
-
-//------ Parsing for pipex ---------
-char	*search_path(char *string)
-{
-	if (!string)
-		return (NULL);
-	if (!(string[0] && string[0] == 'P'))
-		return (NULL);
-	if (!(string[1] && string[1] == 'A'))
-		return (NULL);
-	if (!(string[2] && string[2] == 'T'))
-		return (NULL);
-	if (!(string[3] && string[3] == 'H'))
-		return (NULL);
-	return (string);
-}
-
-char	**get_paths(char *env[])
-{
-	char			**paths;
-	char			*tmp;
-	int				i;
-
-	i = 0;
-	if (!env)
-		return (NULL);
-	while (env[i] && search_path(env[i]) == NULL)
-		++i;
-	if (!env[i])
-		return (NULL);
-	paths = ft_split(ft_strchr(env[i], '/'), ':');
-	i = 0;
-	while (paths && paths[i])
-	{
-		tmp = paths[i];
-		paths[i] = ft_strjoin(tmp, "/");
-		free(tmp);
-		++i;
-	}
-	return (paths);
-}
-
-char	*get_here_doc_content(int fd, char *limiter, char **str)
-{
-	char	*tmp;
-	char	*tab;
-
-	tmp = NULL;
-	tab = NULL;
-	*str = ft_strdup("");
-	while (get_next_line(fd, &tab) > 0)
-	{
-		tmp = *str;
-		if (!tab)
-			break ;
-		if (ft_memcmp(tab, limiter, ft_strlen(tab)) == 0)
-		{
-			free(tab);
-			get_next_line(fd, &tab);
-			return (*str);
-		}
-		*str = ft_strjoin(tmp, tab);
-		free(tmp);
-		tmp = *str;
-		*str = ft_strjoin(tmp, "\n");
-		free(tmp);
-	}
-	double_free(*str, tab);
-	return (NULL);
-}
-
-int	init_here_doc(char *limiter)
-{
-	int		here_doc;
-	char	*file_content;
-
-	file_content = NULL;
-	file_content = get_here_doc_content(0, limiter, &file_content);
-	if (!file_content)
-		return (-1);
-	here_doc = open("here_doc", O_CREAT | O_RDWR | O_TRUNC, 0666);
-	if (here_doc == -1)
-	{
-		free(file_content);
-		return (_error_('o'));
-	}
-	if (write(here_doc, file_content, ft_strlen(file_content)) == -1)
-	{
-		free(file_content);
-		return (_error_('w'));
-	}
-	close(here_doc);
-	here_doc = open("here_doc", O_RDWR);
-	free(file_content);
-	return (here_doc);
-}
-
-int	init_command_fds(t_command_vars *commands, char **argv, int argc)
-{
-	if (ft_strlen(argv[1]) >= 8 && ft_strnstr(argv[1], "here_doc", 8))
-	{
-		if (argc < 6)
-			return (_error_('a'));
-		commands->input_fd = init_here_doc(argv[2]);
-		if (commands->input_fd < 0)
-			return (_error_('b'));
-		commands->here_doc = true;
-		commands->output_fd = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT,
-				0666);
-		if (commands->output_fd == -1)
-			return (_error_('o'));
-		commands->name++;
-	}
-	else
-	{
-		commands->input_fd = open(argv[1], O_RDONLY | O_NONBLOCK);
-		if (commands->input_fd == -1)
-			_error_('o');
-		commands->output_fd = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT,
-				0666);
-		if (commands->output_fd == -1)
-			_error_('o');
-	}
-	return (1);
-}
-/// ------ End of parsing for pipex ----------
 
 int	exec_command(char **my_paths, char **argv, t_command_vars *commands)
 {
@@ -243,24 +49,42 @@ int	apply_redirection(int in, int out, t_token **head)
 		return (1);
 	if ((*head)->next->type == REDIR_IN)
 	{
-		dprintf(2, "here\n");
+		// dprintf(2, "here\n");
 		fd = open((*head)->next->value, O_RDONLY);
 		dup2(in, fd);
 		close(in);
 	}
 	else if ((*head)->next->type == REDIR_OUT_APPEND || (*head)->next->type == REDIR_OUT_TRUNC)
 	{
-		dprintf(2, "here2\n");
+		// dprintf(2, "here2\n");
 		fd = open((*head)->next->value, O_RDWR);
 		dup2(fd, out);
 		//close(out);
-		dprintf(2, "This is out %d and fd %d\n", out, fd);
+		// dprintf(2, "This is out %d and fd %d\n", out, fd);
 	}
-	dprintf(2, "here3\n");
+	// dprintf(2, "here3\n");
 	return (0);
 }
 
-int	ft_fork(t_command_vars *commands, int in, int out, int pipe_fds[2], t_token **head)
+int	exit_process(t_command_vars *commands, int pipe_fds[2])
+{
+	put_error(commands->name[0]);
+	close(pipe_fds[0]);
+	close_pipes(0, 1);
+	mem_free(commands->paths, 0, commands);
+	exit(EXIT_FAILURE);	
+}
+
+int	link_pipe_to_fd(int in, int out, t_token **head)
+{
+	(void)head;
+	dup2(in, STDIN_FILENO);
+	out = dup2(out, STDOUT_FILENO);
+	// apply_redirection(in, out, head);
+	return (0);
+}
+
+int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_output, t_token **head)
 {
 	int	pid;
 	
@@ -269,81 +93,58 @@ int	ft_fork(t_command_vars *commands, int in, int out, int pipe_fds[2], t_token 
 		return (_error_('k'));
 	if (pid == 0)
 	{
-		if (commands->is_first_command == true)
-			close(pipe_fds[0]);
-		dup2(in, STDIN_FILENO);
-		// if (close(in) == -1)
-		// 	exit(EXIT_FAILURE);
-		dup2(out, STDOUT_FILENO);
-		// if (out != -1)
-		// 	close(out);
-		apply_redirection(in, out, head);
-		if (exec_command(commands->paths, (*head)->cmd, commands) == -1)
+		if (index == 0)
 		{
-			write(1, "here error\n", 11);
-			put_error(commands->name[0]);
 			close(pipe_fds[0]);
-			close_pipes(0, 1);
-			mem_free(commands->paths, 0, commands);
-			exit(EXIT_FAILURE);
+			link_pipe_to_fd(com->input_fd, com->output_fd, head);
+			dprintf(2, "This is output_fd %d\n", com->output_fd);
 		}
-	}
-	return (0);
-}
-
-int	call_fork(t_command_vars *com, int pipe_fds[2], int index, int prev_output, t_token **head)
-{
-	int	ret;
-
-	com->is_first_command = false;
-	if (index == 0)
-	{
-		com->is_first_command = true;
-		ret = ft_fork(com, com->input_fd, pipe_fds[1], pipe_fds, head);
-	}
-	else if (index + 1 == com->nb)
-	{
-		ret = ft_fork(com, prev_output, com->output_fd, pipe_fds, head);
-	}
-	else
-	{
-		ret = ft_fork(com, prev_output, pipe_fds[1], pipe_fds, head);
-	}
-	if (ret == 1)
-	{
-		close_pipes(pipe_fds[1], pipe_fds[0]);
-		return (-1);
+		else if (index + 1 == com->nb)
+			link_pipe_to_fd(prev_output, com->output_fd, head);
+		else
+			link_pipe_to_fd(prev_output, pipe_fds[1], head);
+		if (exec_command(com->paths, (*head)->cmd, com) == -1)
+			exit_process(com, pipe_fds);
 	}
 	return (1);
 }
 
+void	advance_linked_list_ptr(t_token **head)
+{
+	*head = (*head)->next;
+	if (*head != NULL && (*head)->type == PIPE)
+		*head = (*head)->next;
+}
 
 int	pipex(t_command_vars *commands, t_token **head)
 {
 	int		pipe_fds[2];
 	int		prev_output;
-	int		ret;
 	int		i;
 
 	i = -1;
+	pipe_fds[0] = -1;
+	pipe_fds[1] = -1;
+	prev_output = -1;
 	while (++i < commands->nb)
 	{
+		init_fd_to_commands(*head, commands);
 		if (i + 1 < commands->nb)
+		{
 			if (pipe(pipe_fds) == -1)
 				return (_error_('p'));
-		ret = call_fork(commands, pipe_fds, i, prev_output, head);
-        *head = (*head)->next;
-        if (*head != NULL && (*head)->type == PIPE)
-            *head = (*head)->next;
-		close(pipe_fds[1]);
-		if (i != 0)
-			close(prev_output);
-		if (ret != -1)
-			prev_output = pipe_fds[0];
+			dprintf(2, "piping here\n");
+			commands->output_fd = pipe_fds[1];
+		}
+		fork_and_execute(commands, pipe_fds, i, prev_output, head);
+		write_in_fds(commands->out_head);
+		close_unused_pipes(pipe_fds, &prev_output, i);
+		if (i + 1 == commands->nb)
+			close(pipe_fds[0]);
+		advance_linked_list_ptr(head);
 	}
-	i = -1;
-	while (++i < commands->nb)
-		wait(NULL);
+	// dprintf(2, "here's commands->nb %d\n", commands->nb);
+	wait_for_children(commands->nb);
 	return (0);
 }
 
@@ -358,6 +159,8 @@ int	pipex_exec_test(int nb_args, t_token **head, char **environ)
     commands.output_fd = 1;
 	commands.env = environ;
 	commands.nb = nb_args;
+	commands.in_head = NULL;
+	commands.out_head = NULL;
 	pipex(&commands, head);
 	return (0);
 }

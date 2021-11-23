@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.h                                      :+:      :+:    :+:   */
+/*   wait_children.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/31 18:02:12 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/23 16:07:06 by nammari          ###   ########.fr       */
+/*   Created: 2021/11/23 14:03:29 by nammari           #+#    #+#             */
+/*   Updated: 2021/11/23 14:03:44 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_BONUS_H
-# define PIPEX_BONUS_H
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <stdbool.h>
+#include "minishell.h"
 
-#endif
+void	wait_for_children(int nb_children)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb_children)
+	{
+		wait(NULL);
+		++i;
+	}
+}
