@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redirection_op.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/28 15:35:23 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/24 11:38:31 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	get_redir_input_file(char **args, int *index, t_token **head)
 	i = *index;
 	while (args[++i] && !is_operator(args[i][0]))
 	{
-		get_cmd_suffix(args[++*index], head);
+		++*index;
+		get_cmd(args, index, head);
 	}
 	return (0);
 }

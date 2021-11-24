@@ -3,98 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:53:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/23 18:00:08 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/24 18:00:24 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// int	init_command_fds(t_command_vars *commands, char **argv, int argc)
+// char    *get_input(int output)
 // {
-// 	if (ft_strlen(argv[1]) >= 8 && ft_strnstr(argv[1], "here_doc", 8))
-// 	{
-// 		if (argc < 6)
-// 			return (_error_('a'));
-// 		commands->input_fd = init_here_doc(argv[2]);
-// 		if (commands->input_fd < 0)
-// 			return (_error_('b'));
-// 		commands->here_doc = true;
-// 		commands->output_fd = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT,
-// 				0666);
-// 		if (commands->output_fd == -1)
-// 			return (_error_('o'));
-// 		commands->name++;
-// 	}
-// 	else
-// 	{
-// 		commands->input_fd = open(argv[1], O_RDONLY | O_NONBLOCK);
-// 		if (commands->input_fd == -1)
-// 			_error_('o');
-// 		commands->output_fd = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT,
-// 				0666);
-// 		if (commands->output_fd == -1)
-// 			_error_('o');
-// 	}
-// 	return (1);
+//     char    *tab;
+//     char    *tmp;
+//     char    *str;
+
+//     tab = NULL;
+//     tmp = NULL;
+//     str = ft_strdup("");
+//     while (get_next_line(output, &tab) > 0)
+//     {
+//         tmp = str;
+//         if (!tab)
+//             break ;
+//         str = ft_strjoin(tmp, tab);
+//         free(tmp);
+//         tmp = str;
+//         str = ft_strjoin(tmp, "\n");
+//         free(tmp);
+//     }
+//     free(tab);
+//     return (str);
 // }
 
-char    *get_input(int output)
-{
-    char    *tab;
-    char    *tmp;
-    char    *str;
-
-    tab = NULL;
-    tmp = NULL;
-    str = ft_strdup("");
-    int ret = get_next_line(output, &tab);
-    dprintf(2, "Thi sis in ret %d and tab |%s|\n", ret, tab);
-    while (get_next_line(output, &tab) > 0)
-    {
-        tmp = str;
-        if (!tab)
-            break ;
-        str = ft_strjoin(tmp, tab);
-        free(tmp);
-        tmp = str;
-        str = ft_strjoin(tmp, "\n");
-        free(tmp);
-    }
-    free(tab);
-    return (str);
-}
-
-int write_in_fds(t_fd_chain *head)
-{
-    t_fd_chain  *tmp;
-    int         output;
-    char        *output_content;
+// int write_in_fds(t_fd_chain *head)
+// {
+//     t_fd_chain  *tmp;
+//     //int         output;
+//     char        *output_content;
     
-    tmp = head;
-    if (head == NULL)
-        return (0);
-    close(head->fd);
-    output = open(head->file_name, O_RDONLY);
-    output_content = get_input(output);
-    if (output_content == NULL)
-        return (-1);
-    tmp = tmp->next;
-    dprintf(2, "This is output content |%s|\n", output_content);
-    while (tmp)
-    {
-        if (write(tmp->fd, output_content, ft_strlen(output_content)) == -1)
-        {
-            free(output_content);
-            return (_error_('w'));   
-        }
-        tmp = tmp->next;
-    }
-    free(output_content);
-    return (0);
-}
+//     tmp = head;
+//     if (head == NULL)
+//         return (0);
+//     output_content = get_input(2);
+//     if (output_content == NULL)
+//         return (-1);
+//     tmp = tmp->next;
+//     while (tmp)
+//     {
+//         if (write(tmp->fd, output_content, ft_strlen(output_content)) == -1)
+//         {
+//             free(output_content);
+//             return (_error_('w'));   
+//         }
+//         tmp = tmp->next;
+//     }
+//     free(output_content);
+//     return (0);
+// }
+
+// The above functions will be deleted. Keeping them here just to be sure everything
+// Works fine before deleting them.
+// ---------------- 
 
 void    print_fd_chain(t_fd_chain *head)
 {
@@ -108,13 +78,37 @@ void    print_fd_chain(t_fd_chain *head)
     }
 }
 
-int	init_fd_to_commands(t_token *head, t_command_vars *commands)
+int fd_chain_len(t_fd_chain *head)
 {
-    int         input;
-    int         output;
-    bool        first_file;
+    int i;
 
-	first_file = true;
+    i = 0;
+    while (head != NULL)
+    {
+        head = head->next;
+        ++i;
+    }
+    return (i);
+}
+
+void    push_elem_and_update_com_fd(t_command_vars *com, t_token *head, int in, int out)
+{
+    if (in > -1)
+    {
+        elem_pushback(&(com->in_head), create_elem(in, head->value));
+        com->input_fd = in;
+    }
+    else if (out > -1)
+    {
+        elem_pushback(&(com->out_head), create_elem(out, head->value));
+        com->output_fd = out;
+    }
+}
+
+int	init_fd_to_commands(t_token *head, t_command_vars *com)
+{
+    int input;
+    int output;
     while (head && head->type != PIPE)
 	{
         input = -2;
@@ -129,25 +123,12 @@ int	init_fd_to_commands(t_token *head, t_command_vars *commands)
 			output = open(head->value, O_RDWR | O_TRUNC | O_CREAT, 0666);
 		if (input == -1 || output == -1)
 			return (_error_('o'));
-        else if (input != -2)
-            elem_pushback(&(commands->in_head), create_elem(input, head->value));
-        else if (output != -2)
-            elem_pushback(&(commands->out_head), create_elem(output, head->value));
-		if (first_file == true && output != -2)
-        {
-            first_file = false;
-            commands->output_fd = output;
-        }
+        push_elem_and_update_com_fd(com, head, input, output);
         head = head->next;
 	}
-    print_fd_chain(commands->out_head);
+    if (com->out_head != NULL && fd_chain_len(com->out_head) > 1)
+        close_unused_fd_chain(com->out_head);
+    if (com->in_head != NULL && fd_chain_len(com->in_head) > 1)
+       close_unused_fd_chain(com->in_head);
 	return (0);
 }
-
-/*
-
-Si il n y a pas de redirection faire comme d'hab.
-Sinon ouvrir le premier fichier et écrire dedans (faire en sorte qu'il soit le fd_output)
-Ensuite le fermer puis le rouvrir pour écrire dedans.
-
-*/

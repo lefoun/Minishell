@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_execution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/23 18:02:46 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/24 18:02:04 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	exec_command(char **my_paths, char **argv, t_command_vars *commands)
 		return (-1);
 	while (execve(path, argv, commands->env) == -1)
 	{
+		// dprintf(2, "This is path %s\n", path);
 		free(path);
 		if (!my_paths)
 			return (mem_free(args, 0, commands));
@@ -41,30 +42,30 @@ int	exec_command(char **my_paths, char **argv, t_command_vars *commands)
 	return (mem_free(args, 0, commands));
 }
 
-int	apply_redirection(int in, int out, t_token **head)
-{
-	int	fd;
+// int	apply_redirection(int in, int out, t_token **head)
+// {
+// 	int	fd;
 
-	if (*head == NULL || (*head)->next == NULL)
-		return (1);
-	if ((*head)->next->type == REDIR_IN)
-	{
-		// dprintf(2, "here\n");
-		fd = open((*head)->next->value, O_RDONLY);
-		dup2(in, fd);
-		close(in);
-	}
-	else if ((*head)->next->type == REDIR_OUT_APPEND || (*head)->next->type == REDIR_OUT_TRUNC)
-	{
-		// dprintf(2, "here2\n");
-		fd = open((*head)->next->value, O_RDWR);
-		dup2(fd, out);
-		//close(out);
-		// dprintf(2, "This is out %d and fd %d\n", out, fd);
-	}
-	// dprintf(2, "here3\n");
-	return (0);
-}
+// 	if (*head == NULL || (*head)->next == NULL)
+// 		return (1);
+// 	if ((*head)->next->type == REDIR_IN)
+// 	{
+// 		// dprintf(2, "here\n");
+// 		fd = open((*head)->next->value, O_RDONLY);
+// 		dup2(in, fd);
+// 		close(in);
+// 	}
+// 	else if ((*head)->next->type == REDIR_OUT_APPEND || (*head)->next->type == REDIR_OUT_TRUNC)
+// 	{
+// 		// dprintf(2, "here2\n");
+// 		fd = open((*head)->next->value, O_RDWR);
+// 		dup2(fd, out);
+// 		//close(out);
+// 		// dprintf(2, "This is out %d and fd %d\n", out, fd);
+// 	}
+// 	// dprintf(2, "here3\n");
+// 	return (0);
+// }
 
 int	exit_process(t_command_vars *commands, int pipe_fds[2])
 {
@@ -79,9 +80,25 @@ int	link_pipe_to_fd(int in, int out, t_token **head)
 {
 	(void)head;
 	dup2(in, STDIN_FILENO);
+	if (in < 0)
+		perror("In failed");
 	out = dup2(out, STDOUT_FILENO);
+	if (out < 0)
+		perror("out failed\n");
 	// apply_redirection(in, out, head);
 	return (0);
+}
+
+char	**get_command(t_token **head)
+{
+	t_token	*tmp;
+
+	tmp = *head;
+	while (tmp != NULL && (tmp)->type != CMD_NAME)
+		tmp = tmp->next;
+	if (tmp == NULL)
+		return (NULL);
+	return (tmp->cmd);
 }
 
 int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_output, t_token **head)
@@ -97,13 +114,12 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 		{
 			close(pipe_fds[0]);
 			link_pipe_to_fd(com->input_fd, com->output_fd, head);
-			dprintf(2, "This is output_fd %d\n", com->output_fd);
 		}
 		else if (index + 1 == com->nb)
 			link_pipe_to_fd(prev_output, com->output_fd, head);
 		else
 			link_pipe_to_fd(prev_output, pipe_fds[1], head);
-		if (exec_command(com->paths, (*head)->cmd, com) == -1)
+		if (exec_command(com->paths, com->name, com) == -1)
 			exit_process(com, pipe_fds);
 	}
 	return (1);
@@ -133,17 +149,15 @@ int	pipex(t_command_vars *commands, t_token **head)
 		{
 			if (pipe(pipe_fds) == -1)
 				return (_error_('p'));
-			dprintf(2, "piping here\n");
 			commands->output_fd = pipe_fds[1];
 		}
+		commands->name = get_command(head);
 		fork_and_execute(commands, pipe_fds, i, prev_output, head);
-		write_in_fds(commands->out_head);
 		close_unused_pipes(pipe_fds, &prev_output, i);
 		if (i + 1 == commands->nb)
 			close(pipe_fds[0]);
 		advance_linked_list_ptr(head);
 	}
-	// dprintf(2, "here's commands->nb %d\n", commands->nb);
 	wait_for_children(commands->nb);
 	return (0);
 }
@@ -154,7 +168,7 @@ int	pipex_exec_test(int nb_args, t_token **head, char **environ)
 
 	commands.paths = get_paths(environ);
 	commands.here_doc = false;
-	commands.name = (*head)->cmd;
+	// commands.name = "hello";
     commands.input_fd = 0;
     commands.output_fd = 1;
 	commands.env = environ;

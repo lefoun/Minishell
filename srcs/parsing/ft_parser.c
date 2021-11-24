@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/23 14:12:05 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/24 11:47:52 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int	ft_parser(char *cmd)
 	args = get_prosseced_cmd_line(cmd);
 	ft_tokenize(args, &head);
 	group_cmd_and_args(&head);
-	//print_token_2(head);
+	print_token(head);
 	if (!head)
 		return (-1);
 	//tmp = map_lst_till_pipe_or_eol(&head);
@@ -160,6 +160,7 @@ int	ft_parser(char *cmd)
 	// 	free(tmp);
 	// 	tmp = map_lst_till_pipe_or_eol(&head);
 	// }
-	pipex_exec_test(count_nb_cmds(head), &head, environ);
+	int nb_cmds = count_nb_cmds(head);
+	pipex_exec_test(nb_cmds, &head, environ);
 	return (0);
 }

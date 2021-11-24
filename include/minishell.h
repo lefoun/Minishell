@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/23 17:30:21 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/24 10:38:11 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int		close_pipes(int fd_1, int fd_2);
 void	wait_for_children(int nb_children);
 int		init_fd_to_commands(t_token *head, t_command_vars *commands);
 int 	write_in_fds(t_fd_chain *head);
+void    close_unused_fd_chain(t_fd_chain *head);
 // ------------- Parsing -----------------
 
 t_ast	*ft_create_ast(char *cmd_line);
