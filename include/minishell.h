@@ -6,7 +6,7 @@
 /*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/24 10:38:11 by noufel           ###   ########.fr       */
+/*   Updated: 2021/11/25 08:11:56 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_token {
 	int				type;
 	struct s_token	*next;
 }	t_token;
-=======
 
 /*
 ** Environment structure

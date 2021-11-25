@@ -6,7 +6,7 @@
 /*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:55:28 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/24 17:37:54 by noufel           ###   ########.fr       */
+/*   Updated: 2021/11/25 08:17:54 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void    close_unused_fd_chain(t_fd_chain *head)
 		{
             close(head->fd);
 		}
-		dprintf(2, "This is head-> fd %d\n", head->fd);
 		head = head->next;
 		free(tmp);
 		tmp = head;

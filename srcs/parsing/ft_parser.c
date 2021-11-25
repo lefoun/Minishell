@@ -6,7 +6,7 @@
 /*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/24 11:47:52 by noufel           ###   ########.fr       */
+/*   Updated: 2021/11/25 08:17:04 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,23 +143,15 @@ int	ft_parser(char *cmd)
 {
 	char	**args;
 	t_token *head;
-	//t_token	*tmp;
 	extern char	**environ;
 
 	head = NULL;
 	args = get_prosseced_cmd_line(cmd);
 	ft_tokenize(args, &head);
 	group_cmd_and_args(&head);
-	print_token(head);
+	// print_token(head);
 	if (!head)
 		return (-1);
-	//tmp = map_lst_till_pipe_or_eol(&head);
-	// while (tmp)
-	// {
-	// 	print_token_2(tmp);
-	// 	free(tmp);
-	// 	tmp = map_lst_till_pipe_or_eol(&head);
-	// }
 	int nb_cmds = count_nb_cmds(head);
 	pipex_exec_test(nb_cmds, &head, environ);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_processed_cmd_line.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/28 15:45:19 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/25 08:14:10 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,6 @@ t_variable	*create_variable(char *name, char *value)
 	return (new);
 }
 
-static void	change_variable_value(t_variable *env, t_variable *new)
-{
-	if (env->value != NULL)
-		free(env->value);
-	env->value = new->value;
-	free(new->name);
-	free(new);
-}
-
-void	add_variable(t_variable **head, t_variable *new)
-{
-	t_variable	*env;
-
-	if (*head == NULL)
-		*head = new;
-	else
-	{
-		env = *head;
-		while (env != NULL)
-		{
-			if (strcmp(env->name, new->name) == 0)
-			{
-				change_variable_value(env, new);
-				break ;
-			}
-			if (env->next == NULL)
-			{
-				env->next = new;
-				break ;
-			}
-			env = env->next;
-		}
-	}
-}
 /////
 
 char	**get_prosseced_cmd_line(char *cmd_line)

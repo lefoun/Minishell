@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 17:51:33 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/25 08:15:57 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ t_vars	*variables = NULL;
 
 int	main(void)
 {
-	char	**args;
+	char	*cmd;
 
 	variables = init_env();
-	printf("pepesh €\n");
-	(void)args;
+	while (true)
+	{
+		cmd = readline("# pepe_shell $>");
+		ft_parser(cmd);
+		free(cmd);
+	}	
+
 	return (0);
 }
