@@ -22,6 +22,7 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
 CC			= clang
+
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRCS_DIR	= srcs/
@@ -40,16 +41,22 @@ search_dollar_word.c)
 EXECUTION_FILES = $(addprefix el_execution/, pipex_execution.c close_pipes.c \
 error_management.c free_memory.c get_paths.c init_fd.c init_here_doc.c \
 wait_children.c fd_chained_list.c)
-BUILTINS_FILES =
+BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
+			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
+			get_variable.c call_getcwd.c \
+			init_env.c get_greatest_len.c is_valid_identifier.c)
 UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
+DEBUG_FILES = $(addprefix debug/, printenv.c create_args.c )
+
 
 SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
-	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES)
+	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(DEBUG_FILES)
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
 OBJ			= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
+
 NAME_BONUS	= minishell_bonus
 SRC_BONUS	= minishell_bonus.c
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)
@@ -57,7 +64,7 @@ INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
 OBJS_SUB_DIRECTORIES = $(addprefix objs/, booleans errors tokenize el_execution \
-			ast builtins parsing utils) 
+			ast builtins parsing utils debug) 
 
 # ************************************ #
 #                RULES                 #
@@ -76,8 +83,11 @@ $(NAME): $(OBJS_DIR) $(OBJ)
 	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
 	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
-bonus: $(OBJBONUS)
-	$(CC) $(CFLAGS) $(OBJBONUS) -o $(NAME)
+$(NAME): $(OBJS_DIR) $(OBJ)
+	make -C $(LIBRARY)
+	@printf "$(WHT)[$(GRN)LIBRARY $(LIBRARY) COMPILED$(WHT)]\n"
+	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
+	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(include)
 	$(CC) $(INC) -c $(CFLAGS) -o $@ $<
@@ -91,7 +101,6 @@ clean:
 fclean: clean
 	make fclean -sC $(LIBRARY)
 	$(RM) $(NAME)
-	$(RM) $(NAME_BONUS)
 	$(RM) $(OBJS_DIR)
 	@printf "$(WHT)[$(YEL)$(NAME) BINARIES REMOVED$(WHT)]\n"
 

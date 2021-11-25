@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 14:36:58 by nammari           #+#    #+#             */
-/*   Updated: 2021/08/30 12:21:42 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/22 18:47:42 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int					error_malloc(void);
 //printf 
 int					format_parser(va_list *ap,
 						 const char *str, t_var_func *ptr);
+
 int					ft_printf(const char	*str, ...)
 					__attribute__((format (printf, 1, 2)));
 #endif

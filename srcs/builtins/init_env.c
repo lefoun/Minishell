@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/02 17:51:33 by nammari          ###   ########.fr       */
+/*   Created: 2021/10/28 17:21:14 by sdummett          #+#    #+#             */
+/*   Updated: 2021/11/22 18:25:43 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Faut il que le shell herite des variable d 'env d un precedent shell ?
-** Comment set les variables d'env ?
-*/
-
-t_vars	*variables = NULL;
-
-int	main(void)
+t_vars	*init_env(void)
 {
-	char	**args;
+	t_vars	*new;
 
-	variables = init_env();
-	printf("pepesh €\n");
-	(void)args;
-	return (0);
+	new = malloc(sizeof(t_vars));
+	if (new == NULL)
+		return (NULL);
+	new->env = NULL;
+	new->global = NULL;
+	new->last_exit_status = 0;
+	return (new);
 }
