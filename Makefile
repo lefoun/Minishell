@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
+#    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/11/06 20:25:21 by sdummett         ###   ########.fr        #
+#    Updated: 2021/11/23 16:10:35 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,26 +22,49 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
 CC			= clang
-CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v
+
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME		= minishell
 SRCS_DIR	= srcs/
-SRCS_SUB_DIR_BOOLEANS = booleans
+SRCS_SUB_DIR_BOOLEANS = booelans
 
+BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
+	is_space.c is_whitespace.c is_quote.c is_alpha_num.c is_redirection.c)
+ERRORS_FILES = $(addprefix errors/, error_management.c)
+TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c \
+get_cmd_suffix.c get_cmd.c init_function_pointer.c group_cmd_and_args.c\
+get_pipe.c has_parse_errors.c create_and_push_back.c \
+ ft_tokenize.c get_assignment.c get_index_operator.c get_redirection_op.c)
+PARSING_FILES = $(addprefix parsing/, ft_parser.c count_words_nb.c \
+get_processed_cmd_line.c get_word.c split_cmd_line.c replace_dollar_word.c \
+search_dollar_word.c)
+EXECUTION_FILES = $(addprefix el_execution/, pipex_execution.c close_pipes.c \
+error_management.c free_memory.c get_paths.c init_fd.c init_here_doc.c \
+wait_children.c fd_chained_list.c)
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c \
 			init_env.c get_greatest_len.c is_valid_identifier.c)
+UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
 DEBUG_FILES = $(addprefix debug/, printenv.c create_args.c )
-SRCS_FILES	=  minishell.c $(BUILTINS_FILES) $(DEBUG_FILES)
+
+
+SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
+	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(DEBUG_FILES)
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
 OBJ			= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
+
+NAME_BONUS	= minishell_bonus
+SRC_BONUS	= minishell_bonus.c
+OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
-OBJS_SUB_DIRS = $(addprefix objs/, builtins debug)
+OBJS_SUB_DIRECTORIES = $(addprefix objs/, booleans errors tokenize el_execution \
+			ast builtins parsing utils debug) 
 
 # ************************************ #
 #                RULES                 #
@@ -51,8 +74,14 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
-	mkdir $(OBJS_SUB_DIRS)
+	mkdir $(OBJS_SUB_DIRECTORIES)
 
+
+$(NAME): $(OBJS_DIR) $(OBJ)
+	make -C $(LIBRARY)
+	@printf "$(WHT)[$(GRN)LIBRARY $(LIBRARY) COMPILED$(WHT)]\n"
+	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
+	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
 $(NAME): $(OBJS_DIR) $(OBJ)
 	make -C $(LIBRARY)

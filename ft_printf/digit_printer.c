@@ -73,8 +73,8 @@ int	get_sign(char *string, char format, t_flag_values *flag)
 	if (flag->width_nb < 0)
 		flag->width_nb = 0;
 	if ((flag->left_justify && flag->width_nb != 0)
-		|| (flag->pad_zero && flag->width_nb != 0
-			&& flag->precision_nb <= -1))
+		 || (flag->pad_zero && flag->width_nb != 0
+			 && flag->precision_nb <= -1))
 	{
 		disp_sign(format, flag, string);
 		flag->sign_printed = true;
