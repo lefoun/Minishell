@@ -6,7 +6,7 @@
 /*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 20:21:03 by stone             #+#    #+#             */
-/*   Updated: 2021/11/30 21:27:53 by stone            ###   ########.fr       */
+/*   Updated: 2021/11/30 21:58:21 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,28 @@ static int	set_underscore(void)
 	return (0);
 }
 
+static int	set_pwd(void)
+{
+	t_variable	*pwd;
+	char		**new_var;
+	char		*cwd;
+
+	cwd = call_getcwd();
+	new_var = malloc(sizeof(char **) * 2);
+	if (new_var == NULL)
+		return (1);
+	new_var[0] = ft_strdup("PWD=");
+	new_var[1]= NULL;
+	ft_export(new_var);
+	pwd = get_variable(variables->env, "PWD");
+	free(pwd->value);
+	pwd->value = cwd;
+	free(new_var[0]);
+	free(new_var);
+	ft_env(NULL);
+	return (0);
+}
+
 int	shell_init(char **av, char **envp)
 {
 	variables = init_env();
@@ -65,5 +87,6 @@ int	shell_init(char **av, char **envp)
 	ft_export(envp);
 	set_shlvl();
 	set_underscore();
+	set_pwd();
 	return (0);
 }
