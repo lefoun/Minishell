@@ -6,7 +6,7 @@
 /*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 20:21:03 by stone             #+#    #+#             */
-/*   Updated: 2021/11/30 21:10:31 by stone            ###   ########.fr       */
+/*   Updated: 2021/11/30 21:27:53 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	set_shlvl(void)
 		new_var[0] = ft_strdup("SHLVL=1");
 		new_var[1] = NULL;
 		ft_export(new_var);
+		free(new_var[0]);
 		free(new_var);		
 	}
 	else
@@ -34,13 +35,28 @@ static int	set_shlvl(void)
 		lvl_value = ft_itoa(ft_atoi(lvl->value) + 1);
 		free(lvl->value);
 		lvl->value = lvl_value;
-
 	}
+	return (0);
+}
+
+static int	set_underscore(void)
+{
+	char	**new_var;
+
+	new_var = malloc(sizeof(char **) * 2);
+	if (new_var == NULL)
+		return (1);
+	new_var[0] = ft_strdup("_=histappend");
+	new_var[1]= NULL;
+	ft_export(new_var);
+	free(new_var[0]);
+	free(new_var);
 	return (0);
 }
 
 int	shell_init(char **av, char **envp)
 {
+	variables = init_env();
 	variables->prog_name = ft_strdup(av[0] + 2);
 	if (envp[0] == NULL)
 		printf("envp is empty\n");
@@ -48,9 +64,6 @@ int	shell_init(char **av, char **envp)
 		printf("envp has env variables\n");
 	ft_export(envp);
 	set_shlvl();
-	// char *env = getenv("TERM");
-	// int slot = ttyslot();
-	// printf("env => %s\n", env);
-	// printf("slot => %d\n", slot);
+	set_underscore();
 	return (0);
 }
