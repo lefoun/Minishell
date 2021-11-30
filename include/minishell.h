@@ -6,7 +6,7 @@
 /*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/22 18:01:02 by stone            ###   ########.fr       */
+/*   Updated: 2021/11/30 19:27:21 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <limits.h>
 # include "colorcodes.h" 
 # include "ft_printf.h"
+# include "shell_init.h"
 // # include "ft_printf.h" <- Add the library
 
 # define MAX_FILENAME_LEN 255
@@ -52,6 +53,7 @@ typedef struct s_vars
 	t_variable	*env;
 	t_variable	*global;
 	int			last_exit_status;
+	char		*prog_name;
 }	t_vars;
 
 /* 

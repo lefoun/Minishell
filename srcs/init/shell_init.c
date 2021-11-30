@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/30 19:31:14 by stone            ###   ########.fr       */
+/*   Created: 2021/11/24 20:21:03 by stone             #+#    #+#             */
+/*   Updated: 2021/11/30 19:31:54 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Faut il que le shell herite des variable d 'env d un precedent shell ?
-** Comment set les variables d'env ?
-*/
-
-t_vars	*variables = NULL;
-
-int	main(int ac, char **av)
+int	shell_init(char **av)
 {
-	(void)ac;
-	char	**args;
-
-	printf("pepesh €\n");
-	variables = init_env();
-	shell_init(av);
-	printf("prog_name => %s\n", variables->prog_name);
-	(void)args;
+	variables->prog_name = ft_strdup(av[0] + 2);
+	// char *env = getenv("TERM");
+	// int slot = ttyslot();
+	// printf("env => %s\n", env);
+	// printf("slot => %d\n", slot);
 	return (0);
 }
