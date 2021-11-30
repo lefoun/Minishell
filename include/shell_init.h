@@ -6,7 +6,7 @@
 /*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 20:21:42 by stone             #+#    #+#             */
-/*   Updated: 2021/11/30 19:27:36 by stone            ###   ########.fr       */
+/*   Updated: 2021/11/30 19:46:19 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define SHELL_INIT
 
 
-int	shell_init(char **av);
+int	shell_init(char **av, char **envp);
 
 #endif
