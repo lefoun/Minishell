@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_words_nb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:59:48 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:27:50 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/01 18:10:17 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	count_and_skip_operator(char *cmd_line, int *index, int *word_count)
 {
 	char	c;
 
+	if (cmd_line[*index] == '\0')
+		return ;
 	if (is_operator(cmd_line[*index]))
 		++*word_count;
 	c = cmd_line[*index];
