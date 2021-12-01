@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollar_word.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:31:19 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:57:36 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/01 15:33:37 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,10 @@ char	*get_dollar_word_value(t_vars *vars, char *dollar_word)
 
 char	*replace_dollar_word(char *word, char *dollar_word, t_vars *vars)
 {
-	int		i;
-	int		j;
 	long	len;
 	char	*new_wrd;
 	char	*dlr_wrd_value;
 
-	i = 0;
-	j = 0;
 	dlr_wrd_value = get_dollar_word_value(vars, dollar_word);
 	len = ft_strlen(word) - ft_strlen(dollar_word) + ft_strlen(dlr_wrd_value);
 	new_wrd = malloc(sizeof(*new_wrd) * len + 1);

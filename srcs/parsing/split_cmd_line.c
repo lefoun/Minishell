@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:55:21 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/28 14:47:18 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/01 15:33:01 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,10 @@ char	*get_word_without_quotes(char *cmd_line, int *new_index)
 char	*get_between_quotes_word(char *cmd_line, int *new_index, t_vars *vars)
 {
 	int		i;
-	int		j;
 	char	*word;
 	char	*dollar_word;
 
 	i = 0;
-	j = 0;
 	word = get_word_without_quotes(cmd_line, new_index);
 	if (*cmd_line == '\'')
 		return (word);

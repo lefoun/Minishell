@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/25 08:15:57 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/01 15:35:53 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 	variables = init_env();
 	while (true)
 	{
-		cmd = readline("# pepe_shell $>");
+		cmd = readline("pepesh € ");
 		ft_parser(cmd);
 		free(cmd);
 	}	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:21:05 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/24 11:44:17 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/01 15:31:20 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int get_cmd(char **args, int *index, t_token **head)
 {
-	int		i;
 	int		ret;
 	char	*cmd;
 
-	i = 0;
 	cmd = ft_strdup(args[*index]);
 	ret = ft_elem_pushback(head, ft_create_elem(cmd, CMD_NAME));
 	if (ft_catch_error(ret == 2, cmd, head) == MALLOC_ERROR)

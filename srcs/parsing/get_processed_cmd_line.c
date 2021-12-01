@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_processed_cmd_line.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/25 08:14:10 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/01 15:32:36 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_variable	*create_variable(char *name, char *value)
 
 char	**get_prosseced_cmd_line(char *cmd_line)
 {
-	int		i;
 	int		words_nb;
 	char	**splited_args;
 	t_vars	*variable;
@@ -42,7 +41,6 @@ char	**get_prosseced_cmd_line(char *cmd_line)
 	variable->env = create_variable("hello", "var_value");
 	variable->env->next = create_variable("stony", "lalalala");
 	variable->global = NULL;
-	i = 0;
 	words_nb = count_words_nb(cmd_line);
 	if (words_nb == ERROR)
 		return (NULL);
