@@ -6,7 +6,7 @@
 /*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 20:21:03 by stone             #+#    #+#             */
-/*   Updated: 2021/11/30 21:58:21 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/01 16:18:07 by stone            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static int	set_pwd(void)
 	pwd->value = cwd;
 	free(new_var[0]);
 	free(new_var);
-	ft_env(NULL);
 	return (0);
 }
 
@@ -80,10 +79,6 @@ int	shell_init(char **av, char **envp)
 {
 	variables = init_env();
 	variables->prog_name = ft_strdup(av[0] + 2);
-	if (envp[0] == NULL)
-		printf("envp is empty\n");
-	else
-		printf("envp has env variables\n");
 	ft_export(envp);
 	set_shlvl();
 	set_underscore();
