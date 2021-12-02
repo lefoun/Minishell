@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/01 16:19:45 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/02 16:46:32 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@
 # include <limits.h>
 # include "colorcodes.h" 
 # include "ft_printf.h"
-# include "shell_init.h"
 # include "history.h"
-// # include "ft_printf.h" <- Add the library
 
 # define MAX_FILENAME_LEN 255
 # define MAX_PATH_LEN 4096

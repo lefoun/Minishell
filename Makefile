@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/02 15:21:22 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/02 16:46:02 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,9 @@ BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c \
 			init_env.c get_greatest_len.c is_valid_identifier.c)
-SHELL_INIT_FILES = $(addprefix init/, shell_init.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
 
-SRCS_FILES	=  minishell.c $(BUILTINS_FILES) $(DEBUG_FILES) $(SHELL_INIT_FILES) $(HISTORY_FILES)
+SRCS_FILES	=  minishell.c $(BUILTINS_FILES) $(DEBUG_FILES) $(HISTORY_FILES)
 
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
@@ -43,7 +42,7 @@ OBJ			= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
-OBJS_SUB_DIRS = $(addprefix objs/, builtins init history)
+OBJS_SUB_DIRS = $(addprefix objs/, builtins history)
 
 # ************************************ #
 #                RULES                 #
