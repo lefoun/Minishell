@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/01 21:06:46 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/02 15:21:22 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,16 @@ CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v
 NAME		= minishell
 SRCS_DIR	= srcs/
-SRCS_SUB_DIR_BOOLEANS = booleans
 
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c \
 			init_env.c get_greatest_len.c is_valid_identifier.c)
 SHELL_INIT_FILES = $(addprefix init/, shell_init.c)
-DEBUG_FILES = $(addprefix debug/, printenv.c create_args.c )
-SRCS_FILES	=  minishell.c $(BUILTINS_FILES) $(DEBUG_FILES) $(SHELL_INIT_FILES)
+HISTORY_FILES = $(addprefix history/, update_history.c)
+
+SRCS_FILES	=  minishell.c $(BUILTINS_FILES) $(DEBUG_FILES) $(SHELL_INIT_FILES) $(HISTORY_FILES)
+
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
@@ -42,7 +43,7 @@ OBJ			= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
-OBJS_SUB_DIRS = $(addprefix objs/, builtins debug init)
+OBJS_SUB_DIRS = $(addprefix objs/, builtins init history)
 
 # ************************************ #
 #                RULES                 #
