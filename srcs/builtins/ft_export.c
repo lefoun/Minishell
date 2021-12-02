@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 21:03:28 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:36:54 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ static char	*get_variable_name(char *str)
 	len = 0;
 	while (str[len] != '=' && str[len] != '\0')
 		len++;
+	if (str[len] == '=')
+		len++;
+	else
+		return (NULL);
 	name = malloc(sizeof(char) * len + 1);
 	if (name == NULL)
 		return (NULL);
 	len = 0;
-	while (str[len] != '=' && str[len] != '\0')
+	while (str[len] != '=')
 	{
 		name[len] = str[len];
 		len++;
@@ -69,16 +73,10 @@ int	ft_export(char **args)
 	all_set = true;
 	while (args[i] != NULL)
 	{
-		//new = create_variable(args[i]); // A LA PLACE, JUSTE GRAB NAME DANS UNE STRING
 		name = get_variable_name(args[i]);
 		if (is_valid_identifier(name, EXPORT))
 		{
-			printf("isvalididentifier => %s\n", name);
 			update_env(name, args[i]);
-			// UTLISER GETENV POUR SAVOIR SI UNE VARIABLE EST DEJA SET
-			// SI OUI = IL FAUT L UPDATE
-			// SI NON = APPEND LA STRING A ENVP
-			//add_variable(&variables->env, new);
 		}
 		else
 		{

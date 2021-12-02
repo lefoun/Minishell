@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 21:00:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:39:05 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	main(int ac, char **av, char **envp)
 	printf("BEFORE EXPORT\n");
 	debugenv();
 	char **args = malloc(sizeof(char *) * 6);
-	args[0] = ft_strdup("LOL=");
-	args[1] = ft_strdup("MDRRRRRRRR=");
-	args[2] = ft_strdup("STOOOOOONY");
+	args[0] = ft_strdup("LOL=wtf");
+	args[1] = ft_strdup("MDRRR1RR&RRR=42");
+	args[2] = ft_strdup("STOOOOOONY=sto");
 	args[3] = NULL;
 	ft_export(args);
 	printf("AFTER EXPORT\n");
