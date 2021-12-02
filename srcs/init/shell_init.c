@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 17:55:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:59:06 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	debug_printenv(char **envp)
 		i++;
 	}
 }
-int	shell_init(char **envp)
+int	shell_init(char **av, char **envp)
 {
 	debug_printenv(envp);
-	variables = init_env(envp);
+	variables = init_env(av, envp);
 	return (0);
 }

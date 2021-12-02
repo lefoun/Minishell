@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 17:40:06 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:01:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	(void)envp;
 
-	shell_init(envp);
+	shell_init(av, envp);
+	printf("The prog name is %s\n", variables->prog_name);
 	while (true)
 	{
 		cmd = readline("pepesh € ");
