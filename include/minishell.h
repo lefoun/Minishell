@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/11/25 08:11:56 by noufel           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2021/12/02 16:59:56 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -31,6 +32,8 @@
 # include "pipex_bonus.h"
 # include <limits.h>
 # include "colorcodes.h"
+# include "history.h"
+
 # define MAX_FILENAME_LEN 255
 # define MAX_PATH_LEN 4096
 # define EXPORT 1
@@ -107,6 +110,7 @@ typedef struct s_vars
 	t_variable	*env;
 	t_variable	*global;
 	int			last_exit_status;
+	char		*prog_name;
 }	t_vars;
 
 /* 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stone <stone@student.42.fr>                +#+  +:+       +#+         #
+#    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/01 15:39:13 by stone            ###   ########.fr        #
+#    Updated: 2021/12/02 17:01:39 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,9 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
 CC			= gcc
-
-CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v
 NAME		= minishell
 SRCS_DIR	= srcs/
-SRCS_SUB_DIR_BOOLEANS = booelans
 
 BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
 	is_space.c is_whitespace.c is_quote.c is_alpha_num.c is_redirection.c)
@@ -45,12 +43,11 @@ BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c \
 			init_env.c get_greatest_len.c is_valid_identifier.c)
+HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
-DEBUG_FILES = $(addprefix debug/, printenv.c create_args.c )
-
 
 SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
-	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(DEBUG_FILES)
+	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(HISTORY_FILES)
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
@@ -64,7 +61,7 @@ INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
 OBJS_SUB_DIRECTORIES = $(addprefix objs/, booleans errors tokenize el_execution \
-			ast builtins parsing utils debug) 
+			ast builtins parsing utils history) 
 
 # ************************************ #
 #                RULES                 #
