@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 18:01:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:00:56 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 
 t_vars	*variables = NULL;
 
+void debugenv(void)
+{
+	int i = 0;
+
+	while (variables->envp[i] != NULL)
+	{
+		printf( GRN "--> %s\n" RESET, variables->envp[i]);
+		i++;
+	}
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	char	*cmd;
@@ -27,7 +38,16 @@ int	main(int ac, char **av, char **envp)
 	(void)envp;
 
 	shell_init(av, envp);
-	printf("The prog name is %s\n", variables->prog_name);
+	printf("BEFORE EXPORT\n");
+	debugenv();
+	char **args = malloc(sizeof(char *) * 6);
+	args[0] = ft_strdup("LOL=");
+	args[1] = ft_strdup("MDRRRRRRRR=");
+	args[2] = ft_strdup("STOOOOOONY");
+	args[3] = NULL;
+	ft_export(args);
+	printf("AFTER EXPORT\n");
+	debugenv();
 	while (true)
 	{
 		cmd = readline("pepesh € ");
