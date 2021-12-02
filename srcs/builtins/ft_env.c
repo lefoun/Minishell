@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:43 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/22 18:26:49 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/02 21:50:05 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_env(char **args)
 {
-	t_variable	*env;
+	unsigned int	i;
 
 	(void)args;
-	env = variables->env;
-	while (env != NULL)
+	i = 0;
+	while (variables->envp[i] != NULL)
 	{
-		printf("%s=%s\n", env->name, env->value);
-		env = env->next;
+		printf("%s\n", variables->envp[i]);
+		i++;
 	}
 	return (0);
 }

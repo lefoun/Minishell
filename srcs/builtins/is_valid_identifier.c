@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:06:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 21:37:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:50:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ bool	is_valid_identifier(char *str, int builtin)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		printf("char is => %c\n", str[i]);
 		if ((str[i] >= 'A' && str[i] <= 'Z') || \
 			(str[i] >= 'a' && str[i] <= 'z') || \
 			(str[i] >= '0' && str[i] <= '9') || \
