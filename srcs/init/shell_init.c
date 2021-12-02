@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 17:40:06 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/02 17:55:04 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Faut il que le shell herite des variable d 'env d un precedent shell ?
-** Comment set les variables d'env ?
-*/
-
-t_vars	*variables = NULL;
-
-int	main(int ac, char **av, char **envp)
+static void	debug_printenv(char **envp)
 {
-	char	*cmd;
-	(void)ac;
-	(void)av;
-	(void)envp;
-
-	shell_init(envp);
-	while (true)
+	int	i = 0;
+	while (envp[i] != NULL)
 	{
-		cmd = readline("pepesh € ");
-		update_history();
-		ft_parser(cmd);
-		free(cmd);
-	}	
+		printf("## %s\n", envp[i]);
+		i++;
+	}
+}
+int	shell_init(char **envp)
+{
+	debug_printenv(envp);
+	variables = init_env(envp);
 	return (0);
 }

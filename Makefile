@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/02 17:01:39 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/02 17:34:43 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,13 @@ wait_children.c fd_chained_list.c)
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c \
-			init_env.c get_greatest_len.c is_valid_identifier.c)
+			get_greatest_len.c is_valid_identifier.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
+INIT_FILES = $(addprefix init/, shell_init.c init_env.c)
 
 SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
-	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(HISTORY_FILES)
+	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(HISTORY_FILES) $(INIT_FILES)
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
@@ -60,8 +61,8 @@ OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
-OBJS_SUB_DIRECTORIES = $(addprefix objs/, booleans errors tokenize el_execution \
-			ast builtins parsing utils history) 
+OBJS_SUB_DIRS = $(addprefix objs/, booleans errors tokenize el_execution \
+			ast builtins parsing utils history init) 
 
 # ************************************ #
 #                RULES                 #
@@ -71,7 +72,7 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
-	mkdir $(OBJS_SUB_DIRECTORIES)
+	mkdir $(OBJS_SUB_DIRS)
 
 
 $(NAME): $(OBJS_DIR) $(OBJ)
