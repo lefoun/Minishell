@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 18:01:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:07:52 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_variable
 */
 typedef struct s_vars
 {
+	t_list		*environ;
 	char		**envp;
 	t_variable	*env;
 	t_variable	*global;

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:21:14 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 18:02:22 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:14:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_vars	*init_env(char **av, char **envp)
 	new = malloc(sizeof(t_vars));
 	if (new == NULL)
 		return (NULL);
+	new->environ = NULL;
 	new->envp = envp;
 	new->env = NULL; //DEPRECATED
 	new->global = NULL;

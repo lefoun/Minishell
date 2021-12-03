@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 21:47:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:15:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	update_env(char *name, char *new_var)
 			i++;
 		variables->envp[i] = ft_strdup(new_var);
 		variables->envp[i + 1] = NULL;
+		ft_lstadd_front(&variables->environ, ft_lstnew(variables->envp[i]));
 	}
 	else
 	{
