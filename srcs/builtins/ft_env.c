@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:43 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/02 21:50:05 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 17:50:23 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_env(char **args)
 {
-	unsigned int	i;
+	t_variable	*env;
 
 	(void)args;
-	i = 0;
-	while (variables->envp[i] != NULL)
+	env = variables->env;
+	while (env != NULL)
 	{
-		printf("%s\n", variables->envp[i]);
-		i++;
+		printf("%s=%s\n", env->name, env->value);
+		env = env->next;
 	}
 	return (0);
 }

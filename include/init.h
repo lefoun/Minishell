@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 14:37:08 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 17:54:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_variable
 */
 typedef struct s_vars
 {
-	t_list		*environ;
-	char		**envp;
 	t_variable	*env;
 	t_variable	*global;
 	int			last_exit_status;
@@ -41,7 +39,7 @@ typedef struct s_vars
 */
 extern t_vars	*variables;
 
-int				shell_init(char **av, char **envp);
-t_vars			*init_env(char **av, char **envp);
+int				shell_init(char **av);
+t_vars			*init_env(char **av);
 
 # endif

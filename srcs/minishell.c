@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 14:44:08 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 17:58:32 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@
 
 t_vars	*variables = NULL;
 
-void debugenv(void)
-{
-	int i = 0;
-
-	while (variables->envp[i] != NULL)
-	{
-		printf( GRN "--> %s\n" RESET, variables->envp[i]);
-		i++;
-	}
-}
-
 int	main(int ac, char **av, char **envp)
 {
 	char	*cmd;
@@ -37,28 +26,12 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	(void)envp;
 
-	shell_init(av, envp);
-	char **args = malloc(sizeof(char *) * 6);
-	args[0] = ft_strdup("LOL=wtf");
-	args[1] = ft_strdup("MDRRR1RR&RRR=42");
-	args[2] = ft_strdup("STOOOOOONY=sto");
-	args[3] = NULL;
+	shell_init(av);
+	char **args = malloc(sizeof(char *) * 5);
+	args[0] = ft_strdup("YO=MDR");
+	args[1] = NULL;
 	ft_export(args);
-	ft_env(NULL);
-	t_list	*tmp = variables->environ;
-	while (tmp)
-	{
-		printf("content => %s\n", (char *)tmp->content);
-		tmp = tmp->next;
-	}
-	int i = 0;
-	while (variables->envp[i + 1])
-		i++;
-	printf("var is => %s\n", variables->envp[i]);
-	if (is_in_linkedlst(variables->envp[i]))
-		printf("TRUE\n");
-	else
-		printf("FALSE\n");
+	ft_env(args);
 	while (true)
 	{
 		cmd = readline("pepesh € ");

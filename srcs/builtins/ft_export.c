@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 14:15:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 17:49:46 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,11 @@ static char	*get_variable_name(char *str)
 	len = 0;
 	while (str[len] != '=' && str[len] != '\0')
 		len++;
-	if (str[len] == '=')
-		len++;
-	else
-		return (NULL);
 	name = malloc(sizeof(char) * len + 1);
 	if (name == NULL)
 		return (NULL);
 	len = 0;
-	while (str[len] != '=')
+	while (str[len] != '=' && str[len] != '\0')
 	{
 		name[len] = str[len];
 		len++;
@@ -37,35 +33,50 @@ static char	*get_variable_name(char *str)
 	return (name);
 }
 
-static void	update_env(char *name, char *new_var)
+static char	*get_variable_value(char *str)
 {
-	unsigned int	i;
-	unsigned int	name_len;
+	int		len;
+	char	*value;
 
-	i = 0;
-	if(getenv(name) == NULL)
-	{
-		while (variables->envp[i] != NULL)
-			i++;
-		variables->envp[i] = ft_strdup(new_var);
-		variables->envp[i + 1] = NULL;
-		ft_lstadd_front(&variables->environ, ft_lstnew(variables->envp[i]));
-	}
+	while (*str != '=' && *str != '\0')
+		str++;
+	if (*str == '=')
+		str++;
+	len = ft_strlen(str);
+	value = malloc(sizeof(char) * len + 1);
+	if (value == NULL)
+		return (NULL);
+	if (len == 0)
+		value[0] = '\0';
 	else
 	{
-		name_len = ft_strlen(name);
-		while (variables->envp[i] != NULL)
+		len = 0;
+		while (str[len] != '\0')
 		{
-			if (ft_strncmp(variables->envp[i], name, name_len) == 0)
-				variables->envp[i] = ft_strdup(new_var);
-			i++;
+			value[len] = str[len];
+			len++;
 		}
+		value[len] = '\0';
 	}
+	return (value);
+}
+
+static t_variable	*create_variable(char *str)
+{
+	t_variable	*new;
+
+	new = malloc(sizeof(t_variable));
+	if (new == NULL)
+		return (NULL);
+	new->name = get_variable_name(str);
+	new->value = get_variable_value(str);
+	new->next = NULL;
+	return (new);
 }
 
 int	ft_export(char **args)
 {
-	char			*name;
+	t_variable		*new;
 	bool			all_set;
 	unsigned int	i;
 
@@ -73,12 +84,16 @@ int	ft_export(char **args)
 	all_set = true;
 	while (args[i] != NULL)
 	{
-		name = get_variable_name(args[i]);
-		if (is_valid_identifier(name, EXPORT))
-			update_env(name, args[i]);
+		new = create_variable(args[i]);
+		if (is_valid_identifier(new->name, EXPORT))
+			add_variable(&variables->env, new);
 		else
+		{
+			free(new->name);
+			free(new->value);
+			free(new);
 			all_set = false;
-		free(name);
+		}
 		i++;
 	}
 	if (all_set == false)
