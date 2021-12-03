@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/12/02 17:51:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:43:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ char			*call_getcwd(void);
 t_variable		*get_variable(t_variable *vars, char *varname);
 unsigned int	get_greatest_len(char *str1, char *str2);
 bool			is_valid_identifier(char *str, int builtin);
+bool			is_in_linkedlst(void *ptr);
 
 /*
 ** Temporary

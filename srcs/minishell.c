@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 14:32:33 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:44:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ int	main(int ac, char **av, char **envp)
 		printf("content => %s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
+	int i = 0;
+	while (variables->envp[i + 1])
+		i++;
+	printf("var is => %s\n", variables->envp[i]);
+	if (is_in_linkedlst(variables->envp[i]))
+		printf("TRUE\n");
+	else
+		printf("FALSE\n");
 	while (true)
 	{
 		cmd = readline("pepesh € ");
