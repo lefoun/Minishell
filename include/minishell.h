@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2021/12/03 14:43:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:25:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,6 @@ bool	is_alpha_num(char c);
 bool	is_redirection(char c);
 
 // --------------------------- Utils --------------
-void	skip_whitespace(char *str);
 void	free_token_lst(t_token *lst);
 
 // ------------------ Error functions ------------

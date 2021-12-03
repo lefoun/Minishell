@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/03 18:00:56 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/03 20:25:22 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
-UTILS_FILES = $(addprefix utils/, skip_whitespace.c ft_strdup_index.c)
+UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
 INIT_FILES = $(addprefix init/, shell_init.c init_env.c)
 #LST_FILES MAY BE USELESS
 LST_FILES = $(addprefix lst/, ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c\
