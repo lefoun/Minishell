@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 18:49:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 18:53:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,3 @@ int	shell_init(char **av, char **envp)
 		set_lscolors();
 	return (0);
 }
-
-// int	shell_init(char **av, char **envp)
-// {
-// 	variables = init_env();
-// 	variables->prog_name = ft_strdup(av[0] + 2);
-// 	if (envp[0] == NULL)
-// 		printf("envp is empty\n");
-// 	else
-// 		printf("envp has env variables\n");
-// 	ft_export(envp);
-// 	set_shlvl();
-// 	set_underscore();
-// 	set_pwd();
-// 	return (0);
-// }
