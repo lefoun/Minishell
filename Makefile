@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/03 20:25:22 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/03 20:42:02 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,6 @@ BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
 INIT_FILES = $(addprefix init/, shell_init.c init_env.c)
-#LST_FILES MAY BE USELESS
-LST_FILES = $(addprefix lst/, ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c\
-				ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c)
 
 SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
 	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(HISTORY_FILES) $(INIT_FILES)\
