@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_words_nb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:59:48 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/01 18:10:17 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/03 21:25:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	skip_quotes(char *cmd_line, int *index)
 {
 	char	quote_type;
-	
+
 	if (!is_quote(cmd_line[*index]))
 		return (1);
 	quote_type = cmd_line[*index];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_chained_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:50:55 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/23 17:21:51 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/03 21:14:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	elem_pushback(t_fd_chain **head, t_fd_chain *elem)
 {
 	t_fd_chain	*tmp;
 
-	if (head == NULL || elem == NULL) 
+	if (head == NULL || elem == NULL)
 		return (-1);
 	else if (*head == NULL)
 		*head = elem;
@@ -41,7 +41,7 @@ t_fd_chain	*create_elem(int fd, char *file_name)
 	{
 		return (NULL);
 	}
-    new->file_name = ft_strdup(file_name);
+	new->file_name = ft_strdup(file_name);
 	new->fd = fd;
 	new->next = NULL;
 	return (new);

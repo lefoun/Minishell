@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollar_word.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:31:19 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/01 15:33:37 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/03 21:26:46 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	copy_word(char *word, char *new_wrd, char *dlr_wrd, char *dlr_value)
 
 char	*get_dollar_word_value(t_vars *vars, char *dollar_word)
 {
-	t_variable *env_var;
-	t_variable *global_var;
+	t_variable	*env_var;
+	t_variable	*global_var;
 
 	env_var = vars->env;
 	global_var = vars->global;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:53:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/24 18:00:24 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/03 21:13:09 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 //     t_fd_chain  *tmp;
 //     //int         output;
 //     char        *output_content;
-    
+
 //     tmp = head;
 //     if (head == NULL)
 //         return (0);
@@ -62,57 +62,62 @@
 //     return (0);
 // }
 
-// The above functions will be deleted. Keeping them here just to be sure everything
+// The above functions will be deleted. 
+// Keeping them here just to be sure everything
 // Works fine before deleting them.
 // ---------------- 
 
-void    print_fd_chain(t_fd_chain *head)
+void	print_fd_chain(t_fd_chain *head)
 {
-    int i = 1;
-    
-    while (head)
-    {
-        dprintf(2, "This is Elem n# %d -> Named |%s| and fd : %d\n", i, head->file_name, head->fd);
-        ++i;
-        head = head->next;
-    }
+	int	i;
+
+	i = 1;
+	while (head)
+	{
+		dprintf(2, "This is Elem n# %d -> Named |%s| and fd : %d\n",
+			i, head->file_name, head->fd);
+		++i;
+		head = head->next;
+	}
 }
 
-int fd_chain_len(t_fd_chain *head)
+int	fd_chain_len(t_fd_chain *head)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (head != NULL)
-    {
-        head = head->next;
-        ++i;
-    }
-    return (i);
+	i = 0;
+	while (head != NULL)
+	{
+		head = head->next;
+		++i;
+	}
+	return (i);
 }
 
-void    push_elem_and_update_com_fd(t_command_vars *com, t_token *head, int in, int out)
+void	push_elem_and_update_com_fd(t_command_vars *com, t_token *head,
+									int in, int out)
 {
-    if (in > -1)
-    {
-        elem_pushback(&(com->in_head), create_elem(in, head->value));
-        com->input_fd = in;
-    }
-    else if (out > -1)
-    {
-        elem_pushback(&(com->out_head), create_elem(out, head->value));
-        com->output_fd = out;
-    }
+	if (in > -1)
+	{
+		elem_pushback(&(com->in_head), create_elem(in, head->value));
+		com->input_fd = in;
+	}
+	else if (out > -1)
+	{
+		elem_pushback(&(com->out_head), create_elem(out, head->value));
+		com->output_fd = out;
+	}
 }
 
 int	init_fd_to_commands(t_token *head, t_command_vars *com)
 {
-    int input;
-    int output;
-    while (head && head->type != PIPE)
+	int	input;
+	int	output;
+
+	while (head && head->type != PIPE)
 	{
-        input = -2;
-        output = -2;
+		input = -2;
+		output = -2;
 		if (head->type == REDIR_IN)
 			input = open(head->value, O_RDONLY);
 		else if (head->type == REDIR_HERE_DOC)
@@ -123,12 +128,12 @@ int	init_fd_to_commands(t_token *head, t_command_vars *com)
 			output = open(head->value, O_RDWR | O_TRUNC | O_CREAT, 0666);
 		if (input == -1 || output == -1)
 			return (_error_('o'));
-        push_elem_and_update_com_fd(com, head, input, output);
-        head = head->next;
+		push_elem_and_update_com_fd(com, head, input, output);
+		head = head->next;
 	}
-    if (com->out_head != NULL && fd_chain_len(com->out_head) > 1)
-        close_unused_fd_chain(com->out_head);
-    if (com->in_head != NULL && fd_chain_len(com->in_head) > 1)
-       close_unused_fd_chain(com->in_head);
+	if (com->out_head != NULL && fd_chain_len(com->out_head) > 1)
+		close_unused_fd_chain(com->out_head);
+	if (com->in_head != NULL && fd_chain_len(com->in_head) > 1)
+		close_unused_fd_chain(com->in_head);
 	return (0);
 }

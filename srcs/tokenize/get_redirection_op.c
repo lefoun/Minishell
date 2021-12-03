@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redirection_op.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/24 11:38:31 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/03 21:32:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	get_redir_input_file(char **args, int *index, t_token **head)
 	char	*filename;
 	int		ret;
 	int		i;
-	
+
 	if (!(args[*index][0] == '<' && args[*index][1] == '\0'))
 		return (OP_NOT_FOUND);
 	++*index;
@@ -68,7 +68,7 @@ int	get_redir_out_append(char **args, int *index, t_token **head)
 	char	*filename;
 	int		ret;
 	int		i;
-	
+
 	if (!(args[*index][0] == '>' && args[*index][1] == '>'))
 		return (OP_NOT_FOUND);
 	++*index;
@@ -118,7 +118,7 @@ int	get_redirection_op(int (*get_redirection[])(char **, int *, t_token **),
 {
 	int	j;
 	int	ret;
-	
+
 	j = -1;
 	if (args[*index + 1] && is_operator(args[*index + 1][0]))
 	{

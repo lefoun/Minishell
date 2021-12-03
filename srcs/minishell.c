@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 20:26:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 21:23:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,20 @@ static char	*get_cmd_line(void)
 {
 	char	*cmd_line;
 	char	*tmp;
-	char 	*new_line;
+	char	*new_line;
 
 	cmd_line = readline("pepesh € ");
 	while (pipe_is_unclosed(cmd_line))
 	{
 		tmp = cmd_line;
 		new_line = readline("> ");
-		cmd_line = malloc(sizeof(char) * (ft_strlen(tmp) + ft_strlen(cmd_line) + 1));
+		cmd_line = malloc(sizeof(char) * (ft_strlen(tmp)
+					+ ft_strlen(cmd_line) + 1));
 		if (new_line == NULL)
 			return (NULL);
 		ft_strlcpy(cmd_line, tmp, ft_strlen(tmp) + 1);
-		ft_strlcat(cmd_line, new_line, ft_strlen(new_line) + ft_strlen(tmp) + 1);
+		ft_strlcat(cmd_line, new_line, ft_strlen(new_line)
+			+ ft_strlen(tmp) + 1);
 		free(tmp);
 		free(new_line);
 		rl_replace_line(cmd_line, 0);
@@ -62,12 +64,11 @@ static char	*get_cmd_line(void)
 int	main(int ac, char **av, char **envp)
 {
 	char	*cmd;
-	(void)ac;
 
+	(void)ac;
 	shell_init(av, envp);
 	while (true)
 	{
-	
 		cmd = get_cmd_line();
 		update_history();
 		ft_parser(cmd);

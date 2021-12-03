@@ -6,11 +6,11 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:38:04 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/11 18:14:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 21:19:33 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	ft_catch_error(bool error_check, char *str, t_token **head)
 {

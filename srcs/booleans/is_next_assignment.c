@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_next_assignment.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:52:06 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/07 14:54:04 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/03 21:18:53 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ bool	is_next_word_assignment(char *cmd_line)
 		i++;
 	}
 	return (false);
-	
 }

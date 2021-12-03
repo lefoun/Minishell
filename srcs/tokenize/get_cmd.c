@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:21:05 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/01 15:31:20 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/03 21:33:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int get_cmd(char **args, int *index, t_token **head)
+int	get_cmd(char **args, int *index, t_token **head)
 {
 	int		ret;
 	char	*cmd;

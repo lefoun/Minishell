@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_execution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/24 18:02:04 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/03 21:18:04 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	exec_command(char **my_paths, char **argv, t_command_vars *commands)
 // 		dup2(in, fd);
 // 		close(in);
 // 	}
-// 	else if ((*head)->next->type == REDIR_OUT_APPEND || (*head)->next->type == REDIR_OUT_TRUNC)
+// 	else if ((*head)->next->type == REDIR_OUT_APPEND || 
+//				(*head)->next->type == REDIR_OUT_TRUNC)
 // 	{
 // 		// dprintf(2, "here2\n");
 // 		fd = open((*head)->next->value, O_RDWR);
@@ -73,7 +74,7 @@ int	exit_process(t_command_vars *commands, int pipe_fds[2])
 	close(pipe_fds[0]);
 	close_pipes(0, 1);
 	mem_free(commands->paths, 0, commands);
-	exit(EXIT_FAILURE);	
+	exit(EXIT_FAILURE);
 }
 
 int	link_pipe_to_fd(int in, int out, t_token **head)
@@ -101,10 +102,11 @@ char	**get_command(t_token **head)
 	return (tmp->cmd);
 }
 
-int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_output, t_token **head)
+int	fork_and_execute(t_command_vars *com, int pipe_fds[2],
+						int index, int prev_output, t_token **head)
 {
 	int	pid;
-	
+
 	pid = fork();
 	if (pid == -1)
 		return (_error_('k'));
@@ -169,8 +171,8 @@ int	pipex_exec_test(int nb_args, t_token **head, char **environ)
 	commands.paths = get_paths(environ);
 	commands.here_doc = false;
 	// commands.name = "hello";
-    commands.input_fd = 0;
-    commands.output_fd = 1;
+	commands.input_fd = 0;
+	commands.output_fd = 1;
 	commands.env = environ;
 	commands.nb = nb_args;
 	commands.in_head = NULL;

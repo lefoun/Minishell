@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   group_cmd_and_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/02 17:47:46 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/03 21:33:21 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	get_nb_args(t_token *head)
 	int		nb_args;
 
 	nb_args = 0;
-	while(head && head->type != PIPE)
+	while (head && head->type != PIPE)
 	{
 		if (head->type == CMD_SUFFIX)
 			++nb_args;
 		head = head->next;
 	}
-	return (nb_args);	
+	return (nb_args);
 }
 
 void	get_args(t_token *head)
@@ -31,7 +31,7 @@ void	get_args(t_token *head)
 	int		i;
 	int		nb_args;
 	t_token	*tmp;
-	
+
 	i = 0;
 	nb_args = get_nb_args(head);
 	head->cmd = malloc(sizeof(char *) * (nb_args + 2));
@@ -39,7 +39,7 @@ void	get_args(t_token *head)
 		return ;
 	tmp = head;
 	head->cmd[i++] = ft_strdup(tmp->value);
-	while(tmp && tmp->type != PIPE)
+	while (tmp && tmp->type != PIPE)
 	{
 		if (tmp->type == CMD_SUFFIX)
 			head->cmd[i++] = ft_strdup(tmp->value);

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   create_and_push_back.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:26:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/17 10:45:21 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/03 21:31:00 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	ft_elem_pushback(t_token **head, t_token *elem)
 {
 	t_token	*tmp;
 
-	if (head == NULL || elem == NULL) 
+	if (head == NULL || elem == NULL)
 		return (-1);
 	else if (*head == NULL)
 		*head = elem;

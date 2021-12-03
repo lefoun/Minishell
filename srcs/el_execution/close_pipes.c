@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:55:28 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/25 08:17:54 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/03 21:15:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,24 @@ void	close_unused_pipes(int pipe_fds[2], int *prev_output, int i)
 	close(pipe_fds[1]);
 	if (i != 0)
 		close(*prev_output);
-    *prev_output = pipe_fds[0];
-	
+	*prev_output = pipe_fds[0];
 }
 
-void    close_unused_fd_chain(t_fd_chain *head)
+void	close_unused_fd_chain(t_fd_chain *head)
 {
-	t_fd_chain *tmp;
+	t_fd_chain	*tmp;
 
 	tmp = head;
-    while (head != NULL)
-    {
-        if (head->next == NULL)
+	while (head != NULL)
+	{
+		if (head->next == NULL)
 			return ;
 		else
 		{
-            close(head->fd);
+			close(head->fd);
 		}
 		head = head->next;
 		free(tmp);
 		tmp = head;
-    }
+	}
 }

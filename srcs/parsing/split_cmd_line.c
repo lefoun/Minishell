@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:55:21 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/01 15:33:01 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/03 21:24:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	increment_i_and_j(int *i, int *j)
 bool	skip_operator_and_increment(char *cmd_line, int *i, int *j)
 {
 	char	operator;
-	
+
 	if (cmd_line[*i] == '$')
 	{
 		increment_i_and_j(i, j);
@@ -35,7 +35,7 @@ bool	skip_operator_and_increment(char *cmd_line, int *i, int *j)
 		increment_i_and_j(i, j);
 		if (cmd_line[*i] == operator && operator != '|')
 			increment_i_and_j(i, j);
-		return (true);	
+		return (true);
 	}
 	return (false);
 }
@@ -51,7 +51,7 @@ char	*get_word_without_quotes(char *cmd_line, int *new_index)
 	j = 0;
 	quote_type = cmd_line[i];
 	cmd_line++;
-	while(cmd_line[i] != '\0' && cmd_line[i] != quote_type)
+	while (cmd_line[i] != '\0' && cmd_line[i] != quote_type)
 		++i;
 	word = malloc(sizeof(char) * (i + 1));
 	if (!word)

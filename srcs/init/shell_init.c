@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 18:53:10 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 21:20:55 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	set_shlvl(void)
 		new_var[1] = NULL;
 		ft_export(new_var);
 		free(new_var[0]);
-		free(new_var);		
+		free(new_var);
 	}
 	else
 	{
@@ -47,7 +47,7 @@ static int	set_underscore(void)
 	if (new_var == NULL)
 		return (1);
 	new_var[0] = ft_strdup("_=histappend");
-	new_var[1]= NULL;
+	new_var[1] = NULL;
 	ft_export(new_var);
 	free(new_var[0]);
 	free(new_var);
@@ -62,7 +62,7 @@ static int	set_lscolors(void)
 	if (new_var == NULL)
 		return (1);
 	new_var[0] = ft_strdup("LS_COLORS=");
-	new_var[1]= NULL;
+	new_var[1] = NULL;
 	ft_export(new_var);
 	free(new_var[0]);
 	free(new_var);
@@ -80,7 +80,7 @@ static int	set_pwd(void)
 	if (new_var == NULL)
 		return (1);
 	new_var[0] = ft_strdup("PWD=");
-	new_var[1]= NULL;
+	new_var[1] = NULL;
 	ft_export(new_var);
 	pwd = get_variable(variables->env, "PWD");
 	free(pwd->value);

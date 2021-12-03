@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_word.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:58:22 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:58:32 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/03 21:26:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_word(char *cmd_line, int word_length, t_vars *vars)
 	char	*word;
 	char	*dollar;
 	int		i;
-	
+
 	i = 0;
 	word = malloc(sizeof(*word) * (word_length + 1));
 	if (word == NULL)

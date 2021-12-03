@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:37:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/10/28 14:51:08 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/03 21:34:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	get_pipe_op(char **args, int index, t_token **head)
 	{
 		if (args[index + 1] != NULL && args[index + 1][0] == '|')
 			ft_putstr_fd("pepe_shell: "
-					"syntax error near unexpected token `||\'\n", 2);
+				"syntax error near unexpected token `||\'\n", 2);
 		else if (index == 0)
 			ft_putstr_fd("pepe_shell: "
-					"syntax error near unexpected token `|\'\n", 2);
+				"syntax error near unexpected token `|\'\n", 2);
 		else
 			ft_putstr_fd("pepe_shell: syntax error near"
-					" unexpected token `newline\'\n", 2);
+				" unexpected token `newline\'\n", 2);
 		return (3);
 	}
 	content = ft_strdup("|");

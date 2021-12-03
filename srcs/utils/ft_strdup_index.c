@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:02:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/10/04 16:15:53 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 22:11:40 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*ft_strdup_index(char *str, int index)
 	duped_str = malloc(sizeof(*duped_str) * index + 1);
 	if (!duped_str)
 		return (NULL);
-	
 	while (i < index)
 	{
 		duped_str[i] = str[i];

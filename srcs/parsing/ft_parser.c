@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/25 08:17:04 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/03 21:29:04 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_token_2(t_token *head)
 {
-	char *tab[13];
-	int	i;
+	char	*tab[13];
+	int		i;
 
 	i = 0;
 	tab[0] = "CMD_NAME";
@@ -47,7 +47,7 @@ void	print_token_2(t_token *head)
 
 void	print_token(t_token *head)
 {
-	char *tab[13];
+	char	*tab[13];
 
 	tab[0] = "CMD_NAME";
 	tab[1] = "CMD_SUFFIX";
@@ -66,10 +66,10 @@ void	print_token(t_token *head)
 	}
 }
 
-char**	copy_cmd_elem(char **src)
+char	**copy_cmd_elem(char **src)
 {
 	int		i;
-	char 	**dst;
+	char	**dst;
 
 	i = 0;
 	if (!src || !*src)
@@ -89,7 +89,7 @@ char**	copy_cmd_elem(char **src)
 t_token	*dup_elem(t_token *src_elem)
 {
 	t_token	*dst_elem;
-	
+
 	if (src_elem == NULL)
 		return (NULL);
 	dst_elem = malloc(sizeof(*dst_elem));
@@ -141,8 +141,9 @@ int	count_nb_cmds(t_token *head)
 
 int	ft_parser(char *cmd)
 {
-	char	**args;
-	t_token *head;
+	int			nb_cmds;
+	char		**args;
+	t_token		*head;
 	extern char	**environ;
 
 	head = NULL;
@@ -152,7 +153,7 @@ int	ft_parser(char *cmd)
 	// print_token(head);
 	if (!head)
 		return (-1);
-	int nb_cmds = count_nb_cmds(head);
+	nb_cmds = count_nb_cmds(head);
 	pipex_exec_test(nb_cmds, &head, environ);
 	return (0);
 }

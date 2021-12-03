@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:39:11 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/30 20:57:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/03 21:18:40 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	is_whitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || \
-	 c == '\f' || c == '\r')
+	c == '\f' || c == '\r')
 		return (true);
 	return (false);
 }
