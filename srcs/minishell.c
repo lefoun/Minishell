@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 16:46:17 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 17:29:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	minishell(void)
 		// free(cmd);
 	}
 }
+
 int	main(int ac, char **av, char **envp)
 {
 	struct sigaction	sa;
