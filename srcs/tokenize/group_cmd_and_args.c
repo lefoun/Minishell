@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 11:56:22 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 19:59:05 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ t_token	*group_cmd_and_args(t_token **head)
 	previous = tmp;
 	while (tmp)
 	{
-		if (tmp->type == CMD_NAME)
+		if (tmp->type == ASSIGN)
+			get_assign_values(&tmp);
+		else if (tmp->type == CMD_NAME)
 			get_args(tmp);
 		else if (tmp->type == CMD_SUFFIX)
 		{

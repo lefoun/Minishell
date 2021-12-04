@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 15:09:18 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 18:26:58 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ int	minishell(void)
 			exit(0);
 		}
 		ft_parser(cmd);
-		// free(cmd);
+		free(cmd);
 	}
+	return (0);
 }
+
 int	main(int ac, char **av, char **envp)
 {
 	struct sigaction	sa;

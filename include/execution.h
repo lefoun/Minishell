@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 09:37:33 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 12:13:31 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 19:21:24 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_command {
 	int			input_fd;
 	int			output_fd;
 	bool		is_first_command;
+	bool		is_main_process_cmd;
+	bool		is_assign;
 }				t_command_vars;
 
 t_fd_chain	*create_elem(int fd, char *file_name);
@@ -47,9 +49,9 @@ int		mem_free(char **tab, int index, t_command_vars *commands);
 void	double_free(char *tab, char *tab2);
 char	**get_paths(char *env[]);
 int		init_here_doc(char *limiter);
-void	close_unused_pipes(int pipe_fds[2], int *prev_output, int i, int cmd_nb);
+void	close_unused_fds(int pipe_fds[2], int *prev_output, int i, t_command_vars *com);
 int		close_pipes(int fd_1, int fd_2);
-int 	wait_for_children(int nb_children);
+int		wait_for_children(t_command_vars *com);
 int		init_fd_to_commands(t_token *head, t_command_vars *commands);
 int 	write_in_fds(t_fd_chain *head);
 void	close_unused_fd_chain(t_fd_chain *head);

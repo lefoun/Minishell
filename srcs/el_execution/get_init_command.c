@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 16:52:37 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 11:29:28 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 19:27:24 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	init_commands_struct(t_command_vars *commands)
     commands->output_fd = 1;
 	commands->in_head = NULL;
 	commands->out_head = NULL;
+	if (is_main_process_builtin(commands) && commands->nb == 1)
+		commands->is_main_process_cmd = true;
+	else
+		commands->is_main_process_cmd = false;
 }
 
 void	init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output)

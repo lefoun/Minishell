@@ -6,12 +6,27 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 11:40:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 11:41:09 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 19:21:44 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execution.h"
+
+int	assign_variables(char **keyvalue)
+{
+	int	i;
+	
+	if (keyvalue == NULL || *keyvalue == NULL)
+		return (1);
+	i = 0;
+	while (keyvalue[i])
+	{
+		assign_var(keyvalue[i]);
+		++i;
+	}
+	return (0);
+}
 
 int	exec_builtin(t_command_vars *commands)
 {
@@ -32,6 +47,8 @@ int	exec_builtin(t_command_vars *commands)
 		exit_status = ft_export(commands->name + 1);
 	else if (ft_strcmp(commands->name[0], "unset") == 0)
 		exit_status = ft_unset(commands->name + 1);
+	else if (commands->is_assign == true)
+		exit_status = assign_variables(commands->name);
 	if (exit_status != -1)
 		variables->last_exit_status = exit_status;
 	return (exit_status);

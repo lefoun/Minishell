@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 14:29:46 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 19:17:39 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define MAX_PATH_LEN 4096
 # define EXPORT 1
 # define UNSET 2
+# define ASSIGNMENT 3
 // Error management
 
 # define OP_NOT_FOUND -1
@@ -87,7 +88,7 @@ t_variable		*get_variable(t_variable *vars, char *varname);
 unsigned int	get_greatest_len(char *str1, char *str2);
 bool			is_valid_identifier(char *str, int builtin);
 char			**get_environment(void);
-
+void			assign_var(char *keyvalue);
 // ------------ El Execution -------------
 
 // t_fd_chain		*create_elem(int fd, char *file_name);
@@ -99,7 +100,7 @@ char			**get_environment(void);
 // void			double_free(char *tab, char *tab2);
 // char			**get_paths(char *env[]);
 // int				init_here_doc(char *limiter);
-// void			close_unused_pipes(int pipe_fds[2], int *prev_output, int i);
+// void			close_unused_fds(int pipe_fds[2], int *prev_output, int i);
 // int				close_pipes(int fd_1, int fd_2);
 // void			wait_for_children(int nb_children);
 // int				init_fd_to_commands(t_token *head, t_command_vars *commands);
@@ -158,6 +159,7 @@ bool			is_next_word_assignment(char *cmd_line);
 bool			is_quote(char c);
 bool			is_alpha_num(char c);
 bool			is_redirection(char c);
+bool			is_main_process_builtin(t_command_vars *commands);
 
 // --------------------------- Utils --------------
 void			free_token_lst(t_token *lst);

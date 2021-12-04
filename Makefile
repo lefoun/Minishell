@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/04 13:47:19 by nammari          ###   ########.fr        #
+#    Updated: 2021/12/04 19:17:14 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ NAME		= minishell
 SRCS_DIR	= srcs/
 
 BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
-	is_space.c is_whitespace.c is_quote.c is_alpha_num.c is_redirection.c)
+	is_space.c is_whitespace.c is_quote.c is_alpha_num.c is_redirection.c \
+	is_builtin.c)
 ERRORS_FILES = $(addprefix errors/, error_management.c)
 TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c \
 get_cmd_suffix.c get_cmd.c init_function_pointer.c group_cmd_and_args.c\
@@ -42,7 +43,7 @@ wait_children.c fd_chained_list.c get_init_command.c exec_builtin.c)
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c\
-			get_environment.c)
+			get_environment.c assign_var.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
 INIT_FILES = $(addprefix init/, shell_init.c init_env.c)

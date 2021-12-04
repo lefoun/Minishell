@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 12:10:45 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 19:42:28 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 {
 	int	pid;
 
-	if (com->nb == 1 && exec_builtin(com) != -1)
-		return (0);
+	if (com->nb == 1 && is_main_process_builtin(com))
+	{
+		dprintf(2, "Inside ismain process\n");
+		return (exec_builtin(com));
+	}
 	pid = fork();
 	if (pid == -1)
 		return (_error_('k'));
@@ -80,14 +83,47 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 		else
 			link_pipe_to_fd(prev_output, pipe_fds[1]);
 		if (exec_builtin(com) != -1)
-			exit(EXIT_SUCCESS);
+		{
+			// dprintf(2, "here im exec builtin\n");
+			exit(0);
+			//exit_exec_builtin(com)
+			// dprintf(2, "here im exec builtin\n");
+		}
 		exec_command(com->paths, com->name, com);
 		exit_process(com, pipe_fds, *head);
 	}
 	return (0);
 }
 
-char	**get_copy_of_com(t_token *head)
+char	**get_assign_value(t_token *head)
+{
+	t_token	*tmp;
+	char	**str;
+	int		i;
+
+	if (head == NULL)
+		return (NULL);
+	i = 0;
+	tmp = head;
+	while (head && head->type == ASSIGN)
+	{
+		head = head->next;
+		++i;
+	}
+	str = malloc(sizeof(char *) * (i + 1));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (tmp && tmp->type == ASSIGN)
+	{
+		str[i++] = ft_strdup(tmp->value);
+		tmp = tmp->next;
+	}
+	str[i] = NULL;
+	return (str);
+}
+
+char	**get_copy_of_com(t_token *head, t_command_vars *com)
 {
 	char	**copy;
 	int		i;
@@ -95,6 +131,9 @@ char	**get_copy_of_com(t_token *head)
 
 	i = 0;
 	len = 0;
+	com->is_assign = false;
+	if (head && head->type == ASSIGN)
+		com->is_assign = true;
 	while (head && head->cmd[len])
 		++len;
 	copy = (char **)malloc(sizeof(char *) * (len + 1));
@@ -118,9 +157,9 @@ int	pipex(t_command_vars *commands, t_token **head)
 	init_vars_to_minus_one(&i, pipe_fds, &prev_output);
 	while (++i < commands->nb)
 	{
+		commands->name = get_copy_of_com(*head, commands);
 		init_commands_struct(commands);
 		init_fd_to_commands(*head, commands);
-		commands->name = get_copy_of_com(*head);
 		if (i + 1 < commands->nb)
 		{
 			if (pipe(pipe_fds) == -1)
@@ -130,11 +169,11 @@ int	pipex(t_command_vars *commands, t_token **head)
 		}
 		advance_linked_list_ptr(head);
 		fork_and_execute(commands, pipe_fds, i, prev_output, head);
-		close_unused_pipes(pipe_fds, &prev_output, i, commands->nb);
+		close_unused_fds(pipe_fds, &prev_output, i, commands);
 		ft_free_tab(commands->name, 0);
 	}
-	variables->last_exit_status = wait_for_children(commands->nb);
-	printf("This is the last exit status %d\n", variables->last_exit_status);
+	variables->last_exit_status = wait_for_children(commands);
+	dprintf(2, "This is the last exit status %d\n", variables->last_exit_status);
 	return (0);
 }
 
