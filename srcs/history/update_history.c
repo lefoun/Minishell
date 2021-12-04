@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   update_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 15:03:41 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 12:20:19 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 16:47:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	update_history(void)
+void	update_history(char *cmd_line)
 {
-	if (ft_strlen(rl_line_buffer) == 0)
+	if (cmd_line == NULL)
 		return ;
-	add_history(rl_line_buffer);
+	if (ft_strlen(cmd_line) == 0)
+		return ;
+	add_history(cmd_line);
 }
