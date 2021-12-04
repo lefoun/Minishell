@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:46:37 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:15:40 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:04:56 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "execution.h"
 
 int	_error_(char source)
 {
@@ -31,7 +32,7 @@ int	_error_(char source)
 		perror("Error! Your write failed");
 	else
 		ft_putstr_fd("Error!\n", 2);
-	return (-1);
+	return (errno);
 }
 
 void	put_error(char *command)

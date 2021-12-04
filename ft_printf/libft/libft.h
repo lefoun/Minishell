@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 14:35:41 by nammari           #+#    #+#             */
-/*   Updated: 2021/08/31 14:35:49 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/25 10:20:15 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
 		void (*del)(void *));
 
 int					get_next_line(int fd, char **line);
+int					gnl_here_doc(int fd, char **line, int free_all);
 
 #endif

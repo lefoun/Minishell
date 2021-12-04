@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   group_cmd_and_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:33:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 11:56:22 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	get_args(t_token *head)
 	if (head->cmd == NULL)
 		return ;
 	tmp = head;
-	head->cmd[i++] = ft_strdup(tmp->value);
-	while (tmp && tmp->type != PIPE)
+	head->cmd[i] = ft_strdup(tmp->value);
+	while(tmp && tmp->type != PIPE)
 	{
 		if (tmp->type == CMD_SUFFIX)
-			head->cmd[i++] = ft_strdup(tmp->value);
+			head->cmd[++i] = ft_strdup(tmp->value);
 		tmp = tmp->next;
 	}
-	head->cmd[i] = NULL;
+	head->cmd[++i] = NULL;
 }
 
 t_token	*group_cmd_and_args(t_token **head)
@@ -61,11 +61,12 @@ t_token	*group_cmd_and_args(t_token **head)
 	previous = tmp;
 	while (tmp)
 	{
-		if ((tmp)->type == CMD_NAME)
+		if (tmp->type == CMD_NAME)
 			get_args(tmp);
-		if (tmp->type == CMD_SUFFIX)
+		else if (tmp->type == CMD_SUFFIX)
 		{
 			previous->next = tmp->next;
+			free(tmp->value);
 			free(tmp);
 			tmp = previous;
 		}

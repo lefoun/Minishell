@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 09:29:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:17:14 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "pipex_bonus.h"
 # include "history.h"
 # include "init.h"
+# include "execution.h"
 
 # define MAX_FILENAME_LEN 255
 # define MAX_PATH_LEN 4096
@@ -58,38 +59,12 @@ enum	e_arg_type {
 	ASSIGN
 };
 
-typedef struct s_fd_chain {
-	int					fd;
-	char				*file_name;
-	struct s_fd_chain	*next;
-}	t_fd_chain;
-
-typedef struct s_command {
-	t_fd_chain	*in_head;
-	t_fd_chain	*out_head;
-	char		**name;
-	char		**paths;
-	char		**env;
-	int			nb;
-	int			input_fd;
-	int			output_fd;
-	bool		here_doc;
-	bool		is_first_command;
-}				t_command_vars;
-
 typedef struct s_ast {
 	char			*value;
 	int				type;
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
-
-typedef struct s_token {
-	char			*value;
-	char			**cmd;
-	int				type;
-	struct s_token	*next;
-}	t_token;
 
 /*
 ** Builtins functions
@@ -114,21 +89,21 @@ char			**get_environment(void);
 
 // ------------ El Execution -------------
 
-t_fd_chain		*create_elem(int fd, char *file_name);
-int				pipex_exec_test(int nb_args, t_token **head, char **environ);
-int				elem_pushback(t_fd_chain **head, t_fd_chain *elem);
-int				_error_(char source);
-void			put_error(char *command);
-int				mem_free(char **tab, int index, t_command_vars *commands);
-void			double_free(char *tab, char *tab2);
-char			**get_paths(char *env[]);
-int				init_here_doc(char *limiter);
-void			close_unused_pipes(int pipe_fds[2], int *prev_output, int i);
-int				close_pipes(int fd_1, int fd_2);
-void			wait_for_children(int nb_children);
-int				init_fd_to_commands(t_token *head, t_command_vars *commands);
-int				write_in_fds(t_fd_chain *head);
-void			close_unused_fd_chain(t_fd_chain *head);
+// t_fd_chain		*create_elem(int fd, char *file_name);
+// int				pipex_exec_test(int nb_args, t_token **head, char **environ);
+// int				elem_pushback(t_fd_chain **head, t_fd_chain *elem);
+// int				_error_(char source);
+// void			put_error(char *command);
+// int				mem_free(char **tab, int index, t_command_vars *commands);
+// void			double_free(char *tab, char *tab2);
+// char			**get_paths(char *env[]);
+// int				init_here_doc(char *limiter);
+// void			close_unused_pipes(int pipe_fds[2], int *prev_output, int i);
+// int				close_pipes(int fd_1, int fd_2);
+// void			wait_for_children(int nb_children);
+// int				init_fd_to_commands(t_token *head, t_command_vars *commands);
+// int				write_in_fds(t_fd_chain *head);
+// void			close_unused_fd_chain(t_fd_chain *head);
 // ------------- Parsing -----------------
 
 t_ast			*ft_create_ast(char *cmd_line);
@@ -148,7 +123,7 @@ t_token			*map_lst_till_pipe_or_eol(t_token **head);
 
 // ------------- Pre processing-------------------
 int				count_words_nb(char *cmd_line);
-char			**get_prosseced_cmd_line(char *cmd_line);
+char			**get_processed_cmd_line(char *cmd_line);
 void			split_cmd_line(char *cmd_line, char **args,
 					int words_nb, t_vars *vars);
 char			*get_word(char *cmd_line, int word_length, t_vars *vars);

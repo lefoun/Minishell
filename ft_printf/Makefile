@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 00:20:25 by nammari           #+#    #+#              #
-#    Updated: 2021/10/22 17:07:58 by nammari          ###   ########.fr        #
+#    Updated: 2021/12/03 13:36:56 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ OBJS	=	$(SRC:.c=.o)
 BONU	=	$(BOBO:.c=.o)
 
 $(NAME):    $(OBJS)
-			make -sC libft
+			make all -sC libft
 			mv libft/libft.a libftprintf.a
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 			ranlib $(NAME)
@@ -50,10 +50,10 @@ $(NAME):    $(OBJS)
 %.o:		%.c
 			$(CC) -o $@ $< $(CFLAGS)
 
-all:		$(NAME)
+all:		$(NAME) $(BONU)
 
 bonus:		$(BONU)
-			make -sC libft
+			make all -sC libft
 			mv libft/libft.a libftprintf.a
 			$(AR) $(ARFLAGS) $(NAME) $(BONU)
 			ranlib $(NAME)

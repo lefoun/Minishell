@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
+#    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/04 09:34:28 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/04 12:41:57 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RED			= \033[0;31m
 YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
-CC			= gcc
+CC			= clang
 CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address #-v
 NAME		= minishell
 SRCS_DIR	= srcs/
@@ -38,7 +38,7 @@ get_processed_cmd_line.c get_word.c split_cmd_line.c replace_dollar_word.c \
 search_dollar_word.c)
 EXECUTION_FILES = $(addprefix el_execution/, pipex_execution.c close_pipes.c \
 error_management.c free_memory.c get_paths.c init_fd.c init_here_doc.c \
-wait_children.c fd_chained_list.c)
+wait_children.c fd_chained_list.c get_init_command.c exec_builtin.c)
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c\
@@ -77,7 +77,7 @@ $(OBJS_DIR):
 
 
 $(NAME): $(OBJS_DIR) $(OBJ)
-	make -C $(LIBRARY)
+	make all -C $(LIBRARY)
 	@printf "$(WHT)[$(GRN)LIBRARY $(LIBRARY) COMPILED$(WHT)]\n"
 	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
 	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"

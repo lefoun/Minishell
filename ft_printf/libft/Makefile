@@ -9,7 +9,9 @@ SRC	=		ft_strlen.c ft_atoi.c ft_isalpha.c ft_tolower.c \
 	 ft_strtrim.c ft_strmapi.c ft_putchar_fd.c \
 	 ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	 ft_atol.c get_next_line_bonus.c \
-	 get_next_line_utils_bonus.c ft_strcmp.c
+	 get_next_line_utils_bonus.c ft_strcmp.c \
+	 here_doc_get_next_line_bonus.c \
+	 here_doc_get_next_line_utils_bonus.c
 	 
 
 BOBO	=	ft_lstmap.c ft_lstiter.c ft_lstadd_front.c \
@@ -37,7 +39,7 @@ $(NAME):	$(OBJS)
 %.o:		%.c
 			$(CC) -o $@ $< $(CFLAGS)
 
-all:		$(NAME)
+all:		$(NAME) $(BONU)
 
 bonus:		$(BONU)
 			$(AR) $(ARFLAGS) $(NAME) $(BONU)

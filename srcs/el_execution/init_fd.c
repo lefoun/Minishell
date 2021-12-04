@@ -3,69 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:53:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:13:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:01:36 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// char    *get_input(int output)
-// {
-//     char    *tab;
-//     char    *tmp;
-//     char    *str;
-
-//     tab = NULL;
-//     tmp = NULL;
-//     str = ft_strdup("");
-//     while (get_next_line(output, &tab) > 0)
-//     {
-//         tmp = str;
-//         if (!tab)
-//             break ;
-//         str = ft_strjoin(tmp, tab);
-//         free(tmp);
-//         tmp = str;
-//         str = ft_strjoin(tmp, "\n");
-//         free(tmp);
-//     }
-//     free(tab);
-//     return (str);
-// }
-
-// int write_in_fds(t_fd_chain *head)
-// {
-//     t_fd_chain  *tmp;
-//     //int         output;
-//     char        *output_content;
-
-//     tmp = head;
-//     if (head == NULL)
-//         return (0);
-//     output_content = get_input(2);
-//     if (output_content == NULL)
-//         return (-1);
-//     tmp = tmp->next;
-//     while (tmp)
-//     {
-//         if (write(tmp->fd, output_content, ft_strlen(output_content)) == -1)
-//         {
-//             free(output_content);
-//             return (_error_('w'));   
-//         }
-//         tmp = tmp->next;
-//     }
-//     free(output_content);
-//     return (0);
-// }
-
-// The above functions will be deleted. 
-// Keeping them here just to be sure everything
-// Works fine before deleting them.
-// ---------------- 
+#include "execution.h"
 
 void	print_fd_chain(t_fd_chain *head)
 {
@@ -125,7 +71,9 @@ int	init_fd_to_commands(t_token *head, t_command_vars *com)
 		else if (head->type == REDIR_OUT_APPEND)
 			output = open(head->value, O_RDWR | O_APPEND | O_CREAT, 0666);
 		else if (head->type == REDIR_OUT_TRUNC)
+        {
 			output = open(head->value, O_RDWR | O_TRUNC | O_CREAT, 0666);
+        }
 		if (input == -1 || output == -1)
 			return (_error_('o'));
 		push_elem_and_update_com_fd(com, head, input, output);

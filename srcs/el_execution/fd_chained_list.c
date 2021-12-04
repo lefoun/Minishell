@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   fd_chained_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:50:55 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:14:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:01:58 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "execution.h"
 
 int	elem_pushback(t_fd_chain **head, t_fd_chain *elem)
 {

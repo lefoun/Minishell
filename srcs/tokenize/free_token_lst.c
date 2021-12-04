@@ -19,6 +19,8 @@ void	free_token_lst(t_token *lst)
 	while (lst)
 	{
 		tmp = lst->next;
+		free(lst->value);
+		ft_free_tab(lst->cmd, 0);
 		free(lst);
 		lst = tmp;
 	}

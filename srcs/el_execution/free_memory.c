@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:45:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:15:44 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:01:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "execution.h"
 
 int	mem_free(char **tab, int index, t_command_vars *commands)
 {
@@ -23,16 +24,10 @@ int	mem_free(char **tab, int index, t_command_vars *commands)
 		free(tab);
 	tab = NULL;
 	if (commands->input_fd != -1)
-	{
 		close(commands->input_fd);
-		commands->input_fd = -1;
-	}
 	if (commands->output_fd != -1)
-	{
 		close(commands->output_fd);
-		commands->output_fd = -1;
-	}
-	return (-1);
+	return (variables->last_exit_status);
 }
 
 void	double_free(char *tab, char *tab2)

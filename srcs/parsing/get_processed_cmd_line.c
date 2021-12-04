@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_processed_cmd_line.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:25:52 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:17:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,19 @@ t_variable	*create_variable(char *name, char *value)
 
 /////
 
-char	**get_prosseced_cmd_line(char *cmd_line)
+char	**get_processed_cmd_line(char *cmd_line)
 {
 	int		words_nb;
 	char	**splited_args;
-	t_vars	*variable;
 
-	variable = malloc(sizeof(*variable));
-	variable->env = create_variable("hello", "var_value");
-	variable->env->next = create_variable("stony", "lalalala");
-	variable->global = NULL;
+
 	words_nb = count_words_nb(cmd_line);
 	if (words_nb == ERROR)
 		return (NULL);
 	splited_args = malloc(sizeof(*splited_args) * (words_nb + 1));
 	if (splited_args == NULL)
 		return (NULL);
-	split_cmd_line(cmd_line, splited_args, words_nb, variable);
+	split_cmd_line(cmd_line, splited_args, words_nb, variables);
 	// while (i < words_nb)
 	// {
 	// 	printf("This is word n#_%0d/%0d: |%s|\n", i, words_nb, splited_args[i]);

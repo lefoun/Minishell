@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redirection_op.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 21:32:26 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 11:58:56 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	get_redir_out_trunc(char **args, int *index, t_token **head)
 	i = *index;
 	while (args[++i] && !is_operator(args[i][0]))
 	{
-		get_cmd_suffix(args[++*index], head);
+		++*index;
+		get_cmd(args, index, head);
 	}
 	return (0);
 }
@@ -83,7 +84,8 @@ int	get_redir_out_append(char **args, int *index, t_token **head)
 	i = *index;
 	while (args[++i] && !is_operator(args[i][0]))
 	{
-		get_cmd_suffix(args[++*index], head);
+		++*index;
+		get_cmd(args, index, head);
 	}
 	return (0);
 }
@@ -108,7 +110,8 @@ int	get_redir_input_here_doc(char **args, int *index, t_token **head)
 	i = *index;
 	while (args[++i] && !is_operator(args[i][0]))
 	{
-		get_cmd_suffix(args[++*index], head);
+		++*index;
+		get_cmd(args, index, head);
 	}
 	return (0);
 }

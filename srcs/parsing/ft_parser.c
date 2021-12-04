@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 21:29:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 12:17:27 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,20 @@ int	count_nb_cmds(t_token *head)
 	return (nb_cmd);
 }
 
+//// To be used for testing only 
+void	print_args(char **args)
+{
+	int i;
+
+	i = 0;
+	while (args[i])
+	{
+		printf("args[%d] = %s\n", i, args[i]);
+		++i;
+	}
+}
+////
+
 int	ft_parser(char *cmd)
 {
 	int			nb_cmds;
@@ -147,13 +161,18 @@ int	ft_parser(char *cmd)
 	extern char	**environ;
 
 	head = NULL;
-	args = get_prosseced_cmd_line(cmd);
+	args = get_processed_cmd_line(cmd);
 	ft_tokenize(args, &head);
+	ft_free_tab(args, 0);
+	// print_args(args);
 	group_cmd_and_args(&head);
 	// print_token(head);
 	if (!head)
 		return (-1);
 	nb_cmds = count_nb_cmds(head);
 	pipex_exec_test(nb_cmds, &head, environ);
+	free_token_lst(head);
+	head = NULL;
+	free(cmd);
 	return (0);
 }

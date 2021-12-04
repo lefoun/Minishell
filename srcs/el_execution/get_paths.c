@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_paths.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:52:39 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/23 13:53:08 by nammari          ###   ########.fr       */
+/*   Updated: 2021/11/25 09:56:34 by noufel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+#include "execution.h"
 char	*search_path(char *string)
 {
 	if (!string)

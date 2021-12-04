@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 10:36:22 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 11:58:07 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	main(int ac, char **av, char **envp)
 		cmd = get_cmd_line();
 		update_history();
 		ft_parser(cmd);
-		free(cmd);
-	}	
+		// free(cmd);
+	}
+
 	return (0);
 }
