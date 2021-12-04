@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/22 18:34:42 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/04 17:44:24 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int	ft_unset(char **args)
 	while (args[i] != NULL)
 	{
 		if (is_valid_identifier(args[i], UNSET))
+		{
 			delete_variable(&variables->env, args[i]);
+			delete_variable(&variables->global, args[i]);
+		}
 		else
 			all_unset = false;
 		i++;
