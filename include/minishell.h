@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/03 21:00:33 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 09:29:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,7 @@ char			*call_getcwd(void);
 t_variable		*get_variable(t_variable *vars, char *varname);
 unsigned int	get_greatest_len(char *str1, char *str2);
 bool			is_valid_identifier(char *str, int builtin);
-bool			is_in_linkedlst(void *ptr);
-
-/*
-** Temporary
-*/
-void			printenv(void); //<-delete printenv.c
-char			**create_args(void); //<-delete create_args.c
+char			**get_environment(void);
 
 // ------------ El Execution -------------
 

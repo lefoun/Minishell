@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/03 20:42:02 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/04 09:34:28 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v
+CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address #-v
 NAME		= minishell
 SRCS_DIR	= srcs/
 
@@ -41,7 +41,8 @@ error_management.c free_memory.c get_paths.c init_fd.c init_here_doc.c \
 wait_children.c fd_chained_list.c)
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
-			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c)
+			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c\
+			get_environment.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
 INIT_FILES = $(addprefix init/, shell_init.c init_env.c)

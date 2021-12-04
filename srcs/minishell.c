@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 21:23:17 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 10:17:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	shell_init(av, envp);
+	get_environment();
 	while (true)
 	{
 		cmd = get_cmd_line();
