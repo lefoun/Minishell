@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/22 18:05:30 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/04 10:58:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_exit(char **args)
 	int		exit_status;
 	bool	arg_is_numeric;
 
-	write(2, "exit\n", 5);
+	write(2, "exit\n", ft_strlen("exit\n"));
 	if (args == NULL)
 	{
 		// FREE ALL THE RESSOURCES !
@@ -72,14 +72,18 @@ int	ft_exit(char **args)
 	exit_status = get_exit_status(args[0], &arg_is_numeric);
 	if (arg_is_numeric == true && args[1] != NULL)
 	{
-		write(2, "minishell: exit: too many arguments\n", 36);
+		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, ": exit: too many arguments\n",
+			ft_strlen(": exit: too many arguments\n"));
 		return (1);
 	}
 	if (arg_is_numeric == false)
 	{
-		write(2, "minishell: exit: ", 17);
+		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, ": exit: ", ft_strlen(": exit: "));
 		write(2, args[0], ft_strlen (args[0]));
-		write(2, ": numeric argument required\n", 28);
+		write(2, ": numeric argument required\n",
+			ft_strlen(": numeric argument required\n"));
 	}
 	// FREE ALL THE RESSOURCES !
 	exit(exit_status);

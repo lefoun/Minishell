@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 10:17:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 10:36:22 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*get_cmd_line(void)
 	char	*tmp;
 	char	*new_line;
 
-	cmd_line = readline("pepesh € ");
+	cmd_line = readline(BGRN"[pepesh €] "RESET);
 	while (pipe_is_unclosed(cmd_line))
 	{
 		tmp = cmd_line;

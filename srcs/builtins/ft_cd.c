@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/22 18:30:15 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/04 10:32:06 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	exec_cd_with_home_var(void)
 	var = get_variable(variables->env, "HOME");
 	if (var == NULL)
 	{
-		write(2, "pepesh: cd: HOME not set\n", 25);
+		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, ": cd: HOME not set\n", ft_strlen(": cd: HOME not set\n"));
 		return (1);
 	}
 	chdir(var->value);

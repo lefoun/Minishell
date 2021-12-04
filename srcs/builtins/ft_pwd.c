@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stone <stone@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/11/22 18:10:51 by stone            ###   ########.fr       */
+/*   Updated: 2021/12/04 10:58:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ int	ft_pwd(char **args)
 
 	if (has_invalid_option(args[0]) == true)
 	{
-		write(2, "minishell: pwd: ", 16);
+		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, ": pwd: ", ft_strlen(": pwd: "));
 		write(2, args[0], ft_strlen(args[0]));
-		write(2, ": invalid option\npwd: usage: pwd\n", 34);
+		write(2, ": invalid option\npwd: usage: pwd\n", \
+				ft_strlen(": invalid option\npwd: usage: pwd\n"));
 		return (2);
 	}
 	working_directory = call_getcwd();
