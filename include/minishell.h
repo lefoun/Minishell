@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 12:17:14 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 14:29:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*
 ** Includes
 */
+# include <signal.h>
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -168,4 +169,6 @@ int				ft_free_tab(char **tab, int error_cause);
 // Test functions
 void			print_token(t_token *head);
 
+// Main func
+int			minishell(void);
 #endif

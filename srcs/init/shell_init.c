@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 21:20:55 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 15:16:30 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,34 @@ static int	set_pwd(void)
 	return (0);
 }
 
-int	shell_init(char **av, char **envp)
+void sighandler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		if (variables->pid != get_pid())
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+	else if (signo == SIGQUIT)
+	{
+		return ;
+	}
+}
+
+void	init_signal_struct(struct sigaction *sa)
+{
+	sa->sa_handler = &sighandler;
+	sa->sa_flags = SA_RESTART;
+	sigaction(SIGINT, sa, NULL);
+	sigaction(SIGQUIT, sa, NULL);
+}
+
+int	shell_init(char **av, char **envp, struct sigaction *sa)
 {
 	variables = init_env(av);
+	init_signal_struct(sa);
 	ft_export(envp);
 	set_shlvl();
 	set_underscore();

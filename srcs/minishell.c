@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 11:58:07 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 15:09:18 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static bool	pipe_is_unclosed(char *str)
 
 	i = 0;
 	c = '\0';
+	if (str == NULL)
+		return (false);
 	while (str[i] != '\0')
 	{
 		while (is_whitespace(str[i]))
@@ -61,20 +63,29 @@ static char	*get_cmd_line(void)
 	return (cmd_line);
 }
 
-int	main(int ac, char **av, char **envp)
+int	minishell(void)
 {
 	char	*cmd;
-
-	(void)ac;
-	shell_init(av, envp);
-	get_environment();
 	while (true)
 	{
 		cmd = get_cmd_line();
 		update_history();
+		if (cmd == NULL)
+		{
+			free(variables);
+			exit(0);
+		}
 		ft_parser(cmd);
 		// free(cmd);
 	}
+}
+int	main(int ac, char **av, char **envp)
+{
+	struct sigaction	sa;
 
+	(void)ac;
+	shell_init(av, envp, &sa);
+	get_environment();
+	minishell();
 	return (0);
 }

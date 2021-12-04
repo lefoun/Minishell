@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/03 20:52:45 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/04 14:15:30 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_vars
 */
 extern t_vars	*variables;
 
-int				shell_init(char **av, char **envp);
+int				shell_init(char **av, char **envp, struct sigaction *sa);
 t_vars			*init_env(char **av);
 
 #endif
