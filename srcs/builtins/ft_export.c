@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 13:46:37 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 17:58:30 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,27 @@ static t_variable	*create_variable(char *str)
 	return (new);
 }
 
+static void	check_assignment_variables(char *name)
+{
+	t_variable	*tmp;
+	char		**args;
+
+	args = malloc(sizeof(char *) * 2);
+	tmp = variables->global;
+	while (tmp != NULL)
+	{
+		if (ft_strcmp(name, tmp->name) == 0)
+		{
+			args[0] = name;
+			args[1] = NULL;
+			ft_unset(args);
+			free(args);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	ft_export(char **args)
 {
 	t_variable		*new;
@@ -86,7 +107,10 @@ int	ft_export(char **args)
 	{
 		new = create_variable(args[i]);
 		if (is_valid_identifier(new->name, EXPORT))
+		{
+			check_assignment_variables(new->name);
 			add_variable(&variables->env, new);
+		}
 		else
 		{
 			free(new->name);
