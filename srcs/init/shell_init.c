@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 15:16:30 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/04 16:16:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,13 @@ void sighandler(int signo)
 {
 	if (signo == SIGINT)
 	{
-		if (variables->pid != get_pid())
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 	else if (signo == SIGQUIT)
-	{
 		return ;
-	}
 }
 
 void	init_signal_struct(struct sigaction *sa)
