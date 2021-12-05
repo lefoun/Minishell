@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 15:29:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 17:21:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	ft_exit(char **args)
 	write(2, "exit\n", ft_strlen("exit\n"));
 	if (args[0] == NULL)
 	{
-		// FREE ALL THE RESSOURCES !
+		exit_status = variables->last_exit_status;
 		free_ressources();
-		exit(variables->last_exit_status);
+		exit(exit_status);
 	}
 	arg_is_numeric = true;
 	exit_status = get_exit_status(args[0], &arg_is_numeric);
