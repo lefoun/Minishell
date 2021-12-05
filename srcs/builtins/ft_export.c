@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 17:58:30 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 15:21:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void	check_assignment_variables(char *name)
 		}
 		tmp = tmp->next;
 	}
+	free(args);
 }
 
 int	ft_export(char **args)
@@ -113,10 +114,10 @@ int	ft_export(char **args)
 		}
 		else
 		{
+			all_set = false;
 			free(new->name);
 			free(new->value);
 			free(new);
-			all_set = false;
 		}
 		i++;
 	}

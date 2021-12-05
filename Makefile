@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/04 17:22:52 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/05 15:24:01 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ RED			= \033[0;31m
 YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
-CC			= clang
-CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v
+CC			= gcc
+CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address #-v
 NAME		= minishell
 SRCS_DIR	= srcs/
 
@@ -46,10 +46,11 @@ BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
 INIT_FILES = $(addprefix init/, shell_init.c init_env.c)
+FREE_FILES = $(addprefix free/, free_ressources.c)
 
 SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
 	 $(PARSING_FILES) $(BUILTINS_FILES) $(UTILS_FILES) $(AST_FILES) $(HISTORY_FILES) $(INIT_FILES)\
-	 $(LST_FILES)
+	 $(LST_FILES) $(FREE_FILES)
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 OBJS_DIR	= objs/
@@ -63,7 +64,7 @@ INC			= -Iinclude
 includes	= $(wildcard include/*.h)
 LIBRARY		= ft_printf
 OBJS_SUB_DIRS = $(addprefix objs/, booleans errors tokenize el_execution \
-			ast builtins parsing utils history init lst) 
+			ast builtins parsing utils history init lst free) 
 
 # ************************************ #
 #                RULES                 #

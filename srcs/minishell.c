@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 18:01:44 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 15:22:52 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int	minishell(void)
 		update_history(cmd);
 		if (cmd == NULL)
 		{
-			free(variables);
+			free_ressources();
+			printf(RED"free_ressources called\n"RESET);
+			//free(variables);
 			exit(0);
 		}
 		ft_parser(cmd);
@@ -86,7 +88,6 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	shell_init(av, envp, &sa);
-	get_environment();
 	minishell();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 17:11:50 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 14:58:49 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,9 @@ void			free_token_lst(t_token *lst);
 // ------------------ Error functions ------------
 int				ft_catch_error(bool error_check, char *str, t_token **head);
 int				ft_free_tab(char **tab, int error_cause);
+
+// ------------------------- Free ------------------
+void			free_ressources(void);
 
 // Test functions
 void			print_token(t_token *head);

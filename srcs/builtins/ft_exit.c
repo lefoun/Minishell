@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 16:41:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 15:29:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	ft_exit(char **args)
 	if (args[0] == NULL)
 	{
 		// FREE ALL THE RESSOURCES !
+		free_ressources();
 		exit(variables->last_exit_status);
 	}
 	arg_is_numeric = true;
@@ -86,5 +87,6 @@ int	ft_exit(char **args)
 			ft_strlen(": numeric argument required\n"));
 	}
 	// FREE ALL THE RESSOURCES !
+	free_ressources();
 	exit(exit_status);
 }
