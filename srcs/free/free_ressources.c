@@ -6,11 +6,24 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 14:57:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 15:12:36 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 16:31:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_environ(char **tofree)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (tofree[i] != NULL)
+	{
+		free(tofree[i]);
+		i++;
+	}
+	free(tofree);
+}
 
 static void	free_t_variable_struct(t_variable *tofree)
 {
