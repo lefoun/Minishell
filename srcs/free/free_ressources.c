@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 14:57:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 16:31:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/05 19:04:41 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	free_ressources(void)
 	free_t_variable_struct(variables->env);
 	free_t_variable_struct(variables->global);
 	free(variables);
+	rl_clear_history();
 }
