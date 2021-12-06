@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/06 12:10:27 by nammari          ###   ########.fr        #
+#    Updated: 2021/12/06 16:12:54 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
 CC			= clang
-CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address #-v
+CFLAGS		= -Wall -Werror -Wextra  #-fsanitize=address #-v -g3
 NAME		= minishell
 SRCS_DIR	= srcs/
 

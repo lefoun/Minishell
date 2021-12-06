@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 13:05:14 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 15:49:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 	{
 		if (index == 0)
 		{
-			close(pipe_fds[0]);
+			if (pipe_fds[0] != -1)
+				close(pipe_fds[0]);
 			link_pipe_to_fd(com->input_fd, com->output_fd);
 		}
 		else if (index + 1 == com->nb)
@@ -80,7 +81,7 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 		else
 			link_pipe_to_fd(prev_output, pipe_fds[1]);
 		if (exec_builtin(com) != -1)
-			exit(0);
+			exit_builtin_exec(pipe_fds, prev_output, com, head);
 		exec_command(com->paths, com->name, com);
 		exit_process(com, pipe_fds, *head);
 	}
@@ -124,9 +125,9 @@ char	**get_copy_of_com(t_token *head, t_command_vars *com)
 	i = 0;
 	len = 0;
 	com->is_assign = false;
-	if (head && head->type == ASSIGN)
-		com->is_assign = true;
-	while (head && head->cmd[len])
+	while (head != NULL && head->type != CMD_NAME)
+		head = head->next;
+	while (head != NULL && head->cmd[len] != NULL)
 		++len;
 	copy = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!copy)
@@ -149,9 +150,9 @@ int	pipex(t_command_vars *commands, t_token **head)
 	init_vars_to_minus_one(&i, pipe_fds, &prev_output);
 	while (++i < commands->nb)
 	{
-		commands->name = get_copy_of_com(*head, commands);
 		init_commands_struct(commands);
 		init_fd_to_commands(*head, commands);
+		commands->name = get_copy_of_com(*head, commands);
 		if (i + 1 < commands->nb)
 		{
 			if (pipe(pipe_fds) == -1)

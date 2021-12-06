@@ -6,12 +6,29 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 11:40:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 19:21:44 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 15:54:06 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execution.h"
+
+void	exit_builtin_exec(int pipe[2], int prev_output, t_command_vars *com, t_token **head)
+{
+	if (pipe[0] != -1)
+		close(pipe[0]);
+	if (pipe[1] != -1)
+		close(pipe[1]);
+	if (prev_output != -1)
+		close(prev_output);
+	ft_free_tab(com->name, 0);
+	ft_free_tab(com->paths, 0);
+	// ft_free_tab(com->env, 0);
+	free_token_lst(*head);
+	close_fd_chain(com->in_head, com);
+	close_fd_chain(com->out_head, com);
+	exit(0);
+}
 
 int	assign_variables(char **keyvalue)
 {

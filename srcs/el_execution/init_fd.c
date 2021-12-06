@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:53:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 12:01:36 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 14:54:13 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,47 +41,47 @@ int	fd_chain_len(t_fd_chain *head)
 }
 
 void	push_elem_and_update_com_fd(t_command_vars *com, t_token *head,
-									int in, int out)
+									int *in, int *out)
 {
-	if (in > -1)
+	if (head->type == REDIR_IN)
+		*in = open(head->value, O_RDONLY);
+	else if (head->type == REDIR_HERE_DOC)
+		*in = init_here_doc(head->value, com);
+	else if (head->type == REDIR_OUT_APPEND)
+		*out = open(head->value, O_RDWR | O_APPEND | O_CREAT, 0666);
+	else if (head->type == REDIR_OUT_TRUNC)
+		*out = open(head->value, O_RDWR | O_TRUNC | O_CREAT, 0666);
+	if (*in > -1)
 	{
-		elem_pushback(&(com->in_head), create_elem(in, head->value));
-		com->input_fd = in;
+		elem_pushback(&com->in_head, create_elem(*in, head->value));
+		com->input_fd = *in;
 	}
-	else if (out > -1)
+	else if (*out > -1)
 	{
-		elem_pushback(&(com->out_head), create_elem(out, head->value));
-		com->output_fd = out;
+		elem_pushback(&com->out_head, create_elem(*out, head->value));
+		com->output_fd = *out;
 	}
 }
 
 int	init_fd_to_commands(t_token *head, t_command_vars *com)
 {
-	int	input;
-	int	output;
+	int		input;
+	int		output;
+	t_token	*tmp;
 
-	while (head && head->type != PIPE)
+	tmp = head;
+	while (tmp != NULL && tmp->type != PIPE)
 	{
 		input = -2;
 		output = -2;
-		if (head->type == REDIR_IN)
-			input = open(head->value, O_RDONLY);
-		else if (head->type == REDIR_HERE_DOC)
-			input = init_here_doc(head->value);
-		else if (head->type == REDIR_OUT_APPEND)
-			output = open(head->value, O_RDWR | O_APPEND | O_CREAT, 0666);
-		else if (head->type == REDIR_OUT_TRUNC)
-        {
-			output = open(head->value, O_RDWR | O_TRUNC | O_CREAT, 0666);
-        }
+		push_elem_and_update_com_fd(com, tmp, &input, &output);
 		if (input == -1 || output == -1)
 			return (_error_('o'));
-		push_elem_and_update_com_fd(com, head, input, output);
-		head = head->next;
+		tmp = tmp->next;
 	}
 	if (com->out_head != NULL && fd_chain_len(com->out_head) > 1)
-		close_unused_fd_chain(com->out_head);
+		close_unused_fd_chain(&com->out_head);
 	if (com->in_head != NULL && fd_chain_len(com->in_head) > 1)
-		close_unused_fd_chain(com->in_head);
+		close_unused_fd_chain(&com->in_head);
 	return (0);
 }

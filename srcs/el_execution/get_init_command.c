@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 16:52:37 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 19:27:24 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 15:36:25 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	advance_linked_list_ptr(t_token **head)
 	t_token *tmp;
 
 	tmp = *head;
-	while (*head && (*head)->type != PIPE)
+	while (*head != NULL && (*head)->type != PIPE)
 	{
 		*head = (*head)->next; 
 		free(tmp->value);
@@ -28,6 +28,7 @@ void	advance_linked_list_ptr(t_token **head)
 	}
 	if (*head != NULL && (*head)->type == PIPE)
 	{
+		tmp = *head;
 		*head = (*head)->next;
 		free(tmp->value);
 		free(tmp);
@@ -41,10 +42,7 @@ void	init_commands_struct(t_command_vars *commands)
     commands->output_fd = 1;
 	commands->in_head = NULL;
 	commands->out_head = NULL;
-	if (is_main_process_builtin(commands) && commands->nb == 1)
-		commands->is_main_process_cmd = true;
-	else
-		commands->is_main_process_cmd = false;
+	commands->is_here_doc = false;
 }
 
 void	init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output)
@@ -55,14 +53,14 @@ void	init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output)
 	*prev_output = -1;
 }
 
-char	**get_command(t_token **head)
-{
-	t_token	*tmp;
+// char	**get_command(t_token **head)
+// {
+// 	t_token	*tmp;
 
-	tmp = *head;
-	while (tmp != NULL && (tmp)->type != CMD_NAME)
-		tmp = tmp->next;
-	if (tmp == NULL)
-		return (NULL);
-	return (tmp->cmd);
-}
+// 	tmp = *head;
+// 	while (tmp != NULL && (tmp)->type != CMD_NAME)
+// 		tmp = tmp->next;
+// 	if (tmp == NULL)
+// 		return (NULL);
+// 	return (tmp->cmd);
+// }

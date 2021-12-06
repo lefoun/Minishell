@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:50:55 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 12:01:58 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 13:24:41 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_fd_chain	*create_elem(int fd, char *file_name)
 	new = malloc(sizeof(*new));
 	if (new == NULL)
 	{
+		error_malloc();
 		return (NULL);
 	}
 	new->file_name = ft_strdup(file_name);
