@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_word.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:58:22 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:26:10 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 12:59:12 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_word(char *cmd_line, int word_length, t_vars *vars)
+char	*get_word(char *cmd_line, int word_length)
 {
 	char	*word;
 	char	*dollar;
@@ -33,7 +33,7 @@ char	*get_word(char *cmd_line, int word_length, t_vars *vars)
 		dollar = search_dollar_word(word + i);
 		if (dollar == NULL)
 			return (word);
-		word = replace_dollar_word(word, dollar, vars);
+		word = replace_dollar_word(word, dollar);
 		while (word && word[i] != '\0' && word[i] != '$')
 			++i;
 	}

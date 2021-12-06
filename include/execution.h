@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 09:37:33 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/04 19:21:24 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 11:45:33 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_command {
 	int			nb;
 	int			input_fd;
 	int			output_fd;
+	int			pid;
 	bool		is_first_command;
 	bool		is_main_process_cmd;
 	bool		is_assign;

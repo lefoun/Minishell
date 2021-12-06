@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 19:42:28 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 13:05:14 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	link_pipe_to_fd(int in, int out)
 {
 	dup2(in, STDIN_FILENO);
 	if (in < 0)
-		perror("In failed");
-	out = dup2(out, STDOUT_FILENO);
+		perror("Input Fd Dup failed");
+	dup2(out, STDOUT_FILENO);
 	if (out < 0)
-		perror("out failed\n");
+		perror("Input Fd Dup failed\n");
 	return (0);
 }
 
@@ -64,10 +64,7 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 	int	pid;
 
 	if (com->nb == 1 && is_main_process_builtin(com))
-	{
-		dprintf(2, "Inside ismain process\n");
 		return (exec_builtin(com));
-	}
 	pid = fork();
 	if (pid == -1)
 		return (_error_('k'));
@@ -83,12 +80,7 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 		else
 			link_pipe_to_fd(prev_output, pipe_fds[1]);
 		if (exec_builtin(com) != -1)
-		{
-			// dprintf(2, "here im exec builtin\n");
 			exit(0);
-			//exit_exec_builtin(com)
-			// dprintf(2, "here im exec builtin\n");
-		}
 		exec_command(com->paths, com->name, com);
 		exit_process(com, pipe_fds, *head);
 	}
@@ -173,7 +165,6 @@ int	pipex(t_command_vars *commands, t_token **head)
 		ft_free_tab(commands->name, 0);
 	}
 	variables->last_exit_status = wait_for_children(commands);
-	dprintf(2, "This is the last exit status %d\n", variables->last_exit_status);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 19:44:39 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/06 11:34:06 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,13 +164,13 @@ int	ft_parser(char *cmd)
 	args = get_processed_cmd_line(cmd);
 	ft_tokenize(args, &head);
 	// ft_free_tab(args, 0);
-	print_args(args);
+	// print_args(args);
 	group_cmd_and_args(&head);
-	print_token_2(head);
+	// print_token_2(head);
 	if (!head)
 		return (-1);
 	nb_cmds = count_nb_cmds(head);
-	dprintf(2, "thiss is comd number %d\n", nb_cmds);
+	// dprintf(2, "thiss is comd number %d\n", nb_cmds);
 	pipex_exec_test(nb_cmds, &head, environ);
 	// free_token_lst(head);
 	head = NULL;
