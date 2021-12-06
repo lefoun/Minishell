@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:55:21 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:24:35 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 13:03:13 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_word_without_quotes(char *cmd_line, int *new_index)
 	return (word);
 }
 
-char	*get_between_quotes_word(char *cmd_line, int *new_index, t_vars *vars)
+char	*get_between_quotes_word(char *cmd_line, int *new_index)
 {
 	int		i;
 	char	*word;
@@ -81,7 +81,7 @@ char	*get_between_quotes_word(char *cmd_line, int *new_index, t_vars *vars)
 		dollar_word = search_dollar_word(word + i);
 		if (dollar_word == NULL)
 			return (word);
-		word = replace_dollar_word(word, dollar_word, vars);
+		word = replace_dollar_word(word, dollar_word);
 		if (word == NULL)
 			return (NULL);
 		while (word[i] != '\0' && word[i] != '$')
@@ -90,7 +90,7 @@ char	*get_between_quotes_word(char *cmd_line, int *new_index, t_vars *vars)
 	return (word);
 }
 
-void	split_cmd_line(char *cmd_line, char **args, int words_nb, t_vars *vars)
+void	split_cmd_line(char *cmd_line, char **args, int words_nb)
 {
 	int		i;
 	int		j;
@@ -106,12 +106,12 @@ void	split_cmd_line(char *cmd_line, char **args, int words_nb, t_vars *vars)
 		while (is_alpha_num(cmd_line[i]) && !is_operator(cmd_line[i]))
 			increment_i_and_j(&i, &j);
 		if (j > 0)
-			args[k++] = get_word(cmd_line + i, j, vars);
+			args[k++] = get_word(cmd_line + i, j);
 		else if (is_quote(cmd_line[i]))
-			args[k++] = get_between_quotes_word(cmd_line + i, &i, vars);
+			args[k++] = get_between_quotes_word(cmd_line + i, &i);
 		else
 			if (skip_operator_and_increment(cmd_line, &i, &j))
-				args[k++] = get_word(cmd_line + i, j, vars);
+				args[k++] = get_word(cmd_line + i, j);
 	}
 	args[words_nb] = NULL;
 }

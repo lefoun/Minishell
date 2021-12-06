@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/05 16:31:53 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 16:29:43 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,6 @@ bool			is_valid_identifier(char *str, int builtin);
 char			**get_environment(void);
 void			assign_var(char *keyvalue);
 
-// ------------ El Execution -------------
-
-// t_fd_chain		*create_elem(int fd, char *file_name);
-// int				pipex_exec_test(int nb_args, t_token **head, char **environ);
-// int				elem_pushback(t_fd_chain **head, t_fd_chain *elem);
-// int				_error_(char source);
-// void			put_error(char *command);
-// int				mem_free(char **tab, int index, t_command_vars *commands);
-// void			double_free(char *tab, char *tab2);
-// char			**get_paths(char *env[]);
-// int				init_here_doc(char *limiter);
-// void			close_unused_pipes(int pipe_fds[2], int *prev_output, int i);
-// int				close_pipes(int fd_1, int fd_2);
-// void			wait_for_children(int nb_children);
-// int				init_fd_to_commands(t_token *head, t_command_vars *commands);
-// int				write_in_fds(t_fd_chain *head);
-// void			close_unused_fd_chain(t_fd_chain *head);
 // ------------- Parsing -----------------
 
 t_ast			*ft_create_ast(char *cmd_line);
@@ -128,11 +111,10 @@ t_token			*map_lst_till_pipe_or_eol(t_token **head);
 int				count_words_nb(char *cmd_line);
 char			**get_processed_cmd_line(char *cmd_line);
 void			split_cmd_line(char *cmd_line, char **args,
-					int words_nb, t_vars *vars);
-char			*get_word(char *cmd_line, int word_length, t_vars *vars);
+					int words_nb);
+char			*get_word(char *cmd_line, int word_length);
 char			*search_dollar_word(char *word);
-char			*replace_dollar_word(char *word, char *dollar_word,
-					t_vars *vars);
+char			*replace_dollar_word(char *word, char *dollar_word);
 
 // Get operator
 int				get_redir_out_trunc(char **args, int *index, t_token **head);
@@ -160,6 +142,7 @@ bool			is_next_word_assignment(char *cmd_line);
 bool			is_quote(char c);
 bool			is_alpha_num(char c);
 bool			is_redirection(char c);
+bool			is_main_process_builtin(t_command_vars *commands);
 
 // --------------------------- Utils --------------
 void			free_token_lst(t_token *lst);

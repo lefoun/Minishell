@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:54:35 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/25 10:30:56 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/06 14:47:52 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execution.h"
+
+
+char	*free_gnl(char **tab, char **str, int fd)
+{
+	free(*tab);
+	gnl_here_doc(fd, tab, 1);
+	return (*str);
+}
 
 char	*get_here_doc_content(int fd, char *limiter, char **str)
 {
@@ -26,12 +34,8 @@ char	*get_here_doc_content(int fd, char *limiter, char **str)
 		tmp = *str;
 		if (!tab)
 			break ;
-		if (ft_memcmp(tab, limiter, ft_strlen(tab)) == 0)
-		{
-			free(tab);
-			gnl_here_doc(fd, &tab, 1);
-			return (*str);
-		}
+		if (ft_strcmp(tab, limiter) == 0)
+			return(free_gnl(&tab, str, fd));
 		*str = ft_strjoin(tmp, tab);
 		free(tmp);
 		tmp = *str;
@@ -42,15 +46,14 @@ char	*get_here_doc_content(int fd, char *limiter, char **str)
 	return (NULL);
 }
 
-int	init_here_doc(char *limiter)
+int	init_here_doc(char *limiter, t_command_vars *com)
 {
 	int		here_doc;
 	char	*file_content;
-	char	*limiter_gnl;
 
+	com->is_here_doc = true;
 	file_content = NULL;
-	limiter_gnl = ft_strjoin(limiter, "\n");
-	file_content = get_here_doc_content(0, limiter_gnl, &file_content);
+	file_content = get_here_doc_content(0, limiter, &file_content);
 	if (!file_content)
 		return (-1);
 	here_doc = open("here_doc", O_CREAT | O_RDWR | O_TRUNC, 0666);
@@ -67,6 +70,5 @@ int	init_here_doc(char *limiter)
 	close(here_doc);
 	here_doc = open("here_doc", O_RDWR);
 	free(file_content);
-	free(limiter_gnl);
 	return (here_doc);
 }

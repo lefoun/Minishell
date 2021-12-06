@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 15:41:37 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 16:28:25 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_token_2(t_token *head)
 	while (head)
 	{
 		i = 0;
-		if (head->type == CMD_NAME)
+		if (head->type == CMD_NAME || head->type == ASSIGN)
 		{
 			while (head->cmd[i])
 			{
@@ -132,7 +132,7 @@ int	count_nb_cmds(t_token *head)
 	nb_cmd = 0;
 	while (head)
 	{
-		if (head->type == CMD_NAME)
+		if (head->type == CMD_NAME || head->type == ASSIGN)
 			nb_cmd++;
 		head = head->next;
 	}
@@ -180,7 +180,7 @@ int	ft_parser(char *cmd)
 	ft_free_tab(args, 0);
 	// print_args(args);
 	group_cmd_and_args(&head);
-	// print_token(head);
+	// print_token_2(head);
 	if (!head)
 		return (-1);
 	nb_cmds = count_nb_cmds(head);
@@ -189,6 +189,5 @@ int	ft_parser(char *cmd)
 	free_environ(environ);
 	free_token_lst(head);
 	head = NULL;
-	free(cmd);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
+#    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/05 16:17:59 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/06 16:31:02 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,14 @@ RED			= \033[0;31m
 YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v
+CC			= clang
+CFLAGS		= -Wall -Werror -Wextra  #-fsanitize=address #-v -g3
 NAME		= minishell
 SRCS_DIR	= srcs/
 
 BOOLEANS_FILES = $(addprefix booleans/, is_next_assignment.c is_operator.c \
-	is_space.c is_whitespace.c is_quote.c is_alpha_num.c is_redirection.c)
+	is_space.c is_whitespace.c is_quote.c is_alpha_num.c is_redirection.c \
+	is_builtin.c)
 ERRORS_FILES = $(addprefix errors/, error_management.c)
 TOKENIZE_FILES = $(addprefix tokenize/, checkers_redirection.c free_token_lst.c \
 get_cmd_suffix.c get_cmd.c init_function_pointer.c group_cmd_and_args.c\

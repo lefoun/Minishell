@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_processed_cmd_line.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 15:01:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 16:32:44 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ char	**get_processed_cmd_line(char *cmd_line)
 	splited_args = malloc(sizeof(*splited_args) * (words_nb + 1));
 	if (splited_args == NULL)
 		return (NULL);
-	split_cmd_line(cmd_line, splited_args, words_nb, variables);
+	split_cmd_line(cmd_line, splited_args, words_nb);
 	return (splited_args);
 }

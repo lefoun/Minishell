@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assign_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 17:07:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 17:23:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 16:27:19 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,3 @@ void	assign_var(char *keyvalue)
 		}
 	}
 }
-	

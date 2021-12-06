@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollar_word.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:31:19 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:26:46 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 13:02:18 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	copy_word(char *word, char *new_wrd, char *dlr_wrd, char *dlr_value)
 	new_wrd[j] = '\0';
 }
 
-char	*get_dollar_word_value(t_vars *vars, char *dollar_word)
+char	*get_dollar_word_value(char *dollar_word)
 {
 	t_variable	*env_var;
 	t_variable	*global_var;
-
-	env_var = vars->env;
-	global_var = vars->global;
+	
+	env_var = variables->env;
+	global_var = variables->global;
 	while (env_var)
 	{
 		if (ft_strcmp(env_var->name, dollar_word) == 0)
@@ -63,13 +63,16 @@ char	*get_dollar_word_value(t_vars *vars, char *dollar_word)
 	return (NULL);
 }
 
-char	*replace_dollar_word(char *word, char *dollar_word, t_vars *vars)
+char	*replace_dollar_word(char *word, char *dollar_word)
 {
 	long	len;
 	char	*new_wrd;
 	char	*dlr_wrd_value;
 
-	dlr_wrd_value = get_dollar_word_value(vars, dollar_word);
+	if (ft_strcmp(dollar_word, "?") == 0)
+		dlr_wrd_value = ft_itoa(variables->last_exit_status);
+	else
+		dlr_wrd_value = get_dollar_word_value(dollar_word);
 	len = ft_strlen(word) - ft_strlen(dollar_word) + ft_strlen(dlr_wrd_value);
 	new_wrd = malloc(sizeof(*new_wrd) * len + 1);
 	if (new_wrd == NULL)
