@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 16:31:11 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 15:41:37 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,19 @@ void	print_args(char **args)
 }
 ////
 
+static void	save_last_cmd_word(t_token *lst)
+{
+	while (lst != NULL)
+	{
+		if (ft_strcmp(lst->value, "\0") != 0)
+		{
+			free(variables->last_cmd_word);
+			variables->last_cmd_word = ft_strdup(lst->value);
+		}
+		lst = lst->next;
+	}
+}
+
 int	ft_parser(char *cmd)
 {
 	int			nb_cmds;
@@ -163,6 +176,7 @@ int	ft_parser(char *cmd)
 	head = NULL;
 	args = get_processed_cmd_line(cmd);
 	ft_tokenize(args, &head);
+	save_last_cmd_word(head);
 	ft_free_tab(args, 0);
 	// print_args(args);
 	group_cmd_and_args(&head);

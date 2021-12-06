@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 15:22:52 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/06 15:54:09 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,28 @@ static char	*get_cmd_line(void)
 	return (cmd_line);
 }
 
+static void	edit_underscore_var(void)
+{
+	char	**args;
+	char	*var;
+	int		len;
+
+	len = ft_strlen(variables->last_cmd_word);
+	var = malloc(sizeof(char) * (len + 3));
+	if (var == NULL)
+		return ;
+	args = malloc(sizeof(char *) * 2);
+	if (args == NULL)
+		return ;
+	ft_strlcpy(var, "_=", 3);
+	ft_strlcat(var, variables->last_cmd_word, len + 3);
+	args[0] = var;
+	args[1] = NULL;
+	ft_export(args);
+	free(args);
+	free(var);
+}
+
 int	minishell(void)
 {
 	char	*cmd;
@@ -73,12 +95,10 @@ int	minishell(void)
 		if (cmd == NULL)
 		{
 			free_ressources();
-			printf(RED"free_ressources called\n"RESET);
-			//free(variables);
 			exit(0);
 		}
 		ft_parser(cmd);
-		// free(cmd);
+		edit_underscore_var();
 	}
 }
 
