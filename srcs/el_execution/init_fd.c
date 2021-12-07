@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:53:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 13:54:46 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 14:06:09 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	init_fd_to_commands(t_token *head, t_command_vars *com)
 		{
 			close_fd_chain(com->in_head, com);
 			close_fd_chain(com->out_head, com);
+			if (input == -1 && tmp->type == REDIR_HERE_DOC)
+				return (_here_doc_error_());
 			return (_error_('o'));
 		}
 		tmp = tmp->next;

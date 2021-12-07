@@ -6,16 +6,26 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:46:37 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 12:04:56 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 14:07:47 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execution.h"
 
+
+int	_here_doc_error_(void)
+{
+	ft_putstr_fd(variables->prog_name, 2);
+	ft_putstr_fd(": warning: here_document delimited by EOF\n", 2);
+	return (2);
+}
+
 int	_error_(char source)
 {
-	if (source == 'o')
+	if (errno == 0)
+		ft_putstr_fd("Error\n", 2);
+	else if (source == 'o')
 		perror("Error! Failed to open file");
 	else if (source == 'p')
 		perror("Error! Failed to open pipe");

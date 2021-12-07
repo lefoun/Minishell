@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 09:37:33 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/06 15:48:45 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 14:08:13 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	exit_builtin_exec(int pipe[2], int prev_output, t_command_vars *com, t_toke
 int		pipex_exec_test(int nb_args, t_token **head, char **environ);
 int		elem_pushback(t_fd_chain **head, t_fd_chain *elem);
 int		_error_(char source);
+int		_here_doc_error_(void);
 void	put_error(char *command);
 int		mem_free(char **tab, int index, t_command_vars *commands);
 void	double_free(char *tab, char *tab2);
