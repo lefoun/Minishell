@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 16:28:25 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 10:37:38 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ int	ft_parser(char *cmd)
 	ft_free_tab(args, 0);
 	// print_args(args);
 	group_cmd_and_args(&head);
+	group_assign(&head);
 	// print_token_2(head);
 	if (!head)
 		return (-1);

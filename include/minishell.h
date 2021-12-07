@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/06 16:29:43 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 10:04:17 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void			init_function_pointer(int (*get_redirection[])
 					(char **, int *, t_token **));
 t_token			*group_cmd_and_args(t_token **head);
 t_token			*map_lst_till_pipe_or_eol(t_token **head);
-
+t_token			*group_assign(t_token **head);
 // ------------- Pre processing-------------------
 int				count_words_nb(char *cmd_line);
 char			**get_processed_cmd_line(char *cmd_line);

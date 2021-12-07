@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 15:49:04 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 10:35:03 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,55 +88,30 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 	return (0);
 }
 
-char	**get_assign_value(t_token *head)
-{
-	t_token	*tmp;
-	char	**str;
-	int		i;
-
-	if (head == NULL)
-		return (NULL);
-	i = 0;
-	tmp = head;
-	while (head && head->type == ASSIGN)
-	{
-		head = head->next;
-		++i;
-	}
-	str = malloc(sizeof(char *) * (i + 1));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (tmp && tmp->type == ASSIGN)
-	{
-		str[i++] = ft_strdup(tmp->value);
-		tmp = tmp->next;
-	}
-	str[i] = NULL;
-	return (str);
-}
-
 char	**get_copy_of_com(t_token *head, t_command_vars *com)
 {
 	char	**copy;
 	int		i;
 	int		len;
 
-	i = 0;
+	i = -1;
 	len = 0;
-	com->is_assign = false;
 	while (head != NULL && head->type != CMD_NAME)
+	{
+		if (head->type == ASSIGN)
+		{
+			com->is_assign = true;
+			break;
+		}
 		head = head->next;
+	}
 	while (head != NULL && head->cmd[len] != NULL)
 		++len;
 	copy = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!copy)
 		return (NULL);
-	while (head->cmd[i])
-	{
+	while (head->cmd[++i])
 		copy[i] = ft_strdup(head->cmd[i]);
-		++i;
-	}
 	copy[i] = NULL;
 	return (copy);
 }

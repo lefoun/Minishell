@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 11:31:16 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 10:23:35 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ t_token	*group_cmd_and_args(t_token **head)
 	previous = tmp;
 	while (tmp)
 	{
-		// if (tmp->type == ASSIGN)
-		// 	get_assign_values(&tmp);
 		if (tmp->type == CMD_NAME)
 			get_args(tmp);
 		else if (tmp->type == CMD_SUFFIX)
@@ -74,6 +72,71 @@ t_token	*group_cmd_and_args(t_token **head)
 		}
 		previous = tmp;
 		tmp = tmp->next;
+	}
+	return (*head);
+}
+
+void	group_assign_tokens(t_token *head)
+{
+	int		i;
+	t_token	*tmp;
+
+	i = 0;
+	tmp = head;
+	while (tmp && tmp->type == ASSIGN)
+	{
+		++i;
+		tmp = tmp->next;
+	}
+	head->cmd = malloc(sizeof(char *) * (i + 2));
+	if (head->cmd == NULL)
+		return ;
+	tmp = head;
+	i = 0;
+	// head->cmd[i] = ft_strdup(tmp->value);
+	while(tmp && tmp->type == ASSIGN)
+	{
+		head->cmd[i++] = ft_strdup(tmp->value);
+		tmp = tmp->next;
+	}
+	head->cmd[i] = NULL;
+}
+
+void	free_assign(t_token **head)
+{
+	t_token	*tmp;
+
+	tmp = *head;
+	while (*head != NULL && (*head)->type == ASSIGN)
+	{
+		tmp = tmp->next;
+		free((*head)->value);
+		free(*head);
+		*head = tmp;
+	}
+}
+
+t_token	*group_assign(t_token **head)
+{
+	t_token	*tmp;
+	t_token	*previous;
+
+	if (head == NULL || *head == NULL)
+		return (NULL);
+	tmp = *head;
+	previous = tmp;
+	while (tmp)
+	{
+		if (tmp->type == ASSIGN)
+		{
+			group_assign_tokens(tmp);
+			tmp = tmp->next;
+			free_assign(&tmp);
+			previous->next = tmp;
+		}
+		previous = tmp;
+		if (tmp != NULL)
+			tmp = tmp->next;
 	}
 	return (*head);
 }

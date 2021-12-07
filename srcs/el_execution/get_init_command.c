@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 16:52:37 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/06 15:36:25 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 10:36:51 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_commands_struct(t_command_vars *commands)
 	commands->in_head = NULL;
 	commands->out_head = NULL;
 	commands->is_here_doc = false;
+	commands->is_assign = false;
 }
 
 void	init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output)
