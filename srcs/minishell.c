@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 16:29:22 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:27:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static char	*get_cmd_line(void)
 	char	*tmp;
 	char	*new_line;
 
+	if (variables->last_exit_status == 131)
+		printf("Quit (core dumped)\n");
 	cmd_line = readline(BGRN"[pepesh €] "RESET);
 	while (pipe_is_unclosed(cmd_line))
 	{

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 14:19:58 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:25:41 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,26 +89,67 @@ static int	set_pwd(void)
 	free(new_var);
 	return (0);
 }
+/*
+static void handler(int signo, siginfo_t *si, void *uc){
+   printf("si = %d\n", *(char*)si);
+   printf("uc = %d\n", *(char*)uc);
+}
+
+int main(void)
+{
+      struct sigaction psa;
+      psa.sa_flags = 0;
+      psa.sa_sigaction = handler;
+      sigaction(SIGTSTP, &psa, NULL);
+      for(;;) {}
+      return 0;
+}
+*/
+
+// void	signal_handler(int signo, siginfo_t *signal, void *uc)
+// {
+// 	if (signal->si_pid == 0)
+		
+// 	(void)uc;
+// 	(void)signo;
+// 	return ;
+// }
 
 void sighandler(int signo)
 {
 	if (signo == SIGINT)
 	{
+		variables->last_exit_status = 130;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 	else if (signo == SIGQUIT)
+	{
 		return ;
+	}
+}
+
+void	signal_handler(int signo)
+{
+	if (signo == SIGQUIT)
+	{
+		// variables-> = SIGQUIT;
+		printf("here\n");
+		return ;
+	}
 }
 
 void	init_signal_struct(struct sigaction *sa)
 {
+	struct sigaction sa_quit;
+	
+	sa_quit.sa_handler = SIG_IGN;
 	sa->sa_handler = &sighandler;
 	sa->sa_flags = SA_RESTART;
 	sigaction(SIGINT, sa, NULL);
-	sigaction(SIGQUIT, sa, NULL);
+	sigaction(SIGQUIT, &sa_quit, NULL);
 }
 
 int	shell_init(char **av, char **envp, struct sigaction *sa)

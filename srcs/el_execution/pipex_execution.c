@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 13:55:54 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:24:30 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,11 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_o
 		return (_error_('k'));
 	if (pid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
+		if (pipe_fds[0] != -1 && index == 0)
+			close(pipe_fds[0]);
 		if (index == 0)
-		{
-			if (pipe_fds[0] != -1)
-				close(pipe_fds[0]);
 			link_pipe_to_fd(com->input_fd, com->output_fd);
-		}
 		else if (index + 1 == com->nb)
 			link_pipe_to_fd(prev_output, com->output_fd);
 		else
@@ -144,8 +143,8 @@ int	pipex(t_command_vars *commands, t_token **head)
 		if (i + 1 < commands->nb)
 			create_pipe(pipe_fds, commands);
 		init_fd_to_commands(*head, commands);
-		advance_linked_list_ptr(head);
 		fork_and_execute(commands, pipe_fds, i, prev_output, head);
+		advance_linked_list_ptr(head);
 		close_unused_fds(pipe_fds, &prev_output, i, commands);
 		ft_free_tab(commands->name, 0);
 	}
