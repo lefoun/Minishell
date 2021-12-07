@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:55:28 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 14:50:29 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 11:46:32 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,18 @@ int	close_pipes(int fd_1, int fd_2)
 
 void	close_fd_chain(t_fd_chain *head, t_command_vars *com)
 {
-	if (head != NULL)
+	t_fd_chain	*tmp;
+
+	tmp = head;
+	while (head != NULL)
 	{
+		tmp = head->next;
 		if (com->is_here_doc)
 			unlink("here_doc");
 		close(head->fd);
 		free(head->file_name);
 		free(head);
+		head = tmp;
 	}
 }
 	

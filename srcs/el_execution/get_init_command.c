@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 16:52:37 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/07 10:36:51 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:41:22 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	advance_linked_list_ptr(t_token **head)
 	tmp = *head;
 	while (*head != NULL && (*head)->type != PIPE)
 	{
-		*head = (*head)->next; 
+		*head = (*head)->next;
 		free(tmp->value);
 		ft_free_tab(tmp->cmd, 0);
 		free(tmp);
@@ -32,7 +32,6 @@ void	advance_linked_list_ptr(t_token **head)
 		*head = (*head)->next;
 		free(tmp->value);
 		free(tmp);
-		tmp = *head;
 	}
 }
 
@@ -53,15 +52,3 @@ void	init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output)
 	pipe_fds[1] = -1;
 	*prev_output = -1;
 }
-
-// char	**get_command(t_token **head)
-// {
-// 	t_token	*tmp;
-
-// 	tmp = *head;
-// 	while (tmp != NULL && (tmp)->type != CMD_NAME)
-// 		tmp = tmp->next;
-// 	if (tmp == NULL)
-// 		return (NULL);
-// 	return (tmp->cmd);
-// }

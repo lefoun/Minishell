@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 10:35:03 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:55:54 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ int	exit_process(t_command_vars *commands, int pipe_fds[2], t_token *head)
 
 int	link_pipe_to_fd(int in, int out)
 {
-	dup2(in, STDIN_FILENO);
-	if (in < 0)
-		perror("Input Fd Dup failed");
-	dup2(out, STDOUT_FILENO);
-	if (out < 0)
-		perror("Input Fd Dup failed\n");
+	if (in > -1)
+	{
+		dup2(in, STDIN_FILENO);
+		if (in < 0)
+			perror("Input Fd Dup failed");
+	}
+	if (out > -1)
+	{
+		dup2(out, STDOUT_FILENO);
+		if (out < 0)
+			perror("Input Fd Dup failed\n");
+	}
 	return (0);
 }
 
@@ -92,10 +98,8 @@ char	**get_copy_of_com(t_token *head, t_command_vars *com)
 {
 	char	**copy;
 	int		i;
-	int		len;
 
-	i = -1;
-	len = 0;
+	i = 0;
 	while (head != NULL && head->type != CMD_NAME)
 	{
 		if (head->type == ASSIGN)
@@ -105,15 +109,25 @@ char	**get_copy_of_com(t_token *head, t_command_vars *com)
 		}
 		head = head->next;
 	}
-	while (head != NULL && head->cmd[len] != NULL)
-		++len;
-	copy = (char **)malloc(sizeof(char *) * (len + 1));
+	while (head != NULL && head->cmd[i] != NULL)
+		++i;
+	copy = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!copy)
 		return (NULL);
-	while (head->cmd[++i])
-		copy[i] = ft_strdup(head->cmd[i]);
 	copy[i] = NULL;
+	i = -1;
+	while (head && head->cmd[++i])
+		copy[i] = ft_strdup(head->cmd[i]);
 	return (copy);
+}
+
+int	create_pipe(int pipe_fds[2], t_command_vars *com)
+{
+	if (pipe(pipe_fds) == -1)
+		return (_error_('p'));
+	if (com->output_fd == 1)
+		com->output_fd = pipe_fds[1];
+	return (0);
 }
 
 int	pipex(t_command_vars *commands, t_token **head)
@@ -126,15 +140,10 @@ int	pipex(t_command_vars *commands, t_token **head)
 	while (++i < commands->nb)
 	{
 		init_commands_struct(commands);
-		init_fd_to_commands(*head, commands);
 		commands->name = get_copy_of_com(*head, commands);
 		if (i + 1 < commands->nb)
-		{
-			if (pipe(pipe_fds) == -1)
-				return (_error_('p'));
-			if (commands->output_fd == 1)
-				commands->output_fd = pipe_fds[1];
-		}
+			create_pipe(pipe_fds, commands);
+		init_fd_to_commands(*head, commands);
 		advance_linked_list_ptr(head);
 		fork_and_execute(commands, pipe_fds, i, prev_output, head);
 		close_unused_fds(pipe_fds, &prev_output, i, commands);
@@ -155,7 +164,14 @@ int	pipex_exec_test(int nb_args, t_token **head, char **environ)
 	commands.nb = nb_args;
 	commands.in_head = NULL;
 	commands.out_head = NULL;
-	pipex(&commands, head);
+	if (commands.nb == 0 && *head != NULL)
+	{
+		init_fd_to_commands(*head, &commands);
+		close_fd_chain(commands.in_head, &commands);
+		close_fd_chain(commands.out_head, &commands);
+	}
+	else
+		pipex(&commands, head);
 	ft_free_tab(commands.paths, 0);
 	free_token_lst(*head);
 	return (0);

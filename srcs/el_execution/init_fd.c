@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:53:43 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 14:54:13 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:54:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ int	init_fd_to_commands(t_token *head, t_command_vars *com)
 		output = -2;
 		push_elem_and_update_com_fd(com, tmp, &input, &output);
 		if (input == -1 || output == -1)
+		{
+			close_fd_chain(com->in_head, com);
+			close_fd_chain(com->out_head, com);
 			return (_error_('o'));
+		}
 		tmp = tmp->next;
 	}
 	if (com->out_head != NULL && fd_chain_len(com->out_head) > 1)

@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 10:23:35 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:34:32 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	group_assign_tokens(t_token *head)
 		return ;
 	tmp = head;
 	i = 0;
-	// head->cmd[i] = ft_strdup(tmp->value);
 	while(tmp && tmp->type == ASSIGN)
 	{
 		head->cmd[i++] = ft_strdup(tmp->value);

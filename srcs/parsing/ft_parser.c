@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 10:37:38 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:42:38 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,19 +168,20 @@ static void	save_last_cmd_word(t_token *lst)
 
 int	ft_parser(char *cmd)
 {
-	int			nb_cmds;
 	char		**args;
-	t_token		*head;
 	char		**environ;
+	int			nb_cmds;
+	t_token		*head;
 
 	head = NULL;
 	args = get_processed_cmd_line(cmd);
+	// print_args(args);
 	ft_tokenize(args, &head);
 	save_last_cmd_word(head);
 	ft_free_tab(args, 0);
-	// print_args(args);
 	group_cmd_and_args(&head);
 	group_assign(&head);
+	// print_token(head);
 	// print_token_2(head);
 	if (!head)
 		return (-1);
@@ -188,7 +189,7 @@ int	ft_parser(char *cmd)
 	environ = get_environment();
 	pipex_exec_test(nb_cmds, &head, environ);
 	free_environ(environ);
-	free_token_lst(head);
+	// free_token_lst(head);
 	head = NULL;
 	return (0);
 }
