@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 16:27:46 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:37:28 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,5 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	shell_init(av, envp, &sa);
 	minishell();
-	return (0);
+	return (variables->last_exit_status);
 }

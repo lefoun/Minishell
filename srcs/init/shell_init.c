@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 16:25:41 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:41:30 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,31 +89,6 @@ static int	set_pwd(void)
 	free(new_var);
 	return (0);
 }
-/*
-static void handler(int signo, siginfo_t *si, void *uc){
-   printf("si = %d\n", *(char*)si);
-   printf("uc = %d\n", *(char*)uc);
-}
-
-int main(void)
-{
-      struct sigaction psa;
-      psa.sa_flags = 0;
-      psa.sa_sigaction = handler;
-      sigaction(SIGTSTP, &psa, NULL);
-      for(;;) {}
-      return 0;
-}
-*/
-
-// void	signal_handler(int signo, siginfo_t *signal, void *uc)
-// {
-// 	if (signal->si_pid == 0)
-		
-// 	(void)uc;
-// 	(void)signo;
-// 	return ;
-// }
 
 void sighandler(int signo)
 {
@@ -127,16 +102,6 @@ void sighandler(int signo)
 	}
 	else if (signo == SIGQUIT)
 	{
-		return ;
-	}
-}
-
-void	signal_handler(int signo)
-{
-	if (signo == SIGQUIT)
-	{
-		// variables-> = SIGQUIT;
-		printf("here\n");
 		return ;
 	}
 }
