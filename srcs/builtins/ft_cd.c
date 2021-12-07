@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 12:02:21 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:34:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_cd(char **args)
 	char	*oldpwd;
 
 	oldpwd = call_getcwd();
-	if (args == NULL)
+	if (args == NULL || *args == NULL)
 	{
 		if (exec_cd_with_home_var() == 1)
 			return (1);
