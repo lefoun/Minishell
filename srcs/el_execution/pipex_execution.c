@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 13:51:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:00:04 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ int	pipex_exec_test(int nb_args, t_token **head, char **environ)
 	commands.nb = nb_args;
 	commands.in_head = NULL;
 	commands.out_head = NULL;
+	commands.is_here_doc = false;
 	commands.is_main_process_cmd = true;
 	if (commands.nb == 0 && *head != NULL)
 	{
