@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_identifier.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:06:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 16:27:31 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:10:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 static void	print_error(char *str, int builtin)
 {
+	if (builtin != UNSET)
+		return ;
 	if (builtin == EXPORT)
 	{
 		write(2, variables->prog_name, ft_strlen(variables->prog_name));
 		write(2, ": export: ", ft_strlen(": export: "));
-	}
-	else if (builtin == UNSET)
-	{
-		write(2, variables->prog_name, ft_strlen(variables->prog_name));
-		write(2, ": unset: ", ft_strlen(": unset: "));
 	}
 	else if (builtin == ASSIGNMENT)
 	{
