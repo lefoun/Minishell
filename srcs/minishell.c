@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:49:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:56:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*get_cmd_line(void)
 
 	if (g_variables->last_exit_status == 131)
 		printf("Quit (core dumped)\n");
-	cmd_line = readline(BGRN"[pepesh €] "RESET);
+	cmd_line = readline(BGRN"pepesh » "RESET);
 	while (pipe_is_unclosed(cmd_line))
 	{
 		tmp = cmd_line;
