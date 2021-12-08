@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:06:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 13:10:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 20:20:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	print_error(char *str, int builtin)
 {
-	if (builtin != UNSET)
+	if (builtin == UNSET)
 		return ;
 	if (builtin == EXPORT)
 	{
