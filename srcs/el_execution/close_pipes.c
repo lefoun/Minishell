@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:55:28 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 11:46:32 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:32:49 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	close_fd_chain(t_fd_chain *head, t_command_vars *com)
 		head = tmp;
 	}
 }
-	
-void	close_unused_fds(int pipe_fds[2], int *prev_output, int i, t_command_vars *com)
+
+void	close_unused_fds(int pipe_fds[2], int *prev_output,
+	int i, t_command_vars *com)
 {
 	if (i + 1 == com->nb && pipe_fds[0] != -1)
 		close(pipe_fds[0]);

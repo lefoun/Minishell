@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_dollar_word.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:31:19 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 13:02:18 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:40:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_dollar_word_value(char *dollar_word)
 {
 	t_variable	*env_var;
 	t_variable	*global_var;
-	
+
 	env_var = variables->env;
 	global_var = variables->global;
 	while (env_var)

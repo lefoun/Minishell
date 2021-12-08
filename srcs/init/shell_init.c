@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 13:37:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:39:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	set_pwd(void)
 	return (0);
 }
 
-void sighandler(int signo)
+void	sighandler(int signo)
 {
 	if (signo == SIGINT)
 	{
@@ -108,8 +108,8 @@ void sighandler(int signo)
 
 void	init_signal_struct(struct sigaction *sa)
 {
-	struct sigaction sa_quit;
-	
+	struct sigaction	sa_quit;
+
 	sa_quit.sa_handler = SIG_IGN;
 	sa->sa_handler = &sighandler;
 	sa->sa_flags = SA_RESTART;

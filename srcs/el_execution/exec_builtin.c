@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 11:40:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 16:34:35 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:31:37 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "execution.h"
 
-void	exit_builtin_exec(int pipe[2], int prev_output, t_command_vars *com, t_token **head)
+void	exit_builtin_exec(int pipe[2], int prev_output,
+	t_command_vars *com, t_token **head)
 {
 	if (pipe[0] != -1)
 		close(pipe[0]);
@@ -23,7 +23,6 @@ void	exit_builtin_exec(int pipe[2], int prev_output, t_command_vars *com, t_toke
 		close(prev_output);
 	ft_free_tab(com->name, 0);
 	ft_free_tab(com->paths, 0);
-	// ft_free_tab(com->env, 0);
 	free_token_lst(*head);
 	close_fd_chain(com->in_head, com);
 	close_fd_chain(com->out_head, com);
@@ -33,7 +32,7 @@ void	exit_builtin_exec(int pipe[2], int prev_output, t_command_vars *com, t_toke
 int	assign_variables(char **keyvalue)
 {
 	int	i;
-	
+
 	if (keyvalue == NULL || *keyvalue == NULL)
 		return (1);
 	i = 0;
@@ -48,7 +47,7 @@ int	assign_variables(char **keyvalue)
 int	exec_builtin(t_command_vars *commands)
 {
 	int	exit_status;
-	
+
 	exit_status = -1;
 	if (ft_strcmp(commands->name[0], "cd") == 0)
 		exit_status = ft_cd(commands->name + 1);

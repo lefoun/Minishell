@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 20:58:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:29:20 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	exit_process(t_command_vars *commands, int pipe_fds[2], t_token *head)
 	close_pipes(0, 1);
 	mem_free(commands->paths, 0, commands);
 	free_token_lst(head);
-	exit(127);	
+	exit(127);
 }
 
 int	link_pipe_to_fd(int in, int out)
@@ -65,7 +65,8 @@ int	link_pipe_to_fd(int in, int out)
 	return (0);
 }
 
-int	fork_and_execute(t_command_vars *com, int pipe_fds[2], int index, int prev_output, t_token **head)
+int	fork_and_execute(t_command_vars *com, int pipe_fds[2],
+	int index, int prev_output, t_token **head)
 {
 	int	pid;
 
@@ -104,7 +105,7 @@ char	**get_copy_of_com(t_token *head, t_command_vars *com)
 		if (head->type == ASSIGN)
 		{
 			com->is_assign = true;
-			break;
+			break ;
 		}
 		head = head->next;
 	}
@@ -157,8 +158,8 @@ int	pipex_exec_test(int nb_args, t_token **head, char **environ)
 	t_command_vars	commands;
 
 	commands.paths = get_paths(environ);
-    commands.input_fd = 0;
-    commands.output_fd = 1;
+	commands.input_fd = 0;
+	commands.output_fd = 1;
 	commands.env = environ;
 	commands.nb = nb_args;
 	commands.in_head = NULL;

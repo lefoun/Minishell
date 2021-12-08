@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_get_next_line_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noufel <noufel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:03:26 by nammari           #+#    #+#             */
-/*   Updated: 2021/11/25 10:19:55 by noufel           ###   ########.fr       */
+/*   Updated: 2021/12/08 21:20:55 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	lst_free(t_struct **struct_pointer, int fd)
 	}
 }
 
-int	check_eol(char *buffer, int	reason)
+int	check_eol(char *buffer, int reason)
 {
 	int	i;
 

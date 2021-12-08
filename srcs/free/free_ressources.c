@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 14:57:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 13:29:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:33:40 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	free_t_variable_struct(t_variable *tofree)
 
 	while (tofree != NULL)
 	{
-		next_link =  tofree->next;
+		next_link = tofree->next;
 		free(tofree->name);
 		free(tofree->value);
 		free(tofree);

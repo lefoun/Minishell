@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:54:35 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 11:25:53 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:33:15 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "execution.h"
-
 
 char	*free_gnl(char **tab, char **str, int fd)
 {
@@ -35,7 +33,7 @@ char	*get_here_doc_content(int fd, char *limiter, char **str)
 		if (!tab)
 			break ;
 		if (ft_strcmp(tab, limiter) == 0)
-			return(free_gnl(&tab, str, fd));
+			return (free_gnl(&tab, str, fd));
 		*str = ft_strjoin(tmp, tab);
 		free(tmp);
 		tmp = *str;

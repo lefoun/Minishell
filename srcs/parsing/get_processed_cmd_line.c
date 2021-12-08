@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_processed_cmd_line.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 13:53:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 16:32:44 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:40:14 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	**get_processed_cmd_line(char *cmd_line)
 {
 	int		words_nb;
 	char	**splited_args;
-
 
 	words_nb = count_words_nb(cmd_line);
 	if (words_nb == ERROR)

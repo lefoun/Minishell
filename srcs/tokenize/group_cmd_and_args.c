@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   group_cmd_and_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 13:34:32 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:42:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_args(t_token *head)
 		return ;
 	tmp = head;
 	head->cmd[i] = ft_strdup(tmp->value);
-	while(tmp && tmp->type != PIPE)
+	while (tmp && tmp->type != PIPE)
 	{
 		if (tmp->type == CMD_SUFFIX)
 			head->cmd[++i] = ft_strdup(tmp->value);
@@ -93,7 +93,7 @@ void	group_assign_tokens(t_token *head)
 		return ;
 	tmp = head;
 	i = 0;
-	while(tmp && tmp->type == ASSIGN)
+	while (tmp && tmp->type == ASSIGN)
 	{
 		head->cmd[i++] = ft_strdup(tmp->value);
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 17:21:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:27:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	ft_exit(char **args)
 		write(2, ": numeric argument required\n",
 			ft_strlen(": numeric argument required\n"));
 	}
-	// FREE ALL THE RESSOURCES !
 	free_ressources();
 	exit(exit_status);
 }

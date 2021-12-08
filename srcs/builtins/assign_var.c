@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assign_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 17:07:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 16:27:19 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:28:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static t_variable	*create_variable(char *str)
 
 static bool	is_in_env(char *name)
 {
-	t_variable *tmp;
+	t_variable	*tmp;
 
 	tmp = variables->env;
 	while (tmp != NULL)

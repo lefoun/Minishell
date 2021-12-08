@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 13:28:28 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:40:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,20 +138,6 @@ int	count_nb_cmds(t_token *head)
 	}
 	return (nb_cmd);
 }
-
-//// To be used for testing only 
-void	print_args(char **args)
-{
-	int i;
-
-	i = 0;
-	while (args[i])
-	{
-		printf("args[%d] = %s\n", i, args[i]);
-		++i;
-	}
-}
-////
 
 static void	save_last_cmd_word(t_token *lst)
 {

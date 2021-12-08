@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_children.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 14:03:29 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/06 15:42:02 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:29:38 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	wait_for_children(t_command_vars *com)
 {
 	int	i;
 	int	status;
-	int last_exit_status;
+	int	last_exit_status;
 
 	i = 0;
 	last_exit_status = variables->last_exit_status;

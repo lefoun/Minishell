@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:46:37 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/07 14:07:47 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:32:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "execution.h"
-
 
 int	_here_doc_error_(void)
 {
