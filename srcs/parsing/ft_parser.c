@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 13:42:38 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:28:28 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,21 +175,17 @@ int	ft_parser(char *cmd)
 
 	head = NULL;
 	args = get_processed_cmd_line(cmd);
-	// print_args(args);
 	ft_tokenize(args, &head);
 	save_last_cmd_word(head);
 	ft_free_tab(args, 0);
 	group_cmd_and_args(&head);
 	group_assign(&head);
-	// print_token(head);
-	// print_token_2(head);
 	if (!head)
 		return (-1);
 	nb_cmds = count_nb_cmds(head);
 	environ = get_environment();
 	pipex_exec_test(nb_cmds, &head, environ);
 	free_environ(environ);
-	// free_token_lst(head);
 	head = NULL;
 	return (0);
 }

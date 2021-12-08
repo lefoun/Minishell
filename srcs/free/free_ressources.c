@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 14:57:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 15:04:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:29:04 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static void	free_t_variable_struct(t_variable *tofree)
 {
 	t_variable	*next_link;
 
-	// if (tofree != NULL)
-	// 	next_link = tofree->next;
 	while (tofree != NULL)
 	{
 		next_link =  tofree->next;
@@ -43,8 +41,6 @@ static void	free_t_variable_struct(t_variable *tofree)
 
 void	free_ressources(void)
 {
-	//t_variable	*tmp;
-
 	free_t_variable_struct(variables->env);
 	free_t_variable_struct(variables->global);
 	free(variables->last_cmd_word);
