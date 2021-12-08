@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:46:37 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 21:32:26 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:53:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	_here_doc_error_(void)
 {
-	ft_putstr_fd(variables->prog_name, 2);
+	ft_putstr_fd(g_variables->prog_name, 2);
 	ft_putstr_fd(": warning: here_document delimited by EOF\n", 2);
 	return (2);
 }

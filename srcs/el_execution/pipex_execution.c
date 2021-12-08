@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 21:29:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:53:43 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int	pipex(t_command_vars *commands, t_token **head)
 		close_unused_fds(pipe_fds, &prev_output, i, commands);
 		ft_free_tab(commands->name, 0);
 	}
-	variables->last_exit_status = wait_for_children(commands);
+	g_variables->last_exit_status = wait_for_children(commands);
 	return (0);
 }
 

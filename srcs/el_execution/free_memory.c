@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:45:52 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/04 12:01:46 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 21:53:30 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	mem_free(char **tab, int index, t_command_vars *commands)
 		close(commands->input_fd);
 	if (commands->output_fd != -1)
 		close(commands->output_fd);
-	return (variables->last_exit_status);
+	return (g_variables->last_exit_status);
 }
 
 void	double_free(char *tab, char *tab2)

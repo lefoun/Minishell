@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:06:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 20:30:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:53:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	print_error(char *str, int builtin)
 		return ;
 	if (builtin == EXPORT)
 	{
-		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
 		write(2, ": export: ", ft_strlen(": export: "));
 	}
 	write(2, str, ft_strlen(str));

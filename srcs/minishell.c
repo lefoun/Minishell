@@ -6,13 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:39:26 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:49:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_vars	*variables = NULL;
+t_vars	*g_variables = NULL;
 
 static bool	pipe_is_unclosed(char *str)
 {
@@ -44,7 +44,7 @@ static char	*get_cmd_line(void)
 	char	*tmp;
 	char	*new_line;
 
-	if (variables->last_exit_status == 131)
+	if (g_variables->last_exit_status == 131)
 		printf("Quit (core dumped)\n");
 	cmd_line = readline(BGRN"[pepesh €] "RESET);
 	while (pipe_is_unclosed(cmd_line))
@@ -71,7 +71,7 @@ static void	edit_underscore_var(void)
 	char	*var;
 	int		len;
 
-	len = ft_strlen(variables->last_cmd_word);
+	len = ft_strlen(g_variables->last_cmd_word);
 	var = malloc(sizeof(char) * (len + 3));
 	if (var == NULL)
 		return ;
@@ -79,7 +79,7 @@ static void	edit_underscore_var(void)
 	if (args == NULL)
 		return ;
 	ft_strlcpy(var, "_=", 3);
-	ft_strlcat(var, variables->last_cmd_word, len + 3);
+	ft_strlcat(var, g_variables->last_cmd_word, len + 3);
 	args[0] = var;
 	args[1] = NULL;
 	ft_export(args);
@@ -113,5 +113,5 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	shell_init(av, envp, &sa);
 	minishell();
-	return (variables->last_exit_status);
+	return (g_variables->last_exit_status);
 }

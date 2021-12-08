@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:31:19 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 21:40:08 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:55:04 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ char	*get_dollar_word_value(char *dollar_word)
 	t_variable	*env_var;
 	t_variable	*global_var;
 
-	env_var = variables->env;
-	global_var = variables->global;
+	env_var = g_variables->env;
+	global_var = g_variables->global;
 	while (env_var)
 	{
 		if (ft_strcmp(env_var->name, dollar_word) == 0)
@@ -70,7 +70,7 @@ char	*replace_dollar_word(char *word, char *dollar_word)
 	char	*dlr_wrd_value;
 
 	if (ft_strcmp(dollar_word, "?") == 0)
-		dlr_wrd_value = ft_itoa(variables->last_exit_status);
+		dlr_wrd_value = ft_itoa(g_variables->last_exit_status);
 	else
 		dlr_wrd_value = get_dollar_word_value(dollar_word);
 	len = ft_strlen(word) - ft_strlen(dollar_word) + ft_strlen(dlr_wrd_value);

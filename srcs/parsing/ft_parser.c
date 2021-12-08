@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:30:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:40:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:54:49 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ static void	save_last_cmd_word(t_token *lst)
 	{
 		if (ft_strcmp(lst->value, "\0") != 0)
 		{
-			free(variables->last_cmd_word);
-			variables->last_cmd_word = ft_strdup(lst->value);
+			free(g_variables->last_cmd_word);
+			g_variables->last_cmd_word = ft_strdup(lst->value);
 		}
 		lst = lst->next;
 	}

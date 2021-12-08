@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/05 15:21:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:52:12 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	check_assignment_variables(char *name)
 	char		**args;
 
 	args = malloc(sizeof(char *) * 2);
-	tmp = variables->global;
+	tmp = g_variables->global;
 	while (tmp != NULL)
 	{
 		if (ft_strcmp(name, tmp->name) == 0)
@@ -110,7 +110,7 @@ int	ft_export(char **args)
 		if (is_valid_identifier(new->name, EXPORT))
 		{
 			check_assignment_variables(new->name);
-			add_variable(&variables->env, new);
+			add_variable(&g_variables->env, new);
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 17:07:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:28:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:51:06 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static bool	is_in_env(char *name)
 {
 	t_variable	*tmp;
 
-	tmp = variables->env;
+	tmp = g_variables->env;
 	while (tmp != NULL)
 	{
 		if (ft_strcmp(name, tmp->name) == 0)
@@ -96,7 +96,7 @@ void	assign_var(char *keyvalue)
 	if (is_in_env(new->name))
 	{
 		if (is_valid_identifier(new->name, ASSIGNMENT))
-			add_variable(&variables->env, new);
+			add_variable(&g_variables->env, new);
 		else
 		{
 			free(new->name);
@@ -107,7 +107,7 @@ void	assign_var(char *keyvalue)
 	else
 	{
 		if (is_valid_identifier(new->name, ASSIGNMENT))
-			add_variable(&variables->global, new);
+			add_variable(&g_variables->global, new);
 		else
 		{
 			free(new->name);

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 10:58:03 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:52:21 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_pwd(char **args)
 
 	if (has_invalid_option(args[0]) == true)
 	{
-		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
 		write(2, ": pwd: ", ft_strlen(": pwd: "));
 		write(2, args[0], ft_strlen(args[0]));
 		write(2, ": invalid option\npwd: usage: pwd\n", \

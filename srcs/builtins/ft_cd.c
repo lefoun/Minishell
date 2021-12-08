@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:26:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:51:33 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static int	exec_cd_with_home_var(void)
 {
 	t_variable	*var;
 
-	var = get_variable(variables->env, "HOME");
+	var = get_variable(g_variables->env, "HOME");
 	if (var == NULL)
 	{
-		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
 		write(2, ": cd: HOME not set\n", ft_strlen(": cd: HOME not set\n"));
 		return (1);
 	}
@@ -39,8 +39,8 @@ static void	edit_env(char *olddirectory)
 	t_variable	*env_pwd;
 
 	cwd = call_getcwd();
-	env_oldpwd = get_variable(variables->env, "OLDPWD");
-	env_pwd = get_variable(variables->env, "PWD");
+	env_oldpwd = get_variable(g_variables->env, "OLDPWD");
+	env_pwd = get_variable(g_variables->env, "PWD");
 	if (env_oldpwd != NULL)
 		env_oldpwd->value = olddirectory;
 	else
@@ -67,7 +67,7 @@ static bool	has_too_many_args(char **args)
 
 static int	too_many_args_error(void)
 {
-	write(2, variables->prog_name, ft_strlen(variables->prog_name));
+	write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
 	write(2, ": cd: too many arguments\n",
 		ft_strlen(": cd: too many arguments\n"));
 	return (1);

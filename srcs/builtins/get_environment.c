@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 09:23:23 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 10:13:41 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:52:43 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	**init_env_tab(void)
 	char			**env;
 
 	len = 0;
-	tmp = variables->env;
+	tmp = g_variables->env;
 	while (tmp != NULL)
 	{
 		len++;
@@ -54,7 +54,7 @@ char	**get_environment(void)
 
 	env = init_env_tab();
 	i = 0;
-	tmp = variables->env;
+	tmp = g_variables->env;
 	while (tmp != NULL)
 	{
 		env[i] = get_full_variable(tmp);

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:27:51 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:51:56 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_exit(char **args)
 	write(2, "exit\n", ft_strlen("exit\n"));
 	if (args[0] == NULL)
 	{
-		exit_status = variables->last_exit_status;
+		exit_status = g_variables->last_exit_status;
 		free_ressources();
 		exit(exit_status);
 	}
@@ -73,14 +73,14 @@ int	ft_exit(char **args)
 	exit_status = get_exit_status(args[0], &arg_is_numeric);
 	if (arg_is_numeric == true && args[1] != NULL)
 	{
-		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
 		write(2, ": exit: too many arguments\n",
 			ft_strlen(": exit: too many arguments\n"));
 		return (1);
 	}
 	if (arg_is_numeric == false)
 	{
-		write(2, variables->prog_name, ft_strlen(variables->prog_name));
+		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
 		write(2, ": exit: ", ft_strlen(": exit: "));
 		write(2, args[0], ft_strlen (args[0]));
 		write(2, ": numeric argument required\n",

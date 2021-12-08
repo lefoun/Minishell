@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/06 14:32:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:49:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_vars
 /* 
 ** Environment variables is a global linked list
 */
-extern t_vars	*variables;
+extern t_vars	*g_variables;
 
 int				shell_init(char **av, char **envp, struct sigaction *sa);
 t_vars			*init_env(char **av);

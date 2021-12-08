@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:39:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:54:28 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	set_shlvl(void)
 	char		**new_var;
 	char		*lvl_value;
 
-	lvl = get_variable(variables->env, "SHLVL");
+	lvl = get_variable(g_variables->env, "SHLVL");
 	if (lvl == NULL)
 	{
 		new_var = malloc(sizeof(char *) * 2);
@@ -82,7 +82,7 @@ static int	set_pwd(void)
 	new_var[0] = ft_strdup("PWD=");
 	new_var[1] = NULL;
 	ft_export(new_var);
-	pwd = get_variable(variables->env, "PWD");
+	pwd = get_variable(g_variables->env, "PWD");
 	free(pwd->value);
 	pwd->value = cwd;
 	free(new_var[0]);
@@ -94,7 +94,7 @@ void	sighandler(int signo)
 {
 	if (signo == SIGINT)
 	{
-		variables->last_exit_status = 130;
+		g_variables->last_exit_status = 130;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -119,7 +119,7 @@ void	init_signal_struct(struct sigaction *sa)
 
 int	shell_init(char **av, char **envp, struct sigaction *sa)
 {
-	variables = init_env(av);
+	g_variables = init_env(av);
 	init_signal_struct(sa);
 	ft_export(envp);
 	set_shlvl();

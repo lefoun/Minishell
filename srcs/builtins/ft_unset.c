@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/04 17:44:24 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:52:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	ft_unset(char **args)
 	{
 		if (is_valid_identifier(args[i], UNSET))
 		{
-			delete_variable(&variables->env, args[i]);
-			delete_variable(&variables->global, args[i]);
+			delete_variable(&g_variables->env, args[i]);
+			delete_variable(&g_variables->global, args[i]);
 		}
 		else
 			all_unset = false;

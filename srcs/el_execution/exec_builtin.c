@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 11:40:47 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 21:31:37 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:53:22 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int	exec_builtin(t_command_vars *commands)
 	else if (commands->is_assign == true)
 		exit_status = assign_variables(commands->name);
 	if (exit_status != -1)
-		variables->last_exit_status = exit_status;
+		g_variables->last_exit_status = exit_status;
 	return (exit_status);
 }
