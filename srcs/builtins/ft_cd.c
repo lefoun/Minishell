@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:27 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 16:34:04 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:03:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,34 @@ static void	edit_env(char *olddirectory)
 		free(cwd);
 }
 
+static bool	has_too_many_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i] != NULL)
+	{
+		if (i == 1)
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+static int	too_many_args_error(void)
+{
+	write(2, variables->prog_name, ft_strlen(variables->prog_name));
+	write(2, ": cd: too many arguments\n",\
+			ft_strlen(": cd: too many arguments\n"));
+	return (1);
+}
 int	ft_cd(char **args)
 {
 	char	*str;
 	char	*oldpwd;
 
+	if (has_too_many_args(args))
+		return (too_many_args_error());
 	oldpwd = call_getcwd();
 	if (args == NULL || *args == NULL)
 	{

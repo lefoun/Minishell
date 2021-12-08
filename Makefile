@@ -21,7 +21,7 @@ RED			= \033[0;31m
 YEL			= \033[0;33m
 GRN			= \033[0;32m
 RM			= rm -rf
-CC			= clang
+CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address #-v -g3
 NAME		= minishell
 SRCS_DIR	= srcs/
