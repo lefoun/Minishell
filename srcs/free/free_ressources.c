@@ -6,11 +6,25 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 14:57:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:54:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:08:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_assign(t_token **head)
+{
+	t_token	*tmp;
+
+	tmp = *head;
+	while (*head != NULL && (*head)->type == ASSIGN)
+	{
+		tmp = tmp->next;
+		free((*head)->value);
+		free(*head);
+		*head = tmp;
+	}
+}
 
 void	free_environ(char **tofree)
 {

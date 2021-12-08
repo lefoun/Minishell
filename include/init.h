@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:49:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:06:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@ extern t_vars	*g_variables;
 
 int				shell_init(char **av, char **envp, struct sigaction *sa);
 t_vars			*init_env(char **av);
+int				set_pwd(void);
+int				set_lscolors(void);
+int				set_underscore(void);
+int				set_shlvl(void);
 
 #endif

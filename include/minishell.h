@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/08 21:22:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:09:14 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void			init_function_pointer(int (*get_redirection[])
 t_token			*group_cmd_and_args(t_token **head);
 t_token			*map_lst_till_pipe_or_eol(t_token **head);
 t_token			*group_assign(t_token **head);
+void			free_assign(t_token **head);
+
 // ------------- Pre processing-------------------
 int				count_words_nb(char *cmd_line);
 char			**get_processed_cmd_line(char *cmd_line);

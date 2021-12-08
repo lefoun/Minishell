@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 09:37:33 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/08 21:23:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:21:54 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,10 @@ void		init_commands_struct(t_command_vars *commands);
 void		init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output);
 char		**get_command(t_token **head);
 int			exec_builtin(t_command_vars *commands);
+int			fork_and_execute(t_command_vars *com, int pipe_fds[2],
+				int index, int prev_output, t_token **head);
+int			link_pipe_to_fd(int in, int out);
+int			exec_command(char **my_paths, char **argv,
+				t_command_vars *commands);
 
 #endif

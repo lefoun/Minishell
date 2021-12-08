@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:59 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 21:42:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:09:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,20 +99,6 @@ void	group_assign_tokens(t_token *head)
 		tmp = tmp->next;
 	}
 	head->cmd[i] = NULL;
-}
-
-void	free_assign(t_token **head)
-{
-	t_token	*tmp;
-
-	tmp = *head;
-	while (*head != NULL && (*head)->type == ASSIGN)
-	{
-		tmp = tmp->next;
-		free((*head)->value);
-		free(*head);
-		*head = tmp;
-	}
 }
 
 t_token	*group_assign(t_token **head)

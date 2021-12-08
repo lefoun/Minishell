@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/08 21:44:34 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/08 22:20:07 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,14 @@ get_processed_cmd_line.c get_word.c split_cmd_line.c replace_dollar_word.c \
 search_dollar_word.c)
 EXECUTION_FILES = $(addprefix el_execution/, pipex_execution.c close_pipes.c \
 error_management.c free_memory.c get_paths.c init_fd.c init_here_doc.c \
-wait_children.c fd_chained_list.c get_init_command.c exec_builtin.c)
+wait_children.c fd_chained_list.c get_init_command.c exec_builtin.c command_execution.c)
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c\
 			get_environment.c assign_var.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
-INIT_FILES = $(addprefix init/, shell_init.c init_env.c)
+INIT_FILES = $(addprefix init/, shell_init.c init_env.c set_basic_env.c)
 FREE_FILES = $(addprefix free/, free_ressources.c)
 
 SRCS_FILES	=  minishell.c $(BOOLEANS_FILES) $(EXECUTION_FILES) $(ERRORS_FILES) $(TOKENIZE_FILES)\
