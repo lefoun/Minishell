@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_redirection_op.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 01:16:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/07 13:40:58 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/08 14:08:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ int	get_redir_input_file(char **args, int *index, t_token **head)
 	if (ft_catch_error(ret == 2, filename, head) == MALLOC_ERROR)
 		return (1);
 	i = *index;
-	while (args[++i] && !is_operator(args[i][0]) && !is_operator(args[i +1][0]))
+	if (args[i] != NULL)
 	{
-		++*index;
-		get_cmd(args, index, head);
+		while (args[++i] && !is_operator(args[i][0]) && args[i + 1] && !is_operator(args[i +1][0])
+		{
+			++*index;
+			get_cmd(args, index, head);
+		}
 	}
 	return (0);
 }
