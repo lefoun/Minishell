@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/08 22:09:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:05:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@
 # define EXPORT 1
 # define UNSET 2
 # define ASSIGNMENT 3
-// Error management
 
+// Error management
 # define OP_NOT_FOUND -1
 # define MALLOC_ERROR 2
 # define CMD_NOT_FOUND 3
-
-//...
 
 enum	e_arg_type {
 	CMD_NAME,
@@ -89,9 +87,9 @@ unsigned int	get_greatest_len(char *str1, char *str2);
 bool			is_valid_identifier(char *str, int builtin);
 char			**get_environment(void);
 void			assign_var(char *keyvalue);
+int				get_exit_status(char *str, bool *arg_is_numeric);
 
 // ------------- Parsing -----------------
-
 t_ast			*ft_create_ast(char *cmd_line);
 char			*ft_strdup_index(char *str, int index);
 int				ft_parser(char *cmd);
@@ -156,6 +154,7 @@ int				ft_free_tab(char **tab, int error_cause);
 // ------------------------- Free ------------------
 void			free_ressources(void);
 void			free_environ(char **tofree);
+void			free_link(t_variable *tofree);
 
 // Test functions
 void			print_token(t_token *head);

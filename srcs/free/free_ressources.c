@@ -6,11 +6,18 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 14:57:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 22:08:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:36:54 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_link(t_variable *tofree)
+{
+	free(tofree->name);
+	free(tofree->value);
+	free(tofree);
+}
 
 void	free_assign(t_token **head)
 {

@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/08 22:20:07 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/09 10:50:24 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ wait_children.c fd_chained_list.c get_init_command.c exec_builtin.c command_exec
 BUILTINS_FILES = $(addprefix builtins/, ft_cd.c ft_echo.c ft_env.c ft_exit.c \
 			ft_export.c ft_pwd.c ft_unset.c add_variable.c \
 			get_variable.c call_getcwd.c get_greatest_len.c is_valid_identifier.c\
-			get_environment.c assign_var.c)
+			get_environment.c assign_var.c get_exit_status.c)
 HISTORY_FILES = $(addprefix history/, update_history.c)
 UTILS_FILES = $(addprefix utils/, ft_strdup_index.c)
 INIT_FILES = $(addprefix init/, shell_init.c init_env.c set_basic_env.c)

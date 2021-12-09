@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:49 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:52:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:37:09 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,7 @@ int	ft_export(char **args)
 		else
 		{
 			all_set = false;
-			free(new->name);
-			free(new->value);
-			free(new);
+			free_link(new);
 		}
 		i++;
 	}

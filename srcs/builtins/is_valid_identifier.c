@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 19:06:44 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:53:08 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:38:53 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ bool	is_valid_identifier(char *str, int builtin)
 			(str[i] >= 'a' && str[i] <= 'z') || \
 			(str[i] >= '0' && str[i] <= '9') || \
 			str[i] == '_')
-		{
 			i++;
-		}
 		else
 		{
 			print_error(str, builtin);

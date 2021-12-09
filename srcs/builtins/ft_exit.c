@@ -6,55 +6,26 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:41:46 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 21:51:56 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:50:42 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	is_number(char *str)
+static void	too_many_args_msg(void)
 {
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-		str++;
-	if (*str != '\0')
-		return (false);
-	return (true);
+	write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
+	write(2, ": exit: too many arguments\n",
+		ft_strlen(": exit: too many arguments\n"));
 }
 
-static int	get_exit_status(char *str, bool *arg_is_numeric)
+static void	num_args_req_msg(char *str)
 {
-	int				sign;
-	unsigned long	exit_status;
-
-	*arg_is_numeric = is_number(str);
-	if (arg_is_numeric == false)
-		return (2);
-	sign = 1;
-	exit_status = 0;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		exit_status = (exit_status * 10) + (*str - '0');
-		if (sign == 1 && exit_status > (unsigned long)LLONG_MAX)
-		{
-			*arg_is_numeric = false;
-			return (2);
-		}
-		if (sign == -1 && exit_status > (unsigned long)LLONG_MAX + 1)
-		{
-			*arg_is_numeric = false;
-			return (2);
-		}
-		str++;
-	}
-	return ((int)exit_status * sign);
+	write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
+	write(2, ": exit: ", ft_strlen(": exit: "));
+	write(2, str, ft_strlen (str));
+	write(2, ": numeric argument required\n",
+		ft_strlen(": numeric argument required\n"));
 }
 
 int	ft_exit(char **args)
@@ -73,19 +44,11 @@ int	ft_exit(char **args)
 	exit_status = get_exit_status(args[0], &arg_is_numeric);
 	if (arg_is_numeric == true && args[1] != NULL)
 	{
-		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
-		write(2, ": exit: too many arguments\n",
-			ft_strlen(": exit: too many arguments\n"));
+		too_many_args_msg();
 		return (1);
 	}
 	if (arg_is_numeric == false)
-	{
-		write(2, g_variables->prog_name, ft_strlen(g_variables->prog_name));
-		write(2, ": exit: ", ft_strlen(": exit: "));
-		write(2, args[0], ft_strlen (args[0]));
-		write(2, ": numeric argument required\n",
-			ft_strlen(": numeric argument required\n"));
-	}
+		num_args_req_msg(args[0]);
 	free_ressources();
 	exit(exit_status);
 }
