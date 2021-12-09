@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:31:19 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 21:55:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:25:01 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*replace_dollar_word(char *word, char *dollar_word)
 		return (NULL);
 	copy_word(word, new_wrd, dollar_word, dlr_wrd_value);
 	free(dollar_word);
+	free(dlr_wrd_value);
 	free(word);
 	return (new_wrd);
 }
