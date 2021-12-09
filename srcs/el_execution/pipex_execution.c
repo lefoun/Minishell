@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/08 22:20:41 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:49:06 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ int	create_pipe(int pipe_fds[2], t_command_vars *com)
 int	pipex(t_command_vars *commands, t_token **head)
 {
 	int		pipe_fds[2];
-	int		prev_output;
 	int		i;
 
-	init_vars_to_minus_one(&i, pipe_fds, &prev_output);
+	init_vars_to_minus_one(&i, pipe_fds, &commands->prev_output);
 	while (++i < commands->nb)
 	{
 		init_commands_struct(commands);
@@ -62,9 +61,9 @@ int	pipex(t_command_vars *commands, t_token **head)
 		if (i + 1 < commands->nb)
 			create_pipe(pipe_fds, commands);
 		init_fd_to_commands(*head, commands);
-		fork_and_execute(commands, pipe_fds, i, prev_output, head);
+		fork_and_execute(commands, pipe_fds, i, head);
 		advance_linked_list_ptr(head);
-		close_unused_fds(pipe_fds, &prev_output, i, commands);
+		close_unused_fds(pipe_fds, &commands->prev_output, i, commands);
 		ft_free_tab(commands->name, 0);
 	}
 	g_variables->last_exit_status = wait_for_children(commands);

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 09:37:33 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/08 22:21:54 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:48:21 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_command {
 	int			input_fd;
 	int			output_fd;
 	int			pid;
+	int			prev_output;
 	bool		is_here_doc;
 	bool		is_first_command;
 	bool		is_main_process_cmd;
@@ -69,7 +70,7 @@ void		init_vars_to_minus_one(int *i, int pipe_fds[2], int *prev_output);
 char		**get_command(t_token **head);
 int			exec_builtin(t_command_vars *commands);
 int			fork_and_execute(t_command_vars *com, int pipe_fds[2],
-				int index, int prev_output, t_token **head);
+				int index, t_token **head);
 int			link_pipe_to_fd(int in, int out);
 int			exec_command(char **my_paths, char **argv,
 				t_command_vars *commands);

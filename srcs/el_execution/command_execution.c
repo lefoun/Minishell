@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 22:17:28 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 22:20:45 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:48:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	link_pipe_to_fd(int in, int out)
 }
 
 int	fork_and_execute(t_command_vars *com, int pipe_fds[2],
-	int index, int prev_output, t_token **head)
+	int index, t_token **head)
 {
 	int	pid;
 
@@ -83,11 +83,11 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2],
 		if (index == 0)
 			link_pipe_to_fd(com->input_fd, com->output_fd);
 		else if (index + 1 == com->nb)
-			link_pipe_to_fd(prev_output, com->output_fd);
+			link_pipe_to_fd(com->prev_output, com->output_fd);
 		else
-			link_pipe_to_fd(prev_output, pipe_fds[1]);
+			link_pipe_to_fd(com->prev_output, pipe_fds[1]);
 		if (exec_builtin(com) != -1)
-			exit_builtin_exec(pipe_fds, prev_output, com, head);
+			exit_builtin_exec(pipe_fds, com->prev_output, com, head);
 		exec_command(com->paths, com->name, com);
 		exit_process(com, pipe_fds, *head);
 	}
