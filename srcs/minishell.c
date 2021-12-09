@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 22:56:51 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/09 14:09:22 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int	minishell(void)
 			exit(0);
 		}
 		ft_parser(cmd);
-		edit_underscore_var();
+		if (g_variables->last_cmd_word != NULL)
+			edit_underscore_var();
 	}
 	return (0);
 }
