@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:50:54 by noufel            #+#    #+#             */
-/*   Updated: 2021/12/09 11:05:17 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:39:10 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,12 @@ int				ft_free_tab(char **tab, int error_cause);
 void			free_ressources(void);
 void			free_environ(char **tofree);
 void			free_link(t_variable *tofree);
+
+// ------------------------ Signal ----------------
+void			signal_func_call(void);
+void			kill_child(int signo);
+void			update_var_for_signal(int pid);
+void			sighandler(int signo);
 
 // Test functions
 void			print_token(t_token *head);

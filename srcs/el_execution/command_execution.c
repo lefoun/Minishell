@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 22:17:28 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/09 13:48:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:28:43 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ int	fork_and_execute(t_command_vars *com, int pipe_fds[2],
 {
 	int	pid;
 
-	if (com->nb == 1 && is_main_process_builtin(com))
-		return (exec_builtin(com));
 	pid = fork();
 	if (pid == -1)
 		return (_error_('k'));
+	update_var_for_signal(pid);
+	signal(SIGINT, &kill_child);
 	if (pid == 0)
 	{
-		signal(SIGQUIT, SIG_DFL);
+		signal_func_call();
 		if (pipe_fds[0] != -1 && index == 0)
 			close(pipe_fds[0]);
 		if (index == 0)

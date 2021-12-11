@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 21:30:04 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/09 14:09:22 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:39:24 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static char	*get_cmd_line(void)
 
 	if (g_variables->last_exit_status == 131)
 		printf("Quit (core dumped)\n");
+	if (g_variables->last_exit_status == 130)
+		printf("\n");
 	cmd_line = readline(BGRN"pepesh » "RESET);
 	while (pipe_is_unclosed(cmd_line))
 	{
@@ -93,6 +95,8 @@ int	minishell(void)
 
 	while (true)
 	{
+		signal(SIGINT, &sighandler);
+		signal(SIGQUIT, SIG_IGN);
 		cmd = get_cmd_line();
 		update_history(cmd);
 		if (cmd == NULL)
@@ -109,10 +113,8 @@ int	minishell(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	struct sigaction	sa;
-
 	(void)ac;
-	shell_init(av, envp, &sa);
+	shell_init(av, envp);
 	minishell();
 	return (g_variables->last_exit_status);
 }

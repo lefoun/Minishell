@@ -6,7 +6,7 @@
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 14:58:58 by nammari           #+#    #+#             */
-/*   Updated: 2021/07/08 00:49:02 by nammari          ###   ########.fr       */
+/*   Updated: 2021/12/11 15:04:52 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	print_char(char mychar, t_flag_values	*flag)
 {
-	int				i;
 	int				width;
 	int				printed;
 	char			pad;
 
-	i = 0;
 	pad = ' ';
 	if (flag->pad_zero)
 		pad = '0';

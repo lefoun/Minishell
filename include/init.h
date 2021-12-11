@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:25:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/08 22:06:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:37:04 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_vars
 	int			last_exit_status;
 	char		*prog_name;
 	char		*last_cmd_word;
+	bool		is_child_to_kill;
+	int			my_pid;
 }	t_vars;
 
 /* 
@@ -40,7 +42,7 @@ typedef struct s_vars
 */
 extern t_vars	*g_variables;
 
-int				shell_init(char **av, char **envp, struct sigaction *sa);
+int				shell_init(char **av, char **envp);
 t_vars			*init_env(char **av);
 int				set_pwd(void);
 int				set_lscolors(void);

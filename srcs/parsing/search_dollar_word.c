@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_dollar_word.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:30:10 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 21:25:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:32:21 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*search_dollar_word(char *word)
 	++i;
 	while (!is_whitespace(word[i + j]) && word[i + j] != '\0'
 		&& word[i + j] != '$' && !is_quote(word[i + j]))
-			++j;
+		++j;
 	dollar_word = malloc(sizeof(*dollar_word) * j + 1);
 	if (dollar_word == NULL)
 		return (NULL);

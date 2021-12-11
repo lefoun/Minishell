@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 17:25:08 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/11 15:36:46 by nammari          ###   ########.fr       */
+/*   Created: 2021/12/11 15:20:37 by nammari           #+#    #+#             */
+/*   Updated: 2021/12/11 15:39:40 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sighandler(int signo)
+void	signal_func_call(void)
 {
-	if (signo == SIGINT)
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+}
+
+void	kill_child(int signo)
+{
+	if (signo == SIGINT && g_variables->is_child_to_kill == true)
 	{
-		g_variables->last_exit_status = 130;
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-	else if (signo == SIGQUIT)
-	{
-		return ;
+		kill(g_variables->my_pid, SIGKILL);
 	}
 }
 
-int	shell_init(char **av, char **envp)
+void	update_var_for_signal(int pid)
 {
-	g_variables = init_env(av);
-	ft_export(envp);
-	set_shlvl();
-	set_underscore();
-	set_pwd();
-	if (getenv("LS_COLORS") == NULL)
-		set_lscolors();
-	return (0);
+	if (pid != 0)
+		g_variables->my_pid = pid;
+	else
+		g_variables->my_pid = 0;
 }

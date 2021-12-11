@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_execution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:03:46 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/09 13:49:06 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:26:22 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ int	pipex(t_command_vars *commands, t_token **head)
 	init_vars_to_minus_one(&i, pipe_fds, &commands->prev_output);
 	while (++i < commands->nb)
 	{
+		g_variables->is_child_to_kill = false;
 		init_commands_struct(commands);
 		commands->name = get_copy_of_com(*head, commands);
 		if (i + 1 < commands->nb)
 			create_pipe(pipe_fds, commands);
 		init_fd_to_commands(*head, commands);
-		fork_and_execute(commands, pipe_fds, i, head);
+		if (commands->nb == 1 && is_main_process_builtin(commands))
+			exec_builtin(commands);
+		else
+			fork_and_execute(commands, pipe_fds, i, head);
 		advance_linked_list_ptr(head);
 		close_unused_fds(pipe_fds, &commands->prev_output, i, commands);
 		ft_free_tab(commands->name, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   digit_printer_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nammari <nammari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:01:06 by nammari           #+#    #+#             */
-/*   Updated: 2021/12/03 20:50:04 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:04:46 by nammari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ int	treat_digit(va_list	*varlist, const char	*str)
 
 int	get_flags(const char *str, char *string, t_flag_values *flag)
 {
-	int		i;
 	char	format;
 
-	i = 0;
 	(void)string;
 	format = *str;
 	while (*str && *str != '%')
