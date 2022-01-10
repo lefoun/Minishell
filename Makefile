@@ -6,7 +6,7 @@
 #    By: nammari <nammari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 21:34:46 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/11 15:34:56 by nammari          ###   ########.fr        #
+#    Updated: 2022/01/10 17:38:16 by nammari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ SRC_BONUS	= minishell_bonus.c
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 INC			= -Iinclude
 includes	= $(wildcard include/*.h)
-LIBRARY		= ft_printf
+LIBRARY		= custom_library
 OBJS_SUB_DIRS = $(addprefix objs/, booleans errors tokenize el_execution \
 			ast builtins parsing utils history init lst free) 
 
