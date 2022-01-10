@@ -1,9 +1,15 @@
-# ft_Minishell
+# A mini version of Shell
 
-# Code nomenclature 
-1- When pointer write == NULL.  
-2- When function is_machin and !is_machine.
-### Retrn Code Checking 
-Return (-1) = function getter didn't find what it is searching (standard error).   
-Return (0) = function proceeded as expected.
-Return (2) = malloc error.
+(I mean really mini version).
+
+It was a fun project I've learned a ton about lots of stuff including:
+
+- Processes 
+
+- Signals
+
+- Pipes
+
+- Tokenization in parsing
+
+- Collaborating with others (The magnificent [@sdummett](https://github.com/sdummett))
