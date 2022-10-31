@@ -48,7 +48,7 @@ static char	*get_cmd_line(void)
 		printf("Quit (core dumped)\n");
 	if (g_variables->last_exit_status == 130)
 		printf("\n");
-	cmd_line = readline(BGRN"pepesh » "RESET);
+	cmd_line = readline(BGRN"minishell» "RESET);
 	while (pipe_is_unclosed(cmd_line))
 	{
 		tmp = cmd_line;

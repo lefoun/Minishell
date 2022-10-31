@@ -82,7 +82,7 @@ $(OBJS_DIR):
 $(NAME): $(OBJS_DIR) $(OBJ)
 	make -C $(LIBRARY)
 	@printf "$(WHT)[$(GRN)LIBRARY $(LIBRARY) COMPILED$(WHT)]\n"
-	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) ft_printf/libftprintf.a
+	$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBRARY)/libftprintf.a
 	@printf "$(WHT)[$(GRN)$(NAME) COMPILED$(WHT)]\n"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(include)
